@@ -9,7 +9,9 @@ sections:
   label: Posts
   create: documents
   match: "**/*"
-  new_doc_ext: ".json"
+  new_doc_ext: json
+  templates:
+  - post
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
