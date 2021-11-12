@@ -9,7 +9,7 @@ sections:
   label: Posts
   create: documents
   match: "**/*"
-  new_doc_ext: json
+  new_doc_ext: md
   templates:
   - post
 upload_dir: uploads
