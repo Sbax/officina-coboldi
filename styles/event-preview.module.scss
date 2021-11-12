@@ -1,0 +1,17 @@
+@import './variables.module.scss';
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $lg) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  grid-gap: 1em;
+  padding: 1em 0;
+}

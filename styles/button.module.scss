@@ -1,0 +1,35 @@
+@import './variables.module.scss';
+
+.button {
+  background: white;
+  color: black;
+  border: solid #000;
+  border-width: 2px 2px 5px;
+  border-radius: 1.5em;
+
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  padding: 0.25em 0.5em;
+
+  &:hover:not(:disabled) {
+    border-bottom: 3px solid #000;
+    margin-top: 2px;
+  }
+
+  &.primary {
+    background: $primary-color;
+    color: white;
+  }
+
+  &.secondary {
+    background: $secondary-color;
+  }
+
+  &:disabled {
+    border-color: gray;
+    background: white;
+    color: gray;
+    cursor: not-allowed;
+  }
+}

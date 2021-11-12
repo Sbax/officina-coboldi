@@ -1,0 +1,19 @@
+$primary-color: #b61de9;
+$secondary-color: #15d8a7;
+$main-bg: #f6efe4;
+
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+$header-height-small: 4em;
+$header-height: 8em;
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+  mainBg: $main-bg;
+  headerHeightSmall: $header-height-small;
+  headerHeight: $header-height;
+}

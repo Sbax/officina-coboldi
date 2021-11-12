@@ -1,0 +1,73 @@
+@import './variables.module.scss';
+
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+
+body,
+#__next {
+  scroll-padding-top: $header-height-small;
+
+  @media (min-width: $md) {
+    scroll-padding-top: $header-height;
+  }
+
+  height: 100%;
+  overflow-x: hidden;
+  background: $main-bg;
+
+  font-family: 'Montserrat';
+  font-weight: 600;
+
+  color: black;
+}
+
+main {
+  height: 100%;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  font-size: 1em;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  border: 0;
+  outline: none;
+  background: inherit;
+  font-size: inherit;
+  text-transform: none;
+}
+
+ul,
+ul li,
+ul ul li {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style: none;
+}

@@ -1,0 +1,55 @@
+@import './variables.module.scss';
+
+.container {
+  padding: 0;
+  max-width: $md;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  font-size: 1.2em;
+
+  > * + * {
+    margin-top: 1em;
+  }
+
+  h1 {
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+    max-width: 40ch;
+  }
+
+  .description {
+    font-weight: 100;
+
+    p {
+      max-width: 55ch;
+    }
+
+    > * + * {
+      margin-top: 1em;
+    }
+  }
+
+  hr {
+    width: 100%;
+    border: 0;
+    height: 1em;
+
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: '';
+      height: 1em;
+      width: 600%;
+      background: transparent url(./borders/border-black.svg) 0 repeat-x;
+    }
+  }
+}

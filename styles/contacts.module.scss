@@ -1,0 +1,50 @@
+@import './variables.module.scss';
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: $md) {
+    display: block;
+  }
+
+  img {
+    width: 10em;
+  }
+}
+
+.container {
+  padding: 2em 0;
+
+  > * + * {
+    margin-top: 2em;
+  }
+
+  @media (min-width: $md) {
+    display: flex;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: 5em;
+    }
+  }
+
+  h1 {
+    font-size: 1.66em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.social {
+  display: flex;
+
+  > * + * {
+    margin-left: 0.33em;
+
+    &:before {
+      margin-right: 0.33em;
+      content: '/';
+    }
+  }
+}

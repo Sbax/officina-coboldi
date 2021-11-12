@@ -1,0 +1,22 @@
+@import './variables.module.scss';
+
+.strip {
+  position: relative;
+  background: $secondary-color;
+  color: black;
+
+  & + * {
+    padding-top: 1em;
+  }
+
+  &:after {
+    background: transparent url(./borders/header-border-2.svg) 0 repeat-x;
+    bottom: -1em;
+    height: 1em;
+
+    content: '';
+    position: absolute;
+    left: -1em;
+    width: 600%;
+  }
+}
