@@ -5,7 +5,7 @@ excerpt: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
   fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities
   morbi tempus.
 coverImage: "/uploads/photo_2021-11-19_16-54-25.jpg"
-date: 2020-03-16T05:35:07.322Z
+date: ! '"2021-11-18"'
 author: JJ Kasper
 ogImage:
   url: "/uploads/photo_2021-11-19_16-54-25-1.jpg"
