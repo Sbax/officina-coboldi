@@ -11,6 +11,18 @@ fields:
 - type: file
   name: coverImage
   label: coverImage
+- name: artist
+  type: text
+  config:
+    required: false
+  label: Artist
+  description: Nome dell'artista a cui dare i crediti dell'immagine, se necessario
+- name: artist_url
+  type: text
+  config:
+    required: false
+  label: Artist URL
+  description: Un link alla pagina dell'artista
 - type: datetime
   name: date
   label: date
