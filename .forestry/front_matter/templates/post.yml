@@ -38,5 +38,14 @@ fields:
   - type: file
     name: url
     label: url
+- name: content
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Content
 pages:
 - _posts/l-inizio.json
