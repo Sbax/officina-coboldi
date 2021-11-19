@@ -2,15 +2,6 @@
 label: Post
 hide_body: false
 fields:
-- name: content
-  type: textarea
-  default: ''
-  config:
-    required: false
-    wysiwyg: true
-    schema:
-      format: markdown
-  label: Content
 - type: text
   name: title
   label: title
