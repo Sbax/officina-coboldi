@@ -1,9 +1,14 @@
 import React from "react";
-import { strip } from "../styles/strip.module.scss";
+import stripStyles from "../styles/strip.module.scss";
 
-export default function Strip({ children, ...props }) {
+export default function Strip({ children, primary, className, ...props }) {
   return (
-    <section className={strip} {...props}>
+    <section
+      className={`${stripStyles.strip} ${
+        primary && stripStyles.primary
+      } ${className}`}
+      {...props}
+    >
       {children}
     </section>
   );

@@ -1,13 +1,15 @@
 import ErrorPage from "next/error";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Container from "../../components/container";
+import DateFormatter from "../../components/date-formatter";
 import Layout from "../../components/layout";
+import Loader from "../../components/loader";
 import PostBody from "../../components/post-body";
-import PostHeader from "../../components/post-header";
-import PostTitle from "../../components/post-title";
+import Strip from "../../components/strip";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
-import { CMS_NAME } from "../../lib/constants";
 import markdownToHtml from "../../lib/markdownToHtml";
+import postStyles from "../../styles/post.module.scss";
 
 export default function Post({ post }) {
   const router = useRouter();
@@ -17,24 +19,31 @@ export default function Post({ post }) {
   return (
     <Layout>
       {router.isFallback ? (
-        <PostTitle>Loading…</PostTitle>
+        <Loader />
       ) : (
         <>
-          <article className="mb-32">
-            <Head>
-              <title>
-                {post.title} | Next.js Blog Example with {CMS_NAME}
-              </title>
-              <meta property="og:image" content={post.ogImage.url} />
-            </Head>
-            <PostHeader
-              title={post.title}
-              coverImage={post.coverImage}
-              date={post.date}
-              author={post.author}
-            />
-            <PostBody content={post.content} />
-          </article>
+          <Head>
+            <title>{post.title} | Officina Coboldi</title>
+            <meta property="og:image" content={post.coverImage} />
+          </Head>
+          <Strip primary className={postStyles.strip}>
+            <Container className={postStyles.header}>
+              <picture className={postStyles.image}>
+                <img src={post.coverImage} alt="Immagine in Evidenza" />
+              </picture>
+              <section className={postStyles.details}>
+                <h1>{post.title}</h1>
+                <h2>
+                  {post.author} - <DateFormatter dateString={post.date} />
+                </h2>
+              </section>
+            </Container>
+          </Strip>
+          <Container>
+            <section className={postStyles.content}>
+              <PostBody content={post.content} />
+            </section>
+          </Container>
         </>
       )}
     </Layout>

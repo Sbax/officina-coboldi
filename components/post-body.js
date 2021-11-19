@@ -1,10 +1,3 @@
-import markdownStyles from "../styles/markdown-styles.module.css";
-
 export default function PostBody({ content }) {
-  return (
-    <div
-      className={markdownStyles["markdown"]}
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
-  );
+  return <section dangerouslySetInnerHTML={{ __html: content }} />;
 }

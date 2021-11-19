@@ -26,22 +26,22 @@ export default function PostCard({
           : {}
       }
     >
-      <div>
+      <section>
         <span>
           <DateFormatter dateString={date} />, {author}
         </span>
-      </div>
-      <div>
+      </section>
+      <section>
         <Link href={`/posts/${slug}`}>
           <a>
             <h3>{title}</h3>
           </a>
         </Link>
-      </div>
+      </section>
       {large && (
-        <div className={postCardStyle.excerpt}>
+        <section className={postCardStyle.excerpt}>
           <p>{excerpt}</p>
-        </div>
+        </section>
       )}
     </article>
   );

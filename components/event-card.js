@@ -3,7 +3,7 @@ import eventCardStyles from "../styles/event-card.module.scss";
 import Button from "./button";
 import DateFormatter from "./date-formatter";
 
-export default function EventCard({ event }) {
+export default function EventCard({ event, onBook }) {
   const { title, system, dm, date, time, place, max, booked } = event;
 
   const futureEvent = new Date(date) >= new Date().setHours(0, 0, 0, 0);
@@ -17,21 +17,23 @@ export default function EventCard({ event }) {
         </h2>
         <h1>{title}</h1>
         <h2>
-          <div>
+          <section>
             {dm} – {system}
-          </div>
-          <div>
+          </section>
+          <section>
             Presso <a href={`https://instagram.com/${place}`}>{place}</a>
-          </div>
+          </section>
         </h2>
       </section>
 
       <section className={eventCardStyles.booking}>
-        <div>
+        <section>
           <span>{booked}</span>/<span>{max}</span>
-        </div>
+        </section>
         {futureEvent && !fullyBooked && (
-          <Button primary={true}>Prenota!</Button>
+          <Button primary={true} onClick={onBook}>
+            Prenota!
+          </Button>
         )}
       </section>
     </article>

@@ -47,9 +47,14 @@
   }
 
   .excerpt {
+    display: none;
     max-width: 60ch;
     margin-top: 1em;
     line-height: 1;
     font-size: 0.8em;
+
+    @media (min-width: $md) {
+      display: block;
+    }
   }
 }

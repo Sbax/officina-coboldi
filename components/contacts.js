@@ -4,10 +4,10 @@ import contactsStyles from "../styles/contacts.module.scss";
 export default function Contacts() {
   return (
     <section className={contactsStyles.container}>
-      <div className={contactsStyles.logo}>
+      <section className={contactsStyles.logo}>
         <img src="/assets/logo-black.svg" alt="Officina Coboldi" />
-      </div>
-      <div>
+      </section>
+      <section>
         <h1>Contatti</h1>
         <ul className={contactsStyles.social}>
           <li>
@@ -25,7 +25,7 @@ export default function Contacts() {
             <a href="https://t.me/OfficinaCoboldi">telegram</a>
           </li>
         </ul>
-      </div>
+      </section>
     </section>
   );
 }

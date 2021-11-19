@@ -19,4 +19,12 @@
     left: -1em;
     width: 600%;
   }
+
+  &.primary {
+    background: $primary-color;
+
+    &:after {
+      background: transparent url(./borders/header-border.svg) 0 repeat-x;
+    }
+  }
 }

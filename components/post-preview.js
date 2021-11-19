@@ -7,9 +7,9 @@ export default function PostPreview({ posts }) {
   const [first, ...other] = posts;
   return (
     <section className={postPreviewStyles.container}>
-      <div className={postPreviewStyles.hero}>
+      <section className={postPreviewStyles.hero}>
         <LargeCard {...first} />
-      </div>
+      </section>
       {other.map((post) => (
         <PostCard
           className={postPreviewStyles.post}

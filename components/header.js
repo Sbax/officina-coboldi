@@ -63,7 +63,7 @@ export default function Header() {
 
       <header className={headerStyles.header}>
         <Container className={headerStyles.content}>
-          <div
+          <section
             className={headerStyles.mobile}
             onClick={() => setMenuOpen(!menuOpen)}
           >
@@ -72,14 +72,14 @@ export default function Header() {
               src="/assets/hamburger.svg"
               alt="Menu"
             />
-          </div>
+          </section>
           <Link href="/">
             <a className={headerStyles.logo}>
               <img src="/assets/logo.svg" alt="Officina Coboldi" />
             </a>
           </Link>
           <Nav />
-          <div className={headerStyles.mobile}></div>
+          <section className={headerStyles.mobile}></section>
         </Container>
       </header>
     </>

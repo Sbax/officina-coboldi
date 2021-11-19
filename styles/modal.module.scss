@@ -1,0 +1,68 @@
+@import './variables.module.scss';
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba($primary-color, 0.75);
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  overflow: auto;
+}
+
+.body {
+  position: relative;
+
+  padding: 1em;
+
+  margin-top: 0.5em;
+  min-width: calc(100% - 1em);
+  min-height: calc(100% - 0.5em);
+
+  @media (min-width: $md) {
+    min-height: 0;
+    margin-top: 20%;
+
+    min-width: 30vw;
+    max-width: 80vw;
+  }
+
+  background: $main-bg;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  box-shadow: 1em 1em 0 black;
+
+  font-weight: 100;
+}
+
+.close {
+  position: absolute;
+  z-index: 9999;
+  right: 0;
+  top: 0;
+
+  @media (min-width: $md) {
+    transform: translate(33%, -33%);
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2.75em;
+  height: 2.75em;
+
+  img {
+    width: 1.15em;
+    height: 1.15em;
+  }
+}
