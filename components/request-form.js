@@ -206,12 +206,8 @@ export default function RequestForm({ event }) {
         <section>
           <Checkbox>
             <span className={requestFormStyles.privacy}>
-              Ho letto la{" "}
-              <a href="/privacy-policy" target="_blank">
-                privacy policy
-              </a>{" "}
-              e acconsento al trattamento dei dati che non verranno ceduti a
-              terzi
+              Ho letto la <Link href="/privacy-policy">privacy policy</Link> e
+              acconsento al trattamento dei dati che non verranno ceduti a terzi
             </span>
           </Checkbox>
         </section>
