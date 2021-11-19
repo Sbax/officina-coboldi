@@ -40,9 +40,8 @@ export default function Header() {
   return (
     <>
       <section
-        className={`${headerStyles.menu} ${
-          !menuOpen ? headerStyles.closed : ""
-        }`}
+        className={`${headerStyles.menu} 
+        ${menuOpen ? headerStyles.open : headerStyles.closed}`}
       >
         <header className={headerStyles.mobileHeader}>
           <Link href="/">

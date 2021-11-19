@@ -16,17 +16,23 @@
   justify-content: flex-start;
   align-items: center;
 
-  overflow: auto;
+  @media (min-width: $md) {
+    overflow: auto;
+  }
 }
 
 .body {
+  overflow: auto;
+  @media (min-width: $md) {
+    overflow: visible;
+  }
+
   position: relative;
 
   padding: 1em;
 
-  margin-top: 0.5em;
   min-width: calc(100% - 1em);
-  min-height: calc(100% - 0.5em);
+  min-height: 100%;
 
   @media (min-width: $md) {
     min-height: 0;
@@ -45,12 +51,13 @@
 }
 
 .close {
-  position: absolute;
+  position: fixed;
   z-index: 9999;
   right: 0;
   top: 0;
 
   @media (min-width: $md) {
+    position: absolute;
     transform: translate(33%, -33%);
   }
 

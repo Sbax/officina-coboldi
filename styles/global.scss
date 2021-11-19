@@ -15,7 +15,6 @@ body,
   }
 
   height: 100%;
-  overflow-x: hidden;
   background: $main-bg;
 
   font-family: 'Montserrat';
@@ -25,7 +24,8 @@ body,
 }
 
 main {
-  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 *,

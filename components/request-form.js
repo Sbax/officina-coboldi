@@ -1,6 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
+import React, { useCallback, useState } from "react";
 import requestFormStyles from "../styles/request-form.module.scss";
 import Button from "./button";
+import Checkbox from "./checkbox";
 import DateFormatter from "./date-formatter";
 import Input from "./input";
 import Loader from "./loader";
@@ -199,6 +201,19 @@ export default function RequestForm({ event }) {
               placeholder="username"
             />
           </section>
+        </section>
+
+        <section>
+          <Checkbox>
+            <span className={requestFormStyles.privacy}>
+              Ho letto la{" "}
+              <a href="/privacy-policy" target="_blank">
+                privacy policy
+              </a>{" "}
+              e acconsento al trattamento dei dati che non verranno ceduti a
+              terzi
+            </span>
+          </Checkbox>
         </section>
       </form>
       <section className={requestFormStyles.button}>
