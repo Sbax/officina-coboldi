@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import headerStyles from "../styles/header.module.scss";
@@ -47,11 +48,11 @@ export default function Header() {
         <header className={headerStyles.mobileHeader}>
           <Link href="/">
             <a className={headerStyles.logo}>
-              <img src="/assets/logo.svg" alt="Officina Coboldi" />
+              <Image src="/assets/logo.svg" alt="Officina Coboldi" />
             </a>
           </Link>
 
-          <img
+          <Image
             onClick={() => setMenuOpen(false)}
             className={headerStyles.close}
             src="/assets/close.svg"
@@ -67,7 +68,7 @@ export default function Header() {
             className={headerStyles.mobile}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <img
+            <Image
               className={headerStyles.hamburger}
               src="/assets/hamburger.svg"
               alt="Menu"
@@ -75,7 +76,7 @@ export default function Header() {
           </section>
           <Link href="/">
             <a className={headerStyles.logo}>
-              <img src="/assets/logo.svg" alt="Officina Coboldi" />
+              <Image src="/assets/logo.svg" alt="Officina Coboldi" />
             </a>
           </Link>
           <Nav />

@@ -67,7 +67,7 @@ export default function RequestForm({ event }) {
     }
 
     setFormState(FormState.Success);
-  }, [event, people, name, phone, instagram]);
+  }, [event, people, name, phone, instagram, remainingPlaces]);
 
   return (
     <section className={requestFormStyles.container}>

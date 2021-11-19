@@ -8,8 +8,8 @@ export default function About() {
       <h1>Officina Coboldi</h1>
 
       <p>
-        Un'associazione dedicata alla promozione e la diffusione del gioco di
-        ruolo nel circondario imolese
+        Un&apos;associazione dedicata alla promozione e la diffusione del gioco
+        di ruolo nel circondario imolese
       </p>
 
       <hr />

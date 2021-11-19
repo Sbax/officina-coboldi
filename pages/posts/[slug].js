@@ -1,5 +1,6 @@
 import ErrorPage from "next/error";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import DateFormatter from "../../components/date-formatter";
@@ -29,7 +30,7 @@ export default function Post({ post }) {
           <Strip primary className={postStyles.strip}>
             <Container className={postStyles.header}>
               <picture className={postStyles.image}>
-                <img src={post.coverImage} alt="Immagine in Evidenza" />
+                <Image src={post.coverImage} alt="Immagine in Evidenza" />
               </picture>
               <section className={postStyles.details}>
                 <h1>{post.title}</h1>
