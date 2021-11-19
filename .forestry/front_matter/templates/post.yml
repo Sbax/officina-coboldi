@@ -49,4 +49,5 @@ fields:
       format: markdown
   label: Content
 pages:
+- _posts/l-inizio-1.json
 - _posts/l-inizio.json
