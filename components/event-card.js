@@ -21,7 +21,7 @@ export default function EventCard({ event }) {
             {dm} – {system}
           </div>
           <div>
-            Presso <a href={`http://instagram.com/${place}`}>{place}</a>
+            Presso <a href={`https://instagram.com/${place}`}>{place}</a>
           </div>
         </h2>
       </section>
