@@ -1,8 +1,16 @@
 ---
 label: Post
 hide_body: false
-display_field: content
 fields:
+- name: content
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Content
 - type: text
   name: title
   label: title
@@ -32,19 +40,3 @@ fields:
 - type: text
   name: author
   label: author
-- type: field_group
-  name: ogImage
-  label: ogImage
-  fields:
-  - type: file
-    name: url
-    label: url
-- name: content
-  type: textarea
-  default: ''
-  config:
-    required: false
-    wysiwyg: true
-    schema:
-      format: markdown
-  label: Content
