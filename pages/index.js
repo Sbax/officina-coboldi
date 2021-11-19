@@ -46,7 +46,7 @@ export default function Index({ allPosts, events }) {
     </>
   );
 }
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const events = await getEvents();
   const allPosts = getAllPosts([
     "title",
@@ -63,5 +63,6 @@ export async function getServerSideProps() {
       allPosts,
       events: events.error ? [] : events,
     },
+    revalidate: 5 * 60,
   };
 }
