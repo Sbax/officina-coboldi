@@ -5,6 +5,15 @@ fields:
 - type: text
   name: title
   label: title
+- name: content
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Content
 - type: textarea
   name: excerpt
   label: excerpt
@@ -31,12 +40,5 @@ fields:
 - type: text
   name: author
   label: author
-- type: field_group
-  name: ogImage
-  label: ogImage
-  fields:
-  - type: file
-    name: url
-    label: url
 pages:
-- _posts/l-inizio.json
+- _posts/inizio.json
