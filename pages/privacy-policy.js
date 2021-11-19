@@ -18,7 +18,9 @@ export default function PrivacyPolicy() {
           </section>
         </Container>
       </Strip>
-      <Container></Container>
+      <Container>
+        <section className={postStyles.content}></section>
+      </Container>
     </Layout>
   );
 }
