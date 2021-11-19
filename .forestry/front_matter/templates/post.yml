@@ -26,6 +26,8 @@ fields:
 - type: datetime
   name: date
   label: date
+  config:
+    export_format: '"YYYY-MM-DD"'
 - type: text
   name: author
   label: author
