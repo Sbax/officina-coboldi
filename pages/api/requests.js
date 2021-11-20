@@ -4,7 +4,7 @@ import { sendNotification } from "../../lib/telegram";
 
 export default async function handler(req, res) {
   if (req.method === "PUT") {
-    handleResponse({ res }, await addRequest(req.body), () => {
+    await handleResponse({ res }, await addRequest(req.body), async () => {
       const { event, name, people, instagram, phone } = req.body;
 
       console.log("Handling response", {
