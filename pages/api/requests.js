@@ -7,14 +7,6 @@ export default async function handler(req, res) {
     handleResponse({ res }, await addRequest(req.body), async () => {
       const { event, name, people, instagram, phone } = req.body;
 
-      console.log("Handling response", {
-        event,
-        name,
-        people,
-        instagram,
-        phone,
-      });
-
       const message = [
         `Nuova prenotazione per ${event.title} in data ${event.date} con ${event.dm}`,
         `${name}, ${people} persone (instagram: ${instagram}, phone: ${phone})`,
