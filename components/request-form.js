@@ -16,6 +16,8 @@ export default function RequestForm({ event }) {
   const [phone, setPhone] = useState({ value: "" });
   const [instagram, setInstagram] = useState({ value: "" });
 
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+
   const [formState, setFormState] = useState(FormState.Idle);
 
   const remainingPlaces = max - booked;
@@ -204,7 +206,10 @@ export default function RequestForm({ event }) {
         </section>
 
         <section>
-          <Checkbox>
+          <Checkbox
+            value={privacyAccepted}
+            onChange={() => setPrivacyAccepted(!privacyAccepted)}
+          >
             <span className={requestFormStyles.privacy}>
               Ho letto la <Link href="/privacy-policy">privacy policy</Link> e
               acconsento al trattamento dei dati che non verranno ceduti a terzi
@@ -218,7 +223,8 @@ export default function RequestForm({ event }) {
             formState === FormState.Success ||
             name.error ||
             instagram.error ||
-            phone.error
+            phone.error ||
+            !privacyAccepted
           }
           secondary
           onClick={() => sendForm()}

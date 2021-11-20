@@ -21,7 +21,7 @@ export default function Index({ allPosts, events }) {
         <Strip id="play">
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
-            <EventPreview events={events.slice(0, 4).reverse()} />
+            <EventPreview events={events.slice(0, 4)} />
             <h2>
               Vuoi giocare con noi, ma tutti i tavoli sono occupati?{" "}
               <Link href="/#contacts">Contattaci</Link>!

@@ -38,13 +38,18 @@
 
 .social {
   display: flex;
+  flex-wrap: wrap;
 
   > * + * {
-    margin-left: 0.33em;
-
     &:before {
-      margin-right: 0.33em;
+      margin: 0 0.33em;
       content: '/';
     }
   }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
