@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         `<a href="https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SPREADSHEET_ID_FROM_URL}">Google Sheet</a>`,
       ].join("\n");
 
-      sendNotification(message);
+      await sendNotification(message);
     });
 
     return res;
