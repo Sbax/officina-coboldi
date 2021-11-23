@@ -1,5 +1,8 @@
-$primary-color: #b61de9;
-$secondary-color: #15d8a7;
+$red: #cb4444;
+$yellow: #fabb45;
+
+$primary-color: $yellow;
+$secondary-color: $red;
 $main-bg: #f6efe4;
 
 $sm: 576px;
@@ -7,8 +10,8 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
-$header-height-small: 4em;
-$header-height: 8em;
+$header-height-small: 7em;
+$header-height: 10em;
 
 :export {
   primaryColor: $primary-color;

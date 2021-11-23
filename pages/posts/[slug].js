@@ -26,7 +26,7 @@ export default function Post({ post }) {
             <title>{post.title} | Officina Coboldi</title>
             <meta property="og:image" content={post.coverImage} />
           </Head>
-          <Strip primary className={postStyles.strip}>
+          <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>
               <picture className={postStyles.image}>
                 <img src={post.coverImage} alt="Immagine in Evidenza" />

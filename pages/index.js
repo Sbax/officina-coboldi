@@ -14,7 +14,7 @@ import indexStyles from "../styles/index.module.scss";
 export default function Index({ allPosts, events }) {
   return (
     <>
-      <Layout>
+      <Layout skipFooter>
         <Head>
           <title>Officina Coboldi</title>
         </Head>

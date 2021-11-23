@@ -128,4 +128,22 @@
     display: list-item;
     list-style: inherit;
   }
+
+  blockquote {
+    margin: 0;
+    margin-left: 1.25rem;
+    font-style: italic;
+    border-left: 4px solid black;
+    background: rgba(black, 0.1);
+    padding: 1em;
+    padding-left: 0;
+  }
+
+  p {
+    text-align: justify;
+  }
+
+  * + * {
+    margin-top: 1em;
+  }
 }
