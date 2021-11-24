@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import DateFormatter from "../../components/date-formatter";
+import Footer from "../../components/footer";
 import Layout from "../../components/layout";
 import Loader from "../../components/loader";
 import Meta from "../../components/meta";
@@ -44,6 +45,7 @@ export default function Post({ post }) {
               <PostBody content={post.content} />
             </section>
           </Container>
+          <Footer />
         </>
       )}
     </Layout>

@@ -9,6 +9,7 @@ import Strip from "../components/strip";
 import { getAllPosts } from "../lib/api";
 import { getEvents } from "../lib/sheet";
 import indexStyles from "../styles/index.module.scss";
+import Footer from "../components/footer";
 
 export default function Index({ allPosts, events }) {
   return (
@@ -40,6 +41,7 @@ export default function Index({ allPosts, events }) {
           <a className={indexStyles.anchor} id="contacts" />
           <Container>
             <Contacts />
+            <Footer />
           </Container>
         </section>
       </Layout>
