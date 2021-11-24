@@ -5,6 +5,7 @@ import Container from "../../components/container";
 import DateFormatter from "../../components/date-formatter";
 import Layout from "../../components/layout";
 import Loader from "../../components/loader";
+import Meta from "../../components/meta";
 import PostBody from "../../components/post-body";
 import Strip from "../../components/strip";
 import { getAllPosts, getPostBySlug } from "../../lib/api";
@@ -23,8 +24,7 @@ export default function Post({ post }) {
       ) : (
         <>
           <Head>
-            <title>{post.title} | Officina Coboldi</title>
-            <meta property="og:image" content={post.coverImage} />
+            <Meta title={post.title} image={post.coverImage} />
           </Head>
           <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>

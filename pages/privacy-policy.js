@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Container from "../components/container";
 import Layout from "../components/layout";
+import Meta from "../components/meta";
 import PostBody from "../components/post-body";
 import Strip from "../components/strip";
 import markdownToHtml from "../lib/markdownToHtml";
@@ -12,7 +13,7 @@ export default function PrivacyPolicy({ content }) {
   return (
     <Layout>
       <Head>
-        <title>Privacy Policy | Officina Coboldi</title>
+        <Meta title="Privacy Policy | Officina Coboldi" />
       </Head>
       <Strip primary className={pageStyles.strip}>
         <Container>

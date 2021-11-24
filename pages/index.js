@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 import About from "../components/about";
 import Contacts from "../components/contacts";
@@ -15,9 +14,6 @@ export default function Index({ allPosts, events }) {
   return (
     <>
       <Layout skipFooter>
-        <Head>
-          <title>Officina Coboldi</title>
-        </Head>
         <Strip id="play">
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
