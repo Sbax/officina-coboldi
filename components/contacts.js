@@ -6,7 +6,7 @@ export default function Contacts() {
   return (
     <section className={contactsStyles.container}>
       <section className={contactsStyles.logo}>
-        <img src="/assets/logo-black.svg" alt="Officina Coboldi" />
+        <img src="/assets/logo.svg" alt="Officina Coboldi" />
       </section>
       <section className={contactsStyles.links}>
         <section>

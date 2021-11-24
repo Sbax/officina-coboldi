@@ -46,7 +46,7 @@ export default function Header() {
         <header className={headerStyles.mobileHeader}>
           <Link href="/">
             <a className={headerStyles.logo}>
-              <img src="/assets/logo.svg" alt="Officina Coboldi" />
+              <img src="/assets/logo_head.svg" alt="Officina Coboldi" />
             </a>
           </Link>
 
@@ -74,7 +74,7 @@ export default function Header() {
           </section>
           <Link href="/">
             <a className={headerStyles.logo}>
-              <img src="/assets/logo.svg" alt="Officina Coboldi" />
+              <img src="/assets/logo_head.svg" alt="Officina Coboldi" />
             </a>
           </Link>
           <Nav />

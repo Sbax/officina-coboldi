@@ -5,7 +5,7 @@ import aboutStyles from "../styles/about.module.scss";
 export default function About() {
   return (
     <Container className={aboutStyles.container}>
-      <h1>Officina Coboldi</h1>
+      <img src="/assets/logo.svg" alt="Officina Coboldi" />
 
       <p>
         Un&apos;associazione dedicata alla promozione e la diffusione del gioco
