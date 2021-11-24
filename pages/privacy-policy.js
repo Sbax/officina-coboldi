@@ -1,4 +1,4 @@
-import Head from "next/head";
+import { Head } from "next/document";
 import Container from "../components/container";
 import Layout from "../components/layout";
 import Meta from "../components/meta";
@@ -12,9 +12,7 @@ import page from "../_pages/privacy-policy.json";
 export default function PrivacyPolicy({ content }) {
   return (
     <Layout>
-      <Head>
-        <Meta title="Privacy Policy | Officina Coboldi" />
-      </Head>
+      <Meta title="Privacy Policy" />
       <Strip primary className={pageStyles.strip}>
         <Container>
           <section className={pageStyles.details}>

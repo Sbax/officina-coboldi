@@ -13,11 +13,12 @@ const defaultValues = {
   twitterImage: "https://officinacoboldi.it/thumbnail-twitter.jpg",
 };
 
-export default function Meta({
-  title = defaultValues.title,
-  description = defaultValues.description,
-  image,
-}) {
+export default function Meta({ ...props }) {
+  const title = props.title
+    ? `${props.title} | ${defaultValues.title}`
+    : defaultValues.title;
+  const { description, image } = props;
+
   return (
     <Head>
       <link

@@ -1,5 +1,4 @@
 import ErrorPage from "next/error";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import DateFormatter from "../../components/date-formatter";
@@ -24,9 +23,8 @@ export default function Post({ post }) {
         <Loader />
       ) : (
         <>
-          <Head>
-            <Meta title={post.title} image={post.coverImage} />
-          </Head>
+          <Meta title={post.title} image={post.coverImage} />
+
           <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>
               <picture className={postStyles.image}>
