@@ -133,10 +133,10 @@
     justify-content: flex-start;
     align-items: flex-start;
 
-    color: white;
+    color: black;
     font-size: 1.5em;
 
-    border-bottom: 3px dashed white;
+    border-bottom: 3px dashed black;
 
     > * + * {
       margin-top: 1em;
@@ -150,7 +150,7 @@
   align-items: center;
 
   padding: 1em;
-  border-bottom: 3px dashed white;
+  border-bottom: 3px dashed black;
 
   .logo {
     height: 4em;
