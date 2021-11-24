@@ -54,3 +54,15 @@
 .contacts {
   background: white;
 }
+
+.anchor {
+  display: block;
+  position: relative;
+
+  top: -$header-height-small - 2em;
+
+  @media (min-width: $md) {
+    top: -$header-height - 1em;
+  }
+  visibility: hidden;
+}

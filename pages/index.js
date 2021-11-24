@@ -14,7 +14,8 @@ export default function Index({ allPosts, events }) {
   return (
     <>
       <Layout skipFooter>
-        <Strip id="play">
+        <Strip>
+          <a className={indexStyles.anchor} id="play" />
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
             <EventPreview events={events.slice(0, 4)} />
@@ -24,16 +25,19 @@ export default function Index({ allPosts, events }) {
             </h2>
           </Container>
         </Strip>
-        <Container className={indexStyles.about} id="about">
+        <Container className={indexStyles.about}>
+          <a className={indexStyles.anchor} id="about" />
           <About />
         </Container>
-        <section className={indexStyles.blog} id="blog">
+        <section className={indexStyles.blog}>
+          <a className={indexStyles.anchor} id="blog" />
           <Container>
             <h1 className={indexStyles.title}>I nostri articoli</h1>
             <PostPreview posts={allPosts.slice(0, 4)} />
           </Container>
         </section>
-        <section className={indexStyles.contacts} id="contacts">
+        <section className={indexStyles.contacts}>
+          <a className={indexStyles.anchor} id="contacts" />
           <Container>
             <Contacts />
           </Container>

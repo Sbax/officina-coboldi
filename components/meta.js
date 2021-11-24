@@ -76,7 +76,7 @@ export default function Meta({
         key="twitter-image"
       />
 
-      <Title>{title}</Title>
+      <title>{title}</title>
     </Head>
   );
 }
