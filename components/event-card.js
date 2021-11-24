@@ -30,7 +30,7 @@ export default function EventCard({ event, onBook }) {
         <section>
           <span>{booked}</span>/<span>{max}</span>
         </section>
-        {futureEvent && !fullyBooked && (
+        {true && (
           <Button primary={true} onClick={onBook}>
             Prenota!
           </Button>
