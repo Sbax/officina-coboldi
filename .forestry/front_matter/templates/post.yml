@@ -40,5 +40,9 @@ fields:
 - type: text
   name: author
   label: author
+- name: tags
+  type: tag_list
+  default: []
+  label: Tags
 pages:
 - _posts/inizio.json
