@@ -1,9 +1,8 @@
 import { format } from "date-fns";
 import Link from "next/link";
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import Container from "../components/container";
 import EventPreview from "../components/event-preview";
-import Footer from "../components/footer";
 import Input from "../components/input";
 import Layout from "../components/layout";
 import Select from "../components/select";
@@ -38,7 +37,7 @@ export default function Events({ events }) {
         )
         .filter((event) => system === "" || event.system === system)
     );
-  }, [date, search, system]);
+  }, [date, search, system, events]);
 
   return (
     <>
@@ -93,7 +92,7 @@ export default function Events({ events }) {
                 <span>Nessun evento trovato</span>
                 <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
                 <span>
-                  Se l'avventura che cerchi non è disponibile,{" "}
+                  Se l&apos;avventura che cerchi non è disponibile,{" "}
                   <Link href="/#contacts">contattaci</Link>!
                 </span>
               </section>

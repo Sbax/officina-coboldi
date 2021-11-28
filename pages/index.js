@@ -1,15 +1,14 @@
 import Link from "next/link";
 import About from "../components/about";
-import Contacts from "../components/contacts";
 import Container from "../components/container";
 import EventPreview from "../components/event-preview";
+import Footer from "../components/footer";
 import Layout from "../components/layout";
 import PostPreview from "../components/post-preview";
 import Strip from "../components/strip";
 import { getAllPosts } from "../lib/api";
 import { getEvents } from "../lib/sheet";
 import indexStyles from "../styles/index.module.scss";
-import Footer from "../components/footer";
 
 export default function Index({ allPosts, events }) {
   const startDate = new Date().setUTCHours(0, 0, 0, 0);

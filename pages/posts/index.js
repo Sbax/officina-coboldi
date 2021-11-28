@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import Button from "../../components/button";
 import Container from "../../components/container";
-import Footer from "../../components/footer";
 import Layout from "../../components/layout";
 import PostCard from "../../components/post-card";
 import PostPreview from "../../components/post-preview";

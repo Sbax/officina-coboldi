@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import DateFormatter from "../../components/date-formatter";
-import Footer from "../../components/footer";
 import Layout from "../../components/layout";
 import Loader from "../../components/loader";
 import Meta from "../../components/meta";
