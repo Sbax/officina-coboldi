@@ -17,7 +17,7 @@ export default function Index({ allPosts, events }) {
 
   return (
     <>
-      <Layout skipFooter>
+      <Layout>
         <Strip>
           <a href="#" className={indexStyles.anchor} id="play" />
           <Container className={indexStyles.strip}>

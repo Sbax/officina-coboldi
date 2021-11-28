@@ -93,118 +93,108 @@ export default function RequestForm({ event }) {
         {remainingPlaces !== 1 && (
           <section className={requestFormStyles.item}>
             <label>Quante persone?</label>
-            <section>
-              <Input
-                disabled={formState === FormState.Success}
-                value={people.value}
-                error={people.error}
-                onChange={({ target }) => {
-                  const { value } = target;
+            <Input
+              disabled={formState === FormState.Success}
+              value={people.value}
+              error={people.error}
+              onChange={({ target }) => {
+                const { value } = target;
 
-                  if (!value) {
-                    return setPeople({ value: "", error: true });
-                  }
+                if (!value) {
+                  return setPeople({ value: "", error: true });
+                }
 
-                  if (value < 1) {
-                    return setPeople({ value: 1 });
-                  }
+                if (value < 1) {
+                  return setPeople({ value: 1 });
+                }
 
-                  if (value > remainingPlaces) {
-                    return setPeople({ value: remainingPlaces });
-                  }
+                if (value > remainingPlaces) {
+                  return setPeople({ value: remainingPlaces });
+                }
 
-                  setPeople(target.value);
-                }}
-                id="people"
-                type="number"
-                placeholder={`1-${remainingPlaces}`}
-                min="1"
-                max={remainingPlaces}
-              />
-            </section>
+                setPeople(target.value);
+              }}
+              id="people"
+              type="number"
+              placeholder={`1-${remainingPlaces}`}
+              min="1"
+              max={remainingPlaces}
+            />
           </section>
         )}
 
         <section className={requestFormStyles.item}>
           <label>Nome</label>
-          <section>
-            <Input
-              disabled={formState === FormState.Success}
-              value={name.value}
-              error={name.error}
-              onChange={({ target }) =>
-                setName({
-                  value: target.value,
-                  error: !target.value || target.value === "",
-                })
-              }
-              id="name"
-              type="text"
-              placeholder="Nome"
-            />
-          </section>
+          <Input
+            disabled={formState === FormState.Success}
+            value={name.value}
+            error={name.error}
+            onChange={({ target }) =>
+              setName({
+                value: target.value,
+                error: !target.value || target.value === "",
+              })
+            }
+            id="name"
+            type="text"
+            placeholder="Nome"
+          />
         </section>
 
         <section className={requestFormStyles.item}>
           <label>Numero di telefono</label>
-          <section>
-            <Input
-              disabled={formState === FormState.Success}
-              value={phone.value}
-              error={phone.error}
-              onChange={({ target }) => {
-                const { value } = target;
-                const hasError = !value || value === "";
+          <Input
+            disabled={formState === FormState.Success}
+            value={phone.value}
+            error={phone.error}
+            onChange={({ target }) => {
+              const { value } = target;
+              const hasError = !value || value === "";
 
-                const instagramError =
-                  !instagram.value || instagram.value === "";
+              const instagramError = !instagram.value || instagram.value === "";
 
-                setInstagram({
-                  value: instagram.value,
-                  error: hasError && instagramError,
-                });
+              setInstagram({
+                value: instagram.value,
+                error: hasError && instagramError,
+              });
 
-                setPhone({
-                  value: value,
-                  error: hasError && instagramError,
-                });
-              }}
-              id="phone"
-              type="text"
-              placeholder="XXX 123 45 67"
-            />
-          </section>
+              setPhone({
+                value: value,
+                error: hasError && instagramError,
+              });
+            }}
+            id="phone"
+            type="text"
+            placeholder="XXX 123 45 67"
+          />
         </section>
 
         <section className={requestFormStyles.item}>
           <label>Instagram</label>
-          <section>
-            <Input
-              disabled={formState === FormState.Success}
-              value={instagram.value}
-              error={instagram.error}
-              onChange={({ target }) => {
-                const { value } = target;
-                const hasError = !value || value === "";
-                const phoneError = !phone.value || phone.value === "";
+          <Input
+            disabled={formState === FormState.Success}
+            value={instagram.value}
+            error={instagram.error}
+            onChange={({ target }) => {
+              const { value } = target;
+              const hasError = !value || value === "";
+              const phoneError = !phone.value || phone.value === "";
 
-                setPhone({
-                  value: phone.value,
-                  error: hasError && phoneError,
-                });
+              setPhone({
+                value: phone.value,
+                error: hasError && phoneError,
+              });
 
-                setInstagram({
-                  value: value,
-                  error: hasError && phoneError,
-                });
-              }}
-              id="instagram"
-              type="text"
-              placeholder="username"
-            />
-          </section>
+              setInstagram({
+                value: value,
+                error: hasError && phoneError,
+              });
+            }}
+            id="instagram"
+            type="text"
+            placeholder="username"
+          />
         </section>
-
         <section>
           <Checkbox
             value={privacyAccepted}

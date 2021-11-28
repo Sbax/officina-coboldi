@@ -7,7 +7,7 @@ import Container from "./container";
 function Nav({ callback = () => {} }) {
   return (
     <nav className={headerStyles.navigation}>
-      <Link href="/#play">
+      <Link href="/events">
         <a onClick={callback}>
           <Button>Gioca con noi</Button>
         </a>

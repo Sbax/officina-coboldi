@@ -1,0 +1,93 @@
+@import './variables.module.scss';
+
+.wrapper {
+  padding: 0;
+  min-height: calc(100% - $header-height);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.strip {
+  padding-top: 1em;
+
+  @media (min-width: $md) {
+    position: sticky;
+    top: $header-height;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+
+  > * + * {
+    margin-top: 1em;
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  input,
+  select {
+    min-width: 13ch;
+    width: 100%;
+  }
+
+  @media (min-width: $md) {
+    flex-direction: row;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: 1em;
+    }
+
+    section {
+      > * + * {
+        margin-left: 1em;
+      }
+
+      input,
+      select {
+        min-width: 0;
+        width: auto;
+      }
+    }
+  }
+}
+
+.results {
+  min-height: 20em;
+  flex: 1;
+}
+
+.empty {
+  padding: 1em 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4em;
+
+  font-size: 1.2em;
+  @media (min-width: $md) {
+    font-size: 2em;
+  }
+
+  > * + * {
+    margin-top: 0.5em;
+  }
+
+  > span {
+    max-width: 25ch;
+    text-align: center;
+    font-size: 0.65em;
+    opacity: 0.4;
+  }
+}

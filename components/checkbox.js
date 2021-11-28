@@ -3,7 +3,7 @@ import checkboxStyle from "../styles/checkbox.module.scss";
 
 export default function Checkbox({ children, value, onChange }) {
   return (
-    <div className={checkboxStyle.checkbox}>
+    <span className={checkboxStyle.checkbox}>
       <input
         type="checkbox"
         name="checkbox"
@@ -11,6 +11,6 @@ export default function Checkbox({ children, value, onChange }) {
         onChange={onChange}
       />
       {children}
-    </div>
+    </span>
   );
 }
