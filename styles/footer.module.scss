@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.links {
+  > * + * {
+    &:before {
+      content: '/';
+      margin: 0 0.5em;
+    }
+  }
+}

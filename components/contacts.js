@@ -28,12 +28,6 @@ export default function Contacts() {
             </li>
           </ul>
         </section>
-
-        <section>
-          <Link href="/privacy-policy">
-            <a>privacy policy</a>
-          </Link>
-        </section>
       </section>
     </section>
   );

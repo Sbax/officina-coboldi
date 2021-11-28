@@ -99,8 +99,6 @@ export default function Events({ events }) {
               </section>
             )}
           </Container>
-
-          <Footer />
         </section>
       </Layout>
     </>

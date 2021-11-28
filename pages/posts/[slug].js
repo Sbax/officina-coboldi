@@ -58,7 +58,6 @@ export default function Post({ post }) {
               <PostBody content={post.content} />
             </section>
           </Container>
-          <Footer />
         </>
       )}
     </Layout>

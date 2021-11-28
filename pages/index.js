@@ -17,7 +17,7 @@ export default function Index({ allPosts, events }) {
 
   return (
     <>
-      <Layout>
+      <Layout skipFooter>
         <Strip>
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
@@ -40,10 +40,7 @@ export default function Index({ allPosts, events }) {
         </section>
         <section className={indexStyles.contacts}>
           <a href="#" className={indexStyles.anchor} id="contacts" />
-          <Container>
-            <Contacts />
-            <Footer />
-          </Container>
+          <Footer />
         </section>
       </Layout>
     </>
