@@ -27,9 +27,15 @@
   }
 
   &:disabled {
+    pointer-events: none;
+
     border-color: gray;
     background: white;
     color: gray;
     cursor: not-allowed;
+
+    img {
+      opacity: 0.4;
+    }
   }
 }

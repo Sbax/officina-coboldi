@@ -20,7 +20,7 @@ function Nav({ callback = () => {} }) {
       </span>
 
       <span>
-        <Link href="/#blog">
+        <Link href="/posts">
           <a onClick={callback}>Blog</a>
         </Link>
       </span>

@@ -7,7 +7,7 @@
   max-width: $xl;
 
   @media (min-width: $md) {
-    grid-template-columns: 66% min-content;
+    grid-template-columns: 33% 33% 33%;
     grid-template-areas:
       'hero hero .'
       'hero hero .'

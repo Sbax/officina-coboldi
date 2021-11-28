@@ -1,4 +1,5 @@
 import ErrorPage from "next/error";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
 import DateFormatter from "../../components/date-formatter";
@@ -27,14 +28,28 @@ export default function Post({ post }) {
 
           <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>
-              <picture className={postStyles.image}>
-                <img src={post.coverImage} alt="Immagine in Evidenza" />
-              </picture>
+              <section className={postStyles.image}>
+                {post.artist && post.artist_url && (
+                  <span className={postStyles.credits}>
+                    Immagine di <a href={post.artist_url}>{post.artist}</a>
+                  </span>
+                )}
+                <picture>
+                  <img src={post.coverImage} alt="Immagine in Evidenza" />
+                </picture>
+              </section>
               <section className={postStyles.details}>
                 <h1>{post.title}</h1>
                 <h2>
                   {post.author} - <DateFormatter dateString={post.date} />
                 </h2>
+                <h3 className={postStyles.tags}>
+                  {(post.tags || []).map((tag) => (
+                    <span key={tag}>
+                      <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                    </span>
+                  ))}
+                </h3>
               </section>
             </Container>
           </Strip>
@@ -56,9 +71,11 @@ export async function getStaticProps({ params }) {
     "date",
     "slug",
     "author",
+    "artist",
+    "artist_url",
     "content",
-    "ogImage",
     "coverImage",
+    "tags",
   ]);
   const content = await markdownToHtml(post.content || "");
 

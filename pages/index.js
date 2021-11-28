@@ -19,7 +19,6 @@ export default function Index({ allPosts, events }) {
     <>
       <Layout>
         <Strip>
-          <a href="#" className={indexStyles.anchor} id="play" />
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
             <EventPreview events={nextEvents.slice(-4)} />
@@ -34,9 +33,8 @@ export default function Index({ allPosts, events }) {
           <About />
         </Container>
         <section className={indexStyles.blog}>
-          <a href="#" className={indexStyles.anchor} id="blog" />
           <Container>
-            <h1 className={indexStyles.title}>I nostri articoli</h1>
+            <h1 className={indexStyles.title}>Gli ultimi articoli</h1>
             <PostPreview posts={allPosts.slice(0, 4)} />
           </Container>
         </section>
@@ -61,6 +59,7 @@ export async function getStaticProps() {
     "coverImage",
     "content",
     "excerpt",
+    "tags",
   ]);
 
   return {

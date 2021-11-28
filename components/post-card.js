@@ -11,6 +11,8 @@ export default function PostCard({
   excerpt,
   small,
   large,
+  tags,
+  showTags = false,
 }) {
   return (
     <article
@@ -26,6 +28,15 @@ export default function PostCard({
           : {}
       }
     >
+      {showTags && tags?.length && (
+        <section className={postCardStyle.tags}>
+          {tags.map((tag) => (
+            <span key={tag} className={postCardStyle.tag}>
+              <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+            </span>
+          ))}
+        </section>
+      )}
       <section>
         <span>
           <DateFormatter dateString={date} />, {author}

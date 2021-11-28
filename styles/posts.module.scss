@@ -1,0 +1,82 @@
+@import './variables.module.scss';
+
+.wrapper {
+  padding: 0;
+  min-height: calc(100% - $header-height);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.results {
+  min-height: 20em;
+  flex: 1;
+}
+
+.other {
+  display: grid;
+  @media (min-width: $md) {
+    grid-template-columns: 33% 33% 33%;
+  }
+  grid-gap: 1em;
+  max-width: $xl;
+  padding-bottom: 1em;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1em 0;
+
+  h1 {
+    font-size: 2em;
+  }
+
+  > section {
+    height: 3em;
+    display: flex;
+
+    > * + * {
+      margin-left: 0.5em;
+    }
+  }
+
+  button {
+    height: 2.5em;
+    width: 2.5em;
+  }
+
+  & + * {
+    padding-top: 0;
+  }
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
+.empty {
+  padding: 1em 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4em;
+
+  font-size: 1.2em;
+  @media (min-width: $md) {
+    font-size: 2em;
+  }
+
+  > * + * {
+    margin-top: 0.5em;
+  }
+
+  > span {
+    text-align: center;
+    font-size: 0.65em;
+    opacity: 0.4;
+  }
+}

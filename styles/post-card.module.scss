@@ -44,7 +44,9 @@
   }
 
   &.large {
-    font-size: 1.25em;
+    @media (min-width: $md) {
+      font-size: 1.25em;
+    }
   }
 
   .excerpt {
@@ -56,6 +58,18 @@
 
     @media (min-width: $md) {
       display: block;
+    }
+  }
+
+  .tags {
+    display: flex;
+
+    span {
+      display: block;
+    }
+
+    > * + * {
+      margin-left: 0.75em;
     }
   }
 }
