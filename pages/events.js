@@ -21,7 +21,7 @@ export default function Events({ events }) {
 
   const systems = Array.from(new Set([...events.map(({ system }) => system)]));
 
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [search, setSearch] = useState("");
   const [system, setSystem] = useState("");
 
@@ -30,7 +30,7 @@ export default function Events({ events }) {
   useEffect(() => {
     setFiltered(
       events
-        .filter((event) => new Date(event.date) >= date)
+        .filter((event) => new Date(event.date) >= new Date(date))
         .filter(
           ({ title, dm }) =>
             title.toLowerCase().includes(search) ||
@@ -50,8 +50,8 @@ export default function Events({ events }) {
                 <label>Dalla data</label>
                 <Input
                   type="date"
-                  value={format(date, "yyyy-MM-dd")}
-                  onChange={({ target }) => setDate(new Date(target.value))}
+                  value={date}
+                  onChange={({ target }) => setDate(target.value)}
                   min={format(minDate, "yyyy-MM-dd")}
                 />
               </section>
