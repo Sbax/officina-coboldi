@@ -12,14 +12,17 @@ import indexStyles from "../styles/index.module.scss";
 import Footer from "../components/footer";
 
 export default function Index({ allPosts, events }) {
+  const startDate = new Date().setUTCHours(0, 0, 0, 0);
+  const nextEvents = events.filter(({ date }) => new Date(date) >= startDate);
+
   return (
     <>
       <Layout skipFooter>
         <Strip>
-          <a className={indexStyles.anchor} id="play" />
+          <a href="#" className={indexStyles.anchor} id="play" />
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
-            <EventPreview events={events.slice(0, 4)} />
+            <EventPreview events={nextEvents.slice(-4)} />
             <h2>
               Vuoi giocare con noi, ma tutti i tavoli sono occupati?{" "}
               <Link href="/#contacts">Contattaci</Link>!
@@ -27,18 +30,18 @@ export default function Index({ allPosts, events }) {
           </Container>
         </Strip>
         <Container className={indexStyles.about}>
-          <a className={indexStyles.anchor} id="about" />
+          <a href="#" className={indexStyles.anchor} id="about" />
           <About />
         </Container>
         <section className={indexStyles.blog}>
-          <a className={indexStyles.anchor} id="blog" />
+          <a href="#" className={indexStyles.anchor} id="blog" />
           <Container>
             <h1 className={indexStyles.title}>I nostri articoli</h1>
             <PostPreview posts={allPosts.slice(0, 4)} />
           </Container>
         </section>
         <section className={indexStyles.contacts}>
-          <a className={indexStyles.anchor} id="contacts" />
+          <a href="#" className={indexStyles.anchor} id="contacts" />
           <Container>
             <Contacts />
             <Footer />
