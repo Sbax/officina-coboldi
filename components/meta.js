@@ -17,10 +17,17 @@ export default function Meta({ ...props }) {
   const title = props.title
     ? `${props.title} | ${defaultValues.title}`
     : defaultValues.title;
-  const { description, image } = props;
+
+  const description = props.description
+    ? `${props.description} | ${defaultValues.description}`
+    : defaultValues.description;
+
+  const { image } = props;
 
   return (
     <Head>
+      <link rel="canonical" href="https://officinacoboldi.it/" />
+
       <link
         rel="icon"
         type="image/png"

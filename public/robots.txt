@@ -1,2 +1,9 @@
-User-Agent: *
-Disallow:
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://officinacoboldi.it
+
+# Sitemaps
+Sitemap: https://officinacoboldi.it/sitemap.xml
