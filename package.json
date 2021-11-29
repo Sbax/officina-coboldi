@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next-sitemap && next build",
+    "build": "next build",
+    "build:sitemap": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "debug": "netlify dev --inspect"
