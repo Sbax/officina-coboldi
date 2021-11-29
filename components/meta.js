@@ -26,8 +26,6 @@ export default function Meta({ ...props }) {
 
   return (
     <Head>
-      <link rel="canonical" href="https://officinacoboldi.it/" />
-
       <link
         rel="icon"
         type="image/png"
