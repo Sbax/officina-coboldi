@@ -5,6 +5,7 @@ import Container from "../components/container";
 import EventPreview from "../components/event-preview";
 import Input from "../components/input";
 import Layout from "../components/layout";
+import Meta from "../components/meta";
 import Select from "../components/select";
 import Strip from "../components/strip";
 import { getEvents } from "../lib/sheet";
@@ -42,6 +43,10 @@ export default function Events({ events }) {
   return (
     <>
       <Layout>
+        <Meta
+          title="Eventi"
+          description="Tutte le serate in cui partecipare alle nostre sessioni"
+        />
         <section className={eventStyles.wrapper}>
           <Strip className={eventStyles.strip}>
             <Container className={eventStyles.filters}>
@@ -93,7 +98,10 @@ export default function Events({ events }) {
                 <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
                 <span>
                   Se l&apos;avventura che cerchi non è disponibile,{" "}
-                  <Link href="/#contacts">contattaci</Link>!
+                  <Link href="/#contacts">
+                    <a alt="Contatti">contattaci</a>
+                  </Link>
+                  !
                 </span>
               </section>
             )}

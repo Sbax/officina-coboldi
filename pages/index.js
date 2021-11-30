@@ -23,7 +23,10 @@ export default function Index({ allPosts, events }) {
             <EventPreview events={nextEvents.slice(-4)} />
             <h2>
               Vuoi giocare con noi, ma tutti i tavoli sono occupati?{" "}
-              <Link href="/#contacts">Contattaci</Link>!
+              <Link href="/#contacts">
+                <a alt="Contatti">Contattaci</a>
+              </Link>
+              !
             </h2>
           </Container>
         </Strip>

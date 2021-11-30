@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import modalStyle from "../styles/modal.module.scss";
 import Button from "./button";
@@ -7,7 +8,14 @@ export default function Modal({ children, onClose }) {
     <section className={modalStyle.backdrop}>
       <section className={modalStyle.body}>
         <Button className={modalStyle.close} onClick={onClose || (() => {})}>
-          <img src="/assets/times.svg" alt="Close" />
+          <Image
+            layout="intrinsic"
+            width={25}
+            height={25}
+            objectFit="contain"
+            src="/assets/times.svg"
+            alt="Chiudi"
+          />
         </Button>
         {children}
       </section>

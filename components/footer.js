@@ -14,13 +14,13 @@ export default function Footer() {
         <nav className={footerStyles.links}>
           <span>
             <Link href="/privacy-policy">
-              <a>privacy policy</a>
+              <a alt="Privacy Policy">privacy policy</a>
             </Link>
           </span>
 
           <span>
             <Link href="/statuto">
-              <a>statuto</a>
+              <a alt="Statuto">statuto</a>
             </Link>
           </span>
         </nav>

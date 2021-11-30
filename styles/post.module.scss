@@ -12,13 +12,11 @@
       margin-bottom: -9em;
     }
 
-    picture {
-      > img {
-        border: 2px solid black;
-        box-shadow: 4px 4px 0 0 #000;
-        width: 100%;
-      }
-    }
+    aspect-ratio: 6 / 4;
+
+    border: 2px solid black;
+    box-shadow: 4px 4px 0 0 #000;
+    width: 100%;
   }
 
   display: flex;
@@ -157,6 +155,7 @@
   }
 
   p {
+    hyphens: auto;
     text-align: justify;
   }
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import headerStyles from "../styles/header.module.scss";
@@ -8,26 +9,32 @@ function Nav({ callback = () => {} }) {
   return (
     <nav className={headerStyles.navigation}>
       <Link href="/events">
-        <a onClick={callback}>
+        <a alt="Eventi" onClick={callback}>
           <Button>Gioca con noi</Button>
         </a>
       </Link>
 
       <span>
         <Link href="/#about">
-          <a onClick={callback}>Chi Siamo</a>
+          <a alt="Chi Siamo" onClick={callback}>
+            Chi Siamo
+          </a>
         </Link>
       </span>
 
       <span>
         <Link href="/posts">
-          <a onClick={callback}>Blog</a>
+          <a alt="Blog" onClick={callback}>
+            Blog
+          </a>
         </Link>
       </span>
 
       <span>
         <Link href="/#contacts">
-          <a onClick={callback}>Contatti</a>
+          <a alt="Contatti" onClick={callback}>
+            Contatti
+          </a>
         </Link>
       </span>
     </nav>
@@ -45,16 +52,27 @@ export default function Header() {
       >
         <header className={headerStyles.mobileHeader}>
           <Link href="/">
-            <a className={headerStyles.logo}>
-              <img src="/assets/logo.svg" alt="Officina Coboldi" />
+            <a className={headerStyles.logo} alt="Officina Coboldi">
+              <Image
+                layout="intrinsic"
+                width={150}
+                height={100}
+                objectFit="contain"
+                src="/assets/logo.svg"
+                alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
+              />
             </a>
           </Link>
 
-          <img
+          <Image
+            layout="intrinsic"
+            width={25}
+            height={25}
+            objectFit="contain"
             onClick={() => setMenuOpen(false)}
             className={headerStyles.close}
             src="/assets/close.svg"
-            alt="Close"
+            alt="Chiudi"
           />
         </header>
         <Nav callback={() => setMenuOpen(false)} />
@@ -66,7 +84,11 @@ export default function Header() {
             className={headerStyles.mobile}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <img
+            <Image
+              layout="intrinsic"
+              width={25}
+              height={25}
+              objectFit="contain"
               className={headerStyles.hamburger}
               src="/assets/hamburger.svg"
               alt="Menu"
@@ -74,7 +96,14 @@ export default function Header() {
           </section>
           <Link href="/">
             <a className={headerStyles.logo}>
-              <img src="/assets/logo_head.svg" alt="Officina Coboldi" />
+              <Image
+                layout="intrinsic"
+                width={120}
+                height={120}
+                objectFit="contain"
+                src="/assets/logo_head.svg"
+                alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
+              />
             </a>
           </Link>
           <Nav />

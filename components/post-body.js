@@ -1,3 +1,3 @@
 export default function PostBody({ content }) {
-  return <section dangerouslySetInnerHTML={{ __html: content }} />;
+  return <section dangerouslySetInnerHTML={{ __html: content }} lang="fr" />;
 }

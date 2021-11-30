@@ -1,4 +1,5 @@
 import ErrorPage from "next/error";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Container from "../../components/container";
@@ -34,7 +35,12 @@ export default function Post({ post }) {
                   </span>
                 )}
                 <picture>
-                  <img src={post.coverImage} alt="Immagine in Evidenza" />
+                  <Image
+                    layout="fill"
+                    objectFit="cover"
+                    src={post.coverImage}
+                    alt="Immagine in evidenza"
+                  />
                 </picture>
               </section>
               <section className={postStyles.details}>
@@ -45,7 +51,9 @@ export default function Post({ post }) {
                 <h3 className={postStyles.tags}>
                   {(post.tags || []).map((tag) => (
                     <span key={tag}>
-                      <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+                      <Link href={`/posts?tag=${tag}`}>
+                        <a alt={`Tutti i post taggati ${tag}`}>{tag}</a>
+                      </Link>
                     </span>
                   ))}
                 </h3>

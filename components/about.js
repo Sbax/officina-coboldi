@@ -1,11 +1,20 @@
 import React from "react";
 import Container from "./container";
 import aboutStyles from "../styles/about.module.scss";
+import Image from "next/image";
 
 export default function About() {
   return (
     <Container className={aboutStyles.container}>
-      <img src="/assets/logo.svg" alt="Officina Coboldi" />
+      <div className={aboutStyles.image}>
+        <Image
+          src="/assets/logo.svg"
+          alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
+          layout="intrinsic"
+          width={600}
+          height={300}
+        />
+      </div>
 
       <p>
         Un&apos;associazione dedicata alla promozione e la diffusione del gioco

@@ -1,16 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import Button from "../../components/button";
 import Container from "../../components/container";
 import Layout from "../../components/layout";
+import Meta from "../../components/meta";
 import PostCard from "../../components/post-card";
 import PostPreview from "../../components/post-preview";
 import { getAllPosts } from "../../lib/api";
 import postsStyles from "../../styles/posts.module.scss";
 
 const POSTS_FIRST_PAGE = 13;
-
 const POSTS_PER_PAGE = 15;
 
 export default function Posts({ posts }) {
@@ -67,6 +68,10 @@ export default function Posts({ posts }) {
   return (
     <>
       <Layout>
+        <Meta
+          title="Blog"
+          description="Raccontiamo i giochi di ruolo dalle ambientazioni alle regole dei sistemi"
+        />
         <section className={postsStyles.wrapper} ref={container}>
           <Container className={postsStyles.results}>
             <section className={postsStyles.title}>
@@ -83,7 +88,14 @@ export default function Posts({ posts }) {
                         router.push(`/posts?page=${(parseInt(page) || 0) - 1}`)
                       }
                     >
-                      <img src="/assets/arrow.svg" alt="Post precedenti" />
+                      <Image
+                        layout="intrinsic"
+                        width={25}
+                        height={25}
+                        objectFit="contain"
+                        src="/assets/arrow.svg"
+                        alt="Post precedenti"
+                      />
                     </Button>
                   </div>
                 )}
@@ -97,7 +109,14 @@ export default function Posts({ posts }) {
                         router.push(`/posts?page=${(parseInt(page) || 0) + 1}`)
                       }
                     >
-                      <img src="/assets/arrow.svg" alt="Post successivi" />
+                      <Image
+                        layout="intrinsic"
+                        width={25}
+                        height={25}
+                        objectFit="contain"
+                        src="/assets/arrow.svg"
+                        alt="Post successivi"
+                      />
                     </Button>
                   </div>
                 )}
@@ -110,7 +129,10 @@ export default function Posts({ posts }) {
                 <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
                 <span>
                   Ritorna alla pagina principale del,{" "}
-                  <Link href="/posts">blog</Link>!
+                  <Link href="/posts">
+                    <a alt="Blog">blog</a>
+                  </Link>
+                  !
                 </span>
               </section>
             ) : (

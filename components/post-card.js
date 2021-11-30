@@ -32,7 +32,9 @@ export default function PostCard({
         <section className={postCardStyle.tags}>
           {tags.map((tag) => (
             <span key={tag} className={postCardStyle.tag}>
-              <Link href={`/posts?tag=${tag}`}>{tag}</Link>
+              <Link href={`/posts?tag=${tag}`}>
+                <a alt={`Tutti i post taggati '${tag}'`}>{tag}</a>
+              </Link>
             </span>
           ))}
         </section>
@@ -44,7 +46,7 @@ export default function PostCard({
       </section>
       <section>
         <Link href={`/posts/${slug}`}>
-          <a>
+          <a alt={title}>
             <h3>{title}</h3>
           </a>
         </Link>

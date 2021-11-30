@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const description =
   "Un'associazione dedicata alla promozione e la diffusione del gioco di ruolo nel circondario imolese";
@@ -14,13 +15,13 @@ const defaultValues = {
 };
 
 export default function Meta({ ...props }) {
+  const { pathname } = useRouter();
+
   const title = props.title
     ? `${props.title} | ${defaultValues.title}`
     : defaultValues.title;
 
-  const description = props.description
-    ? `${props.description} | ${defaultValues.description}`
-    : defaultValues.description;
+  const description = props.description || defaultValues.description;
 
   const { image } = props;
 
@@ -52,19 +53,33 @@ export default function Meta({ ...props }) {
 
       <meta name="msapplication-TileColor" content={defaultValues.color} />
       <meta name="theme-color" content={defaultValues.color} />
-      <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
+      <link
+        rel="sitemap"
+        type="application/xml"
+        title="Sitemap"
+        href="/sitemap.xml"
+      />
+
+      <title>{title}</title>
       <meta name="title" content={title} key="title" />
       <meta name="description" content={description} key="description" />
+
+      <link rel="canonical" href={`https://officinacoboldi.it${pathname}`} />
 
       <meta
         name="keywords"
         content="gioco di ruolo, imola, rpg, gdr, roleplay"
       />
 
+      <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content="https://officinacoboldi.it" />
+      <meta
+        property="og:url"
+        content={`https://officinacoboldi.it${pathname}`}
+      />
+      <meta property="og:site_name" content="Officina Coboldi" />
 
       <meta
         property="og:image"
@@ -75,14 +90,14 @@ export default function Meta({ ...props }) {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@OfficinaCoboldi" />
+      <meta name="twitter:creator" content="@OfficinaCoboldi" />
 
       <meta
         name="twitter:image"
         content={image || defaultValues.twitterImage}
         key="twitter-image"
       />
-
-      <title>{title}</title>
     </Head>
   );
 }
