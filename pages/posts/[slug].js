@@ -24,7 +24,11 @@ export default function Post({ post }) {
         <Loader />
       ) : (
         <>
-          <Meta title={post.title} image={post.coverImage} />
+          <Meta
+            title={post.title}
+            image={post.coverImage}
+            description={post.excerpt}
+          />
 
           <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>
