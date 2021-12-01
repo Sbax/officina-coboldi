@@ -45,4 +45,5 @@ fields:
   default: []
   label: Tags
 pages:
+- _posts/conosci-il-tuo-nemico-i-coboldi.json
 - _posts/inizio.json
