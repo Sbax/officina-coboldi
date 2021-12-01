@@ -22,6 +22,7 @@ export default function Meta({ ...props }) {
     : defaultValues.title;
 
   const description = props.description || defaultValues.description;
+  console.log(description);
 
   const { image } = props;
 

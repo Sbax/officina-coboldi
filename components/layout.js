@@ -5,7 +5,6 @@ import Header from "./header";
 export default function Layout({ children, skipFooter = false }) {
   return (
     <main>
-      <Meta />
       <Header />
       {children}
       {!skipFooter && <Footer />}
