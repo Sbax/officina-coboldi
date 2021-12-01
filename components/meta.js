@@ -15,7 +15,7 @@ const defaultValues = {
 };
 
 export default function Meta({ ...props }) {
-  const { pathname } = useRouter();
+  const { asPath } = useRouter();
 
   const title = props.title
     ? `${props.title} | ${defaultValues.title}`
@@ -65,7 +65,7 @@ export default function Meta({ ...props }) {
       <meta name="title" content={title} key="title" />
       <meta name="description" content={description} key="description" />
 
-      <link rel="canonical" href={`https://officinacoboldi.it${pathname}`} />
+      <link rel="canonical" href={`https://officinacoboldi.it${asPath}`} />
 
       <meta
         name="keywords"
@@ -75,10 +75,7 @@ export default function Meta({ ...props }) {
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta
-        property="og:url"
-        content={`https://officinacoboldi.it${pathname}`}
-      />
+      <meta property="og:url" content={`https://officinacoboldi.it${asPath}`} />
       <meta property="og:site_name" content="Officina Coboldi" />
 
       <meta
