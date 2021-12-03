@@ -4,6 +4,7 @@ import Container from "../components/container";
 import EventPreview from "../components/event-preview";
 import Footer from "../components/footer";
 import Layout from "../components/layout";
+import Meta from "../components/meta";
 import PostPreview from "../components/post-preview";
 import Strip from "../components/strip";
 import { getAllPosts } from "../lib/api";
@@ -17,6 +18,7 @@ export default function Index({ allPosts, events }) {
   return (
     <>
       <Layout skipFooter>
+        <Meta />
         <Strip>
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>

@@ -1,4 +1,3 @@
-import Meta from "../components/meta";
 import Footer from "./footer";
 import Header from "./header";
 

@@ -55,8 +55,6 @@ export default function Header() {
             <a className={headerStyles.logo} alt="Officina Coboldi">
               <Image
                 layout="fill"
-                width="100%"
-                height="100%"
                 objectFit="contain"
                 src="/assets/logo.svg"
                 alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
@@ -98,8 +96,6 @@ export default function Header() {
             <a className={headerStyles.logo}>
               <Image
                 layout="fill"
-                width="100%"
-                height="100%"
                 objectFit="contain"
                 src="/assets/logo_head.svg"
                 alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
