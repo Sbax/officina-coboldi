@@ -101,7 +101,7 @@ export default function RequestForm({ event }) {
                 const { value } = target;
 
                 if (!value) {
-                  return setPeople({ value: "", error: true });
+                  return setPeople({ value: 0, error: true });
                 }
 
                 if (value < 1) {
@@ -112,7 +112,7 @@ export default function RequestForm({ event }) {
                   return setPeople({ value: remainingPlaces });
                 }
 
-                setPeople(target.value);
+                setPeople({ value: target.value });
               }}
               id="people"
               type="number"
