@@ -91,7 +91,7 @@ export default function Events({ events }) {
 
           <Container className={eventStyles.results}>
             {filtered.length ? (
-              <EventPreview events={filtered} />
+              <EventPreview events={filtered.reverse()} />
             ) : (
               <section className={eventStyles.empty}>
                 <span>Nessun evento trovato</span>
