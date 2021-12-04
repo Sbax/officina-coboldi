@@ -9,16 +9,19 @@
 
     background: $primary-color;
 
-    @media (min-width: $md) {
-      width: 50%;
-      margin-bottom: -9em;
-    }
-
     aspect-ratio: 6 / 4;
 
     border: 2px solid black;
     box-shadow: 4px 4px 0 0 #000;
+  }
+
+  .imageContainer {
     width: 100%;
+
+    @media (min-width: $md) {
+      width: 50%;
+      margin-bottom: -9em;
+    }
   }
 
   display: flex;

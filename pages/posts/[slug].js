@@ -32,20 +32,22 @@ export default function Post({ post }) {
 
           <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>
-              <section className={postStyles.image}>
+              <section className={postStyles.imageContainer}>
                 {post.artist && post.artist_url && (
                   <span className={postStyles.credits}>
                     Immagine di <a href={post.artist_url}>{post.artist}</a>
                   </span>
                 )}
-                <picture>
-                  <Image
-                    layout="fill"
-                    objectFit="cover"
-                    src={post.coverImage}
-                    alt="Immagine in evidenza"
-                  />
-                </picture>
+                <section className={postStyles.image}>
+                  <picture>
+                    <Image
+                      layout="fill"
+                      objectFit="cover"
+                      src={post.coverImage}
+                      alt="Immagine in evidenza"
+                    />
+                  </picture>
+                </section>
               </section>
               <section className={postStyles.details}>
                 <h1>{post.title}</h1>
