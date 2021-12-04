@@ -8,8 +8,8 @@ export default function Contacts() {
       <section className={contactsStyles.logo}>
         <Image
           layout="intrinsic"
-          width={600}
-          height={300}
+          width={180}
+          height={100}
           src="/assets/logo.svg"
           alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
         />

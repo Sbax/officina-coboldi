@@ -1,5 +1,6 @@
 import Link from "next/link";
 import About from "../components/about";
+import Button from "../components/button";
 import Container from "../components/container";
 import EventPreview from "../components/event-preview";
 import Footer from "../components/footer";
@@ -22,7 +23,17 @@ export default function Index({ allPosts, events }) {
         <Strip>
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
-            <EventPreview events={nextEvents.slice(-4)} />
+            <EventPreview events={nextEvents.slice(-4).reverse()} />
+            <h2>
+              <Link href="/events">
+                <a alt="Pagina contenente tutti gli eventi">
+                  <Button className={indexStyles.link}>
+                    Vedi tutti gli eventi
+                  </Button>
+                </a>
+              </Link>
+            </h2>
+
             <h2>
               Vuoi giocare con noi, ma tutti i tavoli sono occupati?{" "}
               <Link href="/#contacts">
@@ -40,6 +51,11 @@ export default function Index({ allPosts, events }) {
           <Container>
             <h1 className={indexStyles.title}>Gli ultimi articoli</h1>
             <PostPreview posts={allPosts.slice(0, 4)} />
+            <Link href="/posts">
+              <a alt="Blog" className={indexStyles.link}>
+                <Button>Vai al blog</Button>
+              </a>
+            </Link>
           </Container>
         </section>
         <section className={indexStyles.contacts}>

@@ -6,7 +6,7 @@ import Container from "./container";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className={footerStyles.container}>
       <Container>
         <Contacts />
       </Container>
@@ -25,7 +25,7 @@ export default function Footer() {
           </span>
         </nav>
 
-        <section>
+        <section className={footerStyles.disclaimer}>
           Il sito raccoglie dati anonimi di navigazione{" / "}
           <a href="https://beampipe.io" alt="Beampipe">
             beampipe
