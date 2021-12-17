@@ -33,10 +33,11 @@ export default function Post({ post }) {
           <Strip className={postStyles.strip}>
             <Container className={postStyles.header}>
               <section className={postStyles.imageContainer}>
-                {post.artist && post.artist_url && (
-                  <span className={postStyles.credits}>
-                    Immagine di <a href={post.artist_url}>{post.artist}</a>
-                  </span>
+                {post.artist && (
+                  <span
+                    className={postStyles.credits}
+                    dangerouslySetInnerHTML={{ __html: post.artist }}
+                  />
                 )}
                 <section className={postStyles.image}>
                   <picture>

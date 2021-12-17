@@ -16,4 +16,30 @@
 
   grid-gap: 1em;
   padding: 1em 0;
+
+  > .empty {
+    display: none;
+
+    @media (min-width: $md) {
+      display: inherit;
+    }
+  }
+}
+
+.empty {
+  opacity: 0.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+
+  padding: 1.5em;
+  font-size: 1.2em;
+
+  text-align: center;
+
+  > * + * {
+    margin-top: 0.5em;
+  }
 }

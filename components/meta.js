@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const description =
-  "Un'associazione dedicata alla promozione e la diffusione del gioco di ruolo nel circondario imolese";
+  "Officina Coboldi è un'associazione nata nel 2021 dedicata alla promozione e la diffusione del gioco di ruolo nel circondario imolese";
 const title = "Officina Coboldi";
 const color = "#cb4444";
 
@@ -21,7 +21,9 @@ export default function Meta({ ...props }) {
     ? `${props.title} | ${defaultValues.title}`
     : defaultValues.title;
 
-  const description = props.description || defaultValues.description;
+  const description = props.description
+    ? `${props.description} | ${defaultValues.description}`
+    : defaultValues.description;
   const { image } = props;
 
   return (
