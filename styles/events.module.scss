@@ -14,6 +14,7 @@
   @media (min-width: $md) {
     position: sticky;
     top: $header-height;
+    z-index: 1;
   }
 }
 
