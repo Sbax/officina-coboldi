@@ -28,7 +28,7 @@ export default function Posts({ posts }) {
     }
 
     return (
-      1 + Math.round((filtered.length - POSTS_FIRST_PAGE) / POSTS_PER_PAGE)
+      1 + Math.floor((filtered.length - POSTS_FIRST_PAGE) / POSTS_PER_PAGE)
     );
   })();
 
@@ -100,7 +100,7 @@ export default function Posts({ posts }) {
                   </div>
                 )}
 
-                {pages !== 0 && (
+                {posts.length > POSTS_FIRST_PAGE && (
                   <div>
                     <Button
                       disabled={page === pages}
