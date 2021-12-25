@@ -24,7 +24,7 @@ fields:
   type: textarea
   default: ''
   config:
-    required: true
+    required: false
     wysiwyg: true
     schema:
       format: html-blocks
