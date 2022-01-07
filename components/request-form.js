@@ -100,16 +100,8 @@ export default function RequestForm({ event }) {
               onChange={({ target }) => {
                 const { value } = target;
 
-                if (!value) {
-                  return setPeople({ value: 0, error: true });
-                }
-
-                if (value < 1) {
-                  return setPeople({ value: 1 });
-                }
-
-                if (value > remainingPlaces) {
-                  return setPeople({ value: remainingPlaces });
+                if (!value || value < 1 || value > remainingPlaces) {
+                  return setPeople({ value: target.value, error: true });
                 }
 
                 setPeople({ value: target.value });
