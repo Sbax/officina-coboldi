@@ -86,8 +86,8 @@ export default function RequestForm({ event }) {
       <h2>Ti stai prenotando per</h2>
       <h1>{title}</h1>
       <h2>
-        {system} con {dm}, il <DateFormatter dateString={date} /> alle {time}{" "}
-        presso <a href={`https://instagram.com/${place}`}>{place}</a>
+        {system} con {dm.name}, il <DateFormatter dateString={date} /> alle{" "}
+        {time} presso <a href={place.link}>{place.name}</a>
       </h2>
       <form className={requestFormStyles.form}>
         {remainingPlaces !== 1 && (

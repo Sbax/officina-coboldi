@@ -18,10 +18,10 @@ export default function EventCard({ event, onBook }) {
         <h1>{title}</h1>
         <h2>
           <section>
-            {dm} – {system}
+            {dm.link ? <a href={dm.link}>{dm.name}</a> : dm.name} – {system}
           </section>
           <section>
-            Presso <a href={`https://instagram.com/${place}`}>{place}</a>
+            Presso <a href={place.link}>{place.name}</a>
           </section>
         </h2>
       </section>
