@@ -1,12 +1,12 @@
-import React from "react";
-import Container from "./container";
-import aboutStyles from "../styles/about.module.scss";
-import Image from "next/image";
-import Link from "next/link";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import aboutStyles from "../styles/about.module.scss";
+import Container from "./container";
+import ExpandableQAndA from "./expandable-q-and-a";
 
 export default function About() {
   return (
@@ -38,7 +38,7 @@ export default function About() {
 
           <p>
             Organizziamo serate di gioco di ruolo per novizi ed esperti in
-            centri eterogenei per vivere la comunità che il territorio ci offre.
+            centri eterogenei per vivere la comunit&agrave; che il territorio ci offre.
           </p>
         </section>
       </Container>
@@ -89,6 +89,63 @@ export default function About() {
               </Link>
             </h3>
           </article>
+        </section>
+
+        <section>
+          <ExpandableQAndA title="Dove siamo?">
+            <p>
+              Al momento non abbiamo una vera e propria sede e organizziamo le
+              nostre serate in vari locali che ci ospitano.
+            </p>
+            <p>
+              Il luogo dove sar&agrave; più frequente trovarci è il{" "}
+              <a href="https://goo.gl/maps/Zmrvr5iyZi4L28Kp8">
+                Centro Giovanile Ca&apos;Vaina
+              </a>{" "}
+              in cui collaboriamo con l&apos;associazione{" "}
+              <a href="https://officinaimmaginata.it/">Officina Immaginata</a>{" "}
+              per organizzare serate di gioco di ruolo a cadenza fissa.
+            </p>
+            <br />
+            <p>
+              Se gestisci uno spazio e ci vuoi accogliere per giocare di ruolo,
+              se vuoi giocare con noi, oppure venire a vedere una delle nostre
+              serate contattaci via{" "}
+              <a href="mailto:info@officinacoboldi.it">mail</a>!
+            </p>
+          </ExpandableQAndA>
+
+          <ExpandableQAndA title="Come si gioca con noi?">
+            <p>
+              Proponiamo diversi appuntamenti a cadenza settimanale: le oneshot
+              sono partite che si concludono la sera stessa, utili per provare
+              un nuovo gioco o avventure inconsuete.
+            </p>
+            <p>
+              Le campagne sono avventure lunghe che si protraggono nell&apos;arco di
+              più settimane, permettono di esplorare a fondo un sistema di gioco
+              e interpretare la crescita del personaggio che interpreterete e
+              accompagnerete in avventure epiche.
+            </p>
+            <br />
+            <p>
+              Se non trovi spazi disponibili, che tu sia un giocatore o un
+              master,{" "}
+              <Link href="/#contacts">
+                <a alt="Contatti">contattaci</a>
+              </Link>
+              ! Organizziamo tavoli anche basandoci sulle richieste ricevute.
+            </p>
+          </ExpandableQAndA>
+
+          <ExpandableQAndA title="Quanto costa?">
+            <p>
+              I nostri eventi sono completamente gratuiti! Vogliamo far
+              conoscere e giocare il gioco di ruolo a chiunque sia interessato,
+              porta soltanto una matita e una buona dose di immaginazione, al
+              resto pensiamo noi!
+            </p>
+          </ExpandableQAndA>
         </section>
       </Container>
     </>
