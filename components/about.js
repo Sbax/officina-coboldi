@@ -38,7 +38,7 @@ export default function About() {
 
           <p>
             Organizziamo serate di gioco di ruolo per novizi ed esperti in
-            centri eterogenei per vivere la comunità che il territorio ci offre.
+            centri eterogenei per vivere la comunit&agrave; che il territorio ci offre.
           </p>
         </section>
       </Container>
@@ -98,11 +98,11 @@ export default function About() {
               nostre serate in vari locali che ci ospitano.
             </p>
             <p>
-              Il luogo dove sarà più frequente trovarci è il{" "}
+              Il luogo dove sar&agrave; più frequente trovarci è il{" "}
               <a href="https://goo.gl/maps/Zmrvr5iyZi4L28Kp8">
-                Centro Giovanile Ca'Vaina
+                Centro Giovanile Ca&apos;Vaina
               </a>{" "}
-              in cui collaboriamo con l'associazione{" "}
+              in cui collaboriamo con l&apos;associazione{" "}
               <a href="https://officinaimmaginata.it/">Officina Immaginata</a>{" "}
               per organizzare serate di gioco di ruolo a cadenza fissa.
             </p>
@@ -122,7 +122,7 @@ export default function About() {
               un nuovo gioco o avventure inconsuete.
             </p>
             <p>
-              Le campagne sono avventure lunghe che si protraggono nell'arco di
+              Le campagne sono avventure lunghe che si protraggono nell&apos;arco di
               più settimane, permettono di esplorare a fondo un sistema di gioco
               e interpretare la crescita del personaggio che interpreterete e
               accompagnerete in avventure epiche.
