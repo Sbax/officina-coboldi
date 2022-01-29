@@ -79,3 +79,17 @@
   margin-top: 1em;
   width: 30ch;
 }
+
+.success {
+  margin: 0;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba($main-bg, 0.9);
+}

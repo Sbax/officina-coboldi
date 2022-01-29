@@ -221,6 +221,11 @@ export default function RequestForm({ event }) {
             La richiesta è stata inviata, tra poco riceverai un messaggio per
             confermarla!
           </h2>
+
+          <p>
+            Non si tratta di un processo automatico, perciò sii paziente! I
+            nostri coboldi ti risponderanno al più presto!
+          </p>
         </section>
       )}
 
