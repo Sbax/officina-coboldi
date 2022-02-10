@@ -106,7 +106,7 @@ export default function Bingo() {
         link.click();
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, [componentToPrint]);
 
@@ -121,7 +121,7 @@ export default function Bingo() {
           </div>
 
           <div>
-            <Button onClick={generateImage}>Salva l'immagine</Button>
+            <Button onClick={generateImage}>Salva l&apos;immagine</Button>
           </div>
         </header>
 
@@ -132,7 +132,9 @@ export default function Bingo() {
             {options.map((row) => (
               <>
                 {row.map((column) => (
-                  <div className={bingoStyles.gridItems}>{column}</div>
+                  <div key={column} className={bingoStyles.gridItems}>
+                    {column}
+                  </div>
                 ))}
               </>
             ))}
