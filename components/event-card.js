@@ -54,8 +54,11 @@ export default function EventCard({ event, onBook }) {
             </>
           )}
         </section>
-
-        <Book />
+        {futureEvent && !fullyBooked && (
+          <Button primary onClick={onBook}>
+            Prenota!
+          </Button>
+        )}
       </section>
     </article>
   );
