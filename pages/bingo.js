@@ -1,6 +1,5 @@
-import { toPng } from "html-to-image";
-import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "../components/button";
 import PageWrapper from "../components/page-wrapper";
 import bingoStyles from "../styles/bingo.module.scss";
@@ -86,36 +85,52 @@ export default function Bingo() {
       .map((array) => array.slice(0, 3));
   };
 
-  const [options, setOptions] = useState(generateOptions());
+  const [options, setOptions] = useState([]);
+  const [currentImage, setCurrentImage] = useState();
 
   const componentToPrint = useRef();
-  const generateImage = useCallback(() => {
+
+  const generateImage = () => {
+    if (!currentImage) return;
+
+    const link = document.createElement("a");
+    link.download = "Officina Coboldi - Challenge.png";
+    link.href = currentImage;
+    link.click();
+    link.delete;
+  };
+
+  const createNewImage = () => {
+    setOptions(generateOptions());
+  };
+
+  useEffect(() => {
+    if (!options.length) return;
     if (componentToPrint.current === null) {
       return;
     }
 
-    toPng(componentToPrint.current, {
-      cacheBust: true,
+    html2canvas(componentToPrint.current, {
       width: 1080,
       height: 1920,
-    })
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = "officina-coboldi-challenge.png";
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [componentToPrint]);
+      windowWidth: 1080,
+      windowHeight: 1920,
+    }).then((canvas) => {
+      setCurrentImage(canvas.toDataURL());
+    });
+  }, [options]);
+
+  useEffect(() => {
+    if (currentImage) return;
+    createNewImage();
+  }, [currentImage]);
 
   return (
     <PageWrapper title="Bingo" hideStrip>
       <section className={bingoStyles.container}>
         <header className={bingoStyles.buttons}>
           <div>
-            <Button primary onClick={() => setOptions(generateOptions())}>
+            <Button primary onClick={() => createNewImage()}>
               Dammene un altro!
             </Button>
           </div>
@@ -125,26 +140,35 @@ export default function Bingo() {
           </div>
         </header>
 
-        <section className={bingoStyles.wrapper} ref={componentToPrint}>
-          <img className={bingoStyles.logo} src="/assets/logo.svg" />
+        <div className={bingoStyles.printWrapper}>
+          <section
+            className={bingoStyles.printContainer}
+            ref={componentToPrint}
+          >
+            <section className={bingoStyles.wrapper}>
+              <img className={bingoStyles.logo} src="/assets/logo.png" />
 
-          <div className={bingoStyles.grid}>
-            {options.map((row) => (
-              <>
-                {row.map((column) => (
-                  <div key={column} className={bingoStyles.gridItems}>
-                    {column}
-                  </div>
-                ))}
-              </>
-            ))}
-          </div>
+              <div className={bingoStyles.grid}>
+                {options.map((row) =>
+                  row.map((column) => (
+                    <div key={column} className={bingoStyles.gridItems}>
+                      {column}
+                    </div>
+                  ))
+                )}
+              </div>
 
-          <footer className={bingoStyles.attribution}>
-            <div>@officinacoboldi</div>
+              <footer className={bingoStyles.attribution}>
+                <div>@officinacoboldi</div>
 
-            <div>officinacoboldi.it</div>
-          </footer>
+                <div>officinacoboldi.it</div>
+              </footer>
+            </section>
+          </section>
+        </div>
+
+        <section className={bingoStyles.imageContainer}>
+          {currentImage && <img src={currentImage} />}
         </section>
       </section>
     </PageWrapper>
