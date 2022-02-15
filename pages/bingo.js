@@ -1,5 +1,5 @@
-import html2canvas from "html2canvas";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+import { useEffect, useRef, useState } from "react";
 import Button from "../components/button";
 import PageWrapper from "../components/page-wrapper";
 import bingoStyles from "../styles/bingo.module.scss";
@@ -110,13 +110,13 @@ export default function Bingo() {
       return;
     }
 
-    html2canvas(componentToPrint.current, {
+    toPng(componentToPrint.current, {
       width: 1080,
       height: 1920,
       windowWidth: 1080,
       windowHeight: 1920,
-    }).then((canvas) => {
-      setCurrentImage(canvas.toDataURL());
+    }).then((dataUrl) => {
+      setCurrentImage(dataUrl);
     });
   }, [options]);
 
