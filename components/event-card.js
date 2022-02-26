@@ -4,10 +4,30 @@ import Button from "./button";
 import DateFormatter from "./date-formatter";
 
 export default function EventCard({ event, onBook }) {
-  const { title, system, dm, date, time, place, max, booked } = event;
+  const { title, system, dm, date, time, place, max, booked, reservationLink } =
+    event;
 
   const futureEvent = new Date(date) >= new Date().setHours(0, 0, 0, 0);
   const fullyBooked = booked >= max;
+
+  const Book = () => {
+    if (futureEvent && !fullyBooked) {
+      if (reservationLink)
+        return (
+          <a href={reservationLink}>
+            <Button primary={true}>Prenota!</Button>
+          </a>
+        );
+
+      return (
+        <Button primary={true} onClick={onBook}>
+          Prenota!
+        </Button>
+      );
+    }
+
+    return <></>;
+  };
 
   return (
     <article className={eventCardStyles.card}>
@@ -28,13 +48,14 @@ export default function EventCard({ event, onBook }) {
 
       <section className={eventCardStyles.booking}>
         <section>
-          <span>{booked}</span>/<span>{max}</span>
+          {!reservationLink && (
+            <>
+              <span>{booked}</span> / <span>{max}</span>
+            </>
+          )}
         </section>
-        {futureEvent && !fullyBooked && (
-          <Button primary={true} onClick={onBook}>
-            Prenota!
-          </Button>
-        )}
+
+        <Book />
       </section>
     </article>
   );
