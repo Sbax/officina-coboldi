@@ -1,4 +1,0 @@
-[functions]
-  node_bundler = "esbuild"
-  included_files = ["_posts/*.json"]
-  external_node_modules = ["sharp"]

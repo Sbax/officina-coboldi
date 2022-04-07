@@ -1,43 +1,27 @@
-import React, { useState } from "react";
-import EventCard from "./event-card";
-
+import React, { cloneElement } from "react";
 import eventPreviewStyles from "../styles/event-preview.module.scss";
-import Modal from "./modal";
-import RequestForm from "./request-form";
 
-export default function EventPreview({ events }) {
-  const [selectedEvent, setSelectedEvent] = useState();
-
+export default function EventPreview({ events, card, showEmpty = true }) {
   return (
     <section className={events.length ? eventPreviewStyles.container : ""}>
-      {events.map((event) => (
-        <EventCard
-          key={event.id}
-          event={event}
-          onBook={() => setSelectedEvent(event)}
-        />
-      ))}
+      {events.map((event) =>
+        cloneElement(card, {
+          key: event.id,
+          event,
+        })
+      )}
 
-      {events.length && events.length < 4 ? (
+      {events.length < 4 && showEmpty ? (
         <div className={eventPreviewStyles.empty}>
-          <span>Nessun altro evento in programma</span>
+          {!events.length ? (
+            <span>Nessun evento in programma</span>
+          ) : (
+            <span>Nessun altro evento in programma</span>
+          )}
           <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
         </div>
       ) : (
         ""
-      )}
-
-      {!events.length && (
-        <div className={eventPreviewStyles.empty}>
-          <span>Nessun evento in programma</span>
-          <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
-        </div>
-      )}
-
-      {selectedEvent && (
-        <Modal onClose={() => setSelectedEvent()}>
-          <RequestForm event={selectedEvent} />
-        </Modal>
       )}
     </section>
   );

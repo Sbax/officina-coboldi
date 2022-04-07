@@ -1,4 +1,4 @@
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
+import { toPng } from "html-to-image";
 import { useEffect, useRef, useState } from "react";
 import Button from "../components/button";
 import PageWrapper from "../components/page-wrapper";

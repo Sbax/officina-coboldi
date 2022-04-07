@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import headerStyles from "../styles/header.module.scss";
+import AuthenticationButtons from "./authentication-buttons";
 import Button from "./button";
 import Container from "./container";
 
@@ -103,7 +104,9 @@ export default function Header() {
             </a>
           </Link>
           <Nav />
-          <section className={headerStyles.mobile}></section>
+          <section>
+            <AuthenticationButtons />
+          </section>
         </Container>
       </header>
     </>

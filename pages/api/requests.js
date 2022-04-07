@@ -1,6 +1,16 @@
-import { addRequest } from "../../lib/sheet";
 import handleResponse from "../../lib/handleResponse";
+import runMiddleware from "../../lib/middleware";
+import propelauth from "../../lib/propelauth";
+import {
+  addRequest,
+  getRequests,
+  acceptRequests,
+  deleteRequests,
+} from "../../lib/sheet";
 import { sendNotification } from "../../lib/telegram";
+
+const requireUser = (req, res) =>
+  runMiddleware(req, res, propelauth.requireUser);
 
 export default async function handler(req, res) {
   if (req.method === "PUT") {
@@ -17,6 +27,29 @@ export default async function handler(req, res) {
       await sendNotification(message);
     });
 
+    return res;
+  }
+
+  if (req.method === "GET") {
+    await requireUser(req, res);
+
+    handleResponse({ res }, await getRequests(req.body));
+    return res;
+  }
+
+  if (req.method === "POST") {
+    // accept booking
+    await requireUser(req, res);
+
+    handleResponse({ res }, await acceptRequests(req.body));
+    return res;
+  }
+
+  if (req.method === "DELETE") {
+    // delete booking
+    await requireUser(req, res);
+
+    handleResponse({ res }, await deleteRequests(req.body));
     return res;
   }
 

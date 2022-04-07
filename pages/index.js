@@ -2,6 +2,7 @@ import Link from "next/link";
 import About from "../components/about";
 import Button from "../components/button";
 import Container from "../components/container";
+import BookingCard from "../components/event-cards/booking-card";
 import EventPreview from "../components/event-preview";
 import Footer from "../components/footer";
 import Layout from "../components/layout";
@@ -23,7 +24,10 @@ export default function Index({ allPosts, events }) {
         <Strip>
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
-            <EventPreview events={nextEvents.slice(-4).reverse()} />
+            <EventPreview
+              events={nextEvents.slice(-4).reverse()}
+              card={<BookingCard />}
+            />
             <h2>
               <Link href="/events">
                 <a alt="Pagina contenente tutti gli eventi">

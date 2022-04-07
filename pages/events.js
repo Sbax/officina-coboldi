@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Container from "../components/container";
+import BookingCard from "../components/event-cards/booking-card";
 import EventPreview from "../components/event-preview";
 import Input from "../components/input";
 import Layout from "../components/layout";
@@ -91,7 +92,10 @@ export default function Events({ events }) {
 
           <Container className={eventStyles.results}>
             {filtered.length ? (
-              <EventPreview events={filtered.reverse()} />
+              <EventPreview
+                events={filtered.reverse()}
+                card={<BookingCard />}
+              />
             ) : (
               <section className={eventStyles.empty}>
                 <span>Nessun evento trovato</span>

@@ -43,7 +43,12 @@
       box-shadow: inset 1em 1em $secondary-color;
     }
 
-    &:checked::before {
+    &:checked:before {
+      transform: scale(1.5) translate(-0.1em, 0.1em);
+    }
+
+    &:indeterminate:before {
+      clip-path: polygon(10% 30%, 10% 70%, 85% 70%, 85% 30%);
       transform: scale(1.5) translate(-0.1em, 0.1em);
     }
 
