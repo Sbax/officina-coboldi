@@ -18,7 +18,7 @@ function Pending({ accessToken, event }) {
     setRequests((data || []).filter(({ eventId }) => eventId === event.id));
   }, [data, event]);
 
-  if (error) return "An error has occurred.";
+  if (error) return "Si è verificato un errore";
   if (!data) return "Loading...";
   if (!requests || !requests.length) return "Nessuna prenotazione";
 
