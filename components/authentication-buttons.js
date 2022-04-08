@@ -18,7 +18,9 @@ function AuthenticationButtons({ isLoggedIn, user }) {
 
         <div>
           <Link href="/admin" passHref>
-            <Button>Admin</Button>
+            <a>
+              <Button>Admin</Button>
+            </a>
           </Link>
 
           <Button onClick={() => logoutFn(true)}>Logout</Button>
