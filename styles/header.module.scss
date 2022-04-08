@@ -91,9 +91,12 @@
 }
 
 .mobile {
-  padding: 0 1em;
   @media (min-width: $md) {
     display: none;
+  }
+
+  > *:first-child {
+    padding: 0 1em !important; // overwrite inline style
   }
 }
 
