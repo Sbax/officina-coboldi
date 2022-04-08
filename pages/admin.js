@@ -42,7 +42,7 @@ export default function Admin({ events }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const events = await getEvents();
 
   return {
