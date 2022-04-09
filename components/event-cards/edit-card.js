@@ -24,9 +24,12 @@ export default function EditCard({ event }) {
               Modifica
             </Button>
 
-            {!event.reservationLink && (
-              <Button onClick={() => showBookings(true)}>Prenotazioni</Button>
-            )}
+            <Button
+              disabled={event.reservationLink}
+              onClick={() => showBookings(true)}
+            >
+              Prenotazioni
+            </Button>
           </section>
         }
       />
