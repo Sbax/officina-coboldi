@@ -19,7 +19,7 @@
     width: 100%;
 
     @media (min-width: $md) {
-      width: 50%;
+      min-width: 50%;
       margin-bottom: -9em;
     }
   }
