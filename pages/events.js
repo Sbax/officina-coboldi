@@ -35,7 +35,7 @@ export default function Events({ events }) {
         .filter(
           ({ title, dm }) =>
             title.toLowerCase().includes(search) ||
-            dm.toLowerCase().includes(search)
+            dm.name.toLowerCase().includes(search)
         )
         .filter((event) => system === "" || event.system === system)
     );
