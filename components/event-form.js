@@ -20,7 +20,10 @@ const EventForm = withAuthInfo(
     const [dmLink, setDmLink] = useState({ value: event.dm.link || "" });
 
     const [date, setDate] = useState({
-      value: format(new Date(event.date || null), "yyyy-MM-dd"),
+      value: format(
+        event.date ? new Date(event.date) : new Date(),
+        "yyyy-MM-dd"
+      ),
     });
     const [time, setTime] = useState({ value: event.time || "20:30" });
     const [place, setPlace] = useState({ value: event.place.name || "" });
