@@ -9,7 +9,7 @@ import Layout from "../components/layout";
 import Meta from "../components/meta";
 import Select from "../components/select";
 import Strip from "../components/strip";
-import { getEvents } from "../lib/sheet";
+import { getEvents } from "../lib/supabase";
 import eventStyles from "../styles/events.module.scss";
 
 export default function Events({ events }) {
@@ -20,7 +20,9 @@ export default function Events({ events }) {
     )
   );
 
-  const systems = Array.from(new Set([...events.map(({ system }) => system)]));
+  const systems = Array.from(
+    new Set([...events.map(({ system }) => system)])
+  ).filter(Boolean);
 
   const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [search, setSearch] = useState("");
@@ -121,6 +123,6 @@ export async function getStaticProps() {
     props: {
       events: events.error ? [] : events,
     },
-    revalidate: 5 * 60,
+    revalidate: 60,
   };
 }

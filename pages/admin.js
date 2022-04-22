@@ -7,7 +7,7 @@ import EventForm from "../components/event-form";
 import EventPreview from "../components/event-preview";
 import Modal from "../components/modal";
 import Pending from "../components/pending";
-import { getEvents } from "../lib/sheet";
+import { getEvents } from "../lib/supabase";
 import styles from "../styles/page.module.scss";
 
 export default function Admin({ events }) {
@@ -26,6 +26,7 @@ export default function Admin({ events }) {
         events={events
           .filter(({ date }) => new Date(date) >= startDate)
           .reverse()}
+        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))" }}
         card={<EditCard />}
         showEmpty={false}
       />

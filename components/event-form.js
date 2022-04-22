@@ -11,7 +11,7 @@ const FormState = { Idle: 0, Sending: 1, Success: 2, Error: 3 };
 
 const EventForm = withAuthInfo(
   ({ event = { dm: {}, place: {} }, onSave = () => {}, accessToken }) => {
-    const { rowNumber } = event;
+    const { id } = event;
 
     const [title, setTitle] = useState({ value: event.title || "" });
     const [system, setSystem] = useState({ value: event.system || "" });
@@ -89,12 +89,13 @@ const EventForm = withAuthInfo(
       setFormState(FormState.Sending);
 
       const response = await fetch(`/api/event`, {
-        method: rowNumber ? "POST" : "PUT",
+        method: id ? "POST" : "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
+          id,
           title: title.value,
           system: system.value,
           dm: dm.value,
@@ -105,7 +106,6 @@ const EventForm = withAuthInfo(
           placelink: placeLink.value,
           max: max.value,
           reservationLink: reservationLink.value,
-          rowNumber: rowNumber || null,
         }),
       });
 
@@ -116,6 +116,7 @@ const EventForm = withAuthInfo(
       setFormState(FormState.Success);
       onSave();
     }, [
+      id,
       title,
       system,
       dm,
@@ -126,6 +127,8 @@ const EventForm = withAuthInfo(
       placeLink,
       max,
       reservationLink,
+      accessToken,
+      onSave,
     ]);
 
     return (

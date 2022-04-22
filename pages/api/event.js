@@ -1,7 +1,7 @@
 import { invalidateEvents } from "../../lib/invalidate-cache";
 import runMiddleware from "../../lib/middleware";
 import propelauth from "../../lib/propelauth";
-import { addEvent, updateEvent } from "../../lib/sheet";
+import { addEvent, updateEvent } from "../../lib/supabase";
 
 const requireUser = (req, res) =>
   runMiddleware(req, res, propelauth.requireUser);

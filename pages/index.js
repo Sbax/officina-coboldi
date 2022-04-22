@@ -10,7 +10,7 @@ import Meta from "../components/meta";
 import PostPreview from "../components/post-preview";
 import Strip from "../components/strip";
 import { getAllPosts } from "../lib/api";
-import { getEvents } from "../lib/sheet";
+import { getEvents } from "../lib/supabase";
 import indexStyles from "../styles/index.module.scss";
 
 export default function Index({ allPosts, events }) {
@@ -88,6 +88,6 @@ export async function getStaticProps() {
       allPosts,
       events: events.error ? [] : events,
     },
-    revalidate: 5 * 60,
+    revalidate: 60,
   };
 }

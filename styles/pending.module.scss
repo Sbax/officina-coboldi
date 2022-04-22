@@ -1,5 +1,10 @@
 @import './variables.module.scss';
 
+.title {
+  max-width: 30ch;
+  padding: 0.5em;
+}
+
 .table {
   width: 100%;
 
@@ -24,4 +29,9 @@
 
 .checkbox {
   display: flex;
+}
+
+.scrollable {
+  width: 100%;
+  overflow: auto;
 }

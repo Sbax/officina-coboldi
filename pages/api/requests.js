@@ -6,7 +6,7 @@ import {
   getRequests,
   acceptRequests,
   deleteRequests,
-} from "../../lib/sheet";
+} from "../../lib/supabase";
 import { sendNotification } from "../../lib/telegram";
 
 const requireUser = (req, res) =>

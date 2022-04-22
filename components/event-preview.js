@@ -1,9 +1,17 @@
 import React, { cloneElement } from "react";
 import eventPreviewStyles from "../styles/event-preview.module.scss";
 
-export default function EventPreview({ events, card, showEmpty = true }) {
+export default function EventPreview({
+  events,
+  card,
+  showEmpty = true,
+  style = { gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))" },
+}) {
   return (
-    <section className={events.length ? eventPreviewStyles.container : ""}>
+    <section
+      className={events.length ? eventPreviewStyles.container : ""}
+      style={style}
+    >
       {events.map((event) =>
         cloneElement(card, {
           key: event.id,

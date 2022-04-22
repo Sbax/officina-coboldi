@@ -8,8 +8,7 @@
 
 .item {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
 
   label {
     display: inline-block;
@@ -17,7 +16,17 @@
   }
 
   > * + * {
-    margin-left: 0.5em;
+    margin-top: 0.5em;
+  }
+
+  @media (min-width: $md) {
+    flex-direction: row;
+    align-items: center;
+
+    > * + * {
+      margin-top: 0;
+      margin-left: 0.5em;
+    }
   }
 }
 
