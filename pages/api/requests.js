@@ -14,17 +14,17 @@ const requireUser = (req, res) =>
 
 export default async function handler(req, res) {
   if (req.method === "PUT") {
-    handleResponse({ res }, await addRequest(req.body), async () => {
+    handleResponse({ res }, await addRequest(req.body), async (payload) => {
       const { event, name, people, instagram, phone } = req.body;
 
       const message = [
         `Nuova prenotazione per ${event.title} (${event.system}) in data ${event.date} con ${event.dm.name}`,
         `${name}, ${people} persone (instagram: ${instagram}, phone: ${phone})`,
         "",
-        `<a href="https://docs.google.com/spreadsheets/d/${process.env.GOOGLE_SPREADSHEET_ID_FROM_URL}">Google Sheet</a>`,
+        `<pre>${JSON.stringify(payload.map(({ id }) => id))}</pre>`,
       ].join("\n");
 
-      await sendNotification(message);
+      await sendNotification(message, payload);
     });
 
     return res;
