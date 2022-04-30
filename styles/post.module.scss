@@ -7,12 +7,12 @@
     position: relative;
     z-index: 2;
 
-    background: $primary-color;
+    background: black;
 
     aspect-ratio: 6 / 4;
 
     border: 2px solid black;
-    box-shadow: 4px 4px 0 0 #000;
+    box-shadow: 4px 4px 0 0 black;
   }
 
   .imageContainer {
@@ -167,6 +167,12 @@
 
   * + * {
     margin-top: 1em;
+  }
+
+  img {
+    max-width: 100%;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0 0 black;
   }
 }
 
