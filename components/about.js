@@ -24,7 +24,7 @@ export default function About() {
 
         <p>
           Un&apos;associazione dedicata alla promozione e la diffusione del
-          gioco di ruolo nel circondario imolese
+          gioco di ruolo GdR a Imola e nel circondario imolese
         </p>
 
         <hr />

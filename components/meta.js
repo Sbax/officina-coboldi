@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 const description =
-  "Officina Coboldi è un'associazione nata nel 2021 dedicata alla promozione e la diffusione del gioco di ruolo nel circondario imolese";
+  "Officina Coboldi è un'associazione nata nel 2021 dedicata alla promozione e la diffusione del gioco di ruolo GdR a Imola e nel circondario imolese";
 const title = "Officina Coboldi";
 const color = "#cb4444";
 
