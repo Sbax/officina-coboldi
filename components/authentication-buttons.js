@@ -1,11 +1,13 @@
+import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   useLogoutFunction,
   useRedirectFunctions,
   withAuthInfo,
 } from "@propelauth/react";
 import Link from "next/link";
-import Button from "./button";
 import styles from "../styles/auth-buttons.module.scss";
+import Button from "./button";
 
 function AuthenticationButtons({ isLoggedIn, user }) {
   const logoutFn = useLogoutFunction();
@@ -30,7 +32,9 @@ function AuthenticationButtons({ isLoggedIn, user }) {
   } else {
     return (
       <section className={styles.buttons}>
-        <Button onClick={redirectToLoginPage}>Login</Button>
+        <Button onClick={redirectToLoginPage}>
+          <FontAwesomeIcon icon={faLock} /> Admin
+        </Button>
       </section>
     );
   }
