@@ -65,6 +65,50 @@ export default function Posts({ posts }) {
     };
   })();
 
+  const Navigation = () => (
+    <section className={postsStyles.navigation}>
+      {page !== 0 && (
+        <div>
+          <Button
+            onClick={() =>
+              router.push(`/posts?page=${(parseInt(page) || 0) - 1}`)
+            }
+          >
+            <Image
+              layout="intrinsic"
+              width={25}
+              height={25}
+              objectFit="contain"
+              src="/assets/arrow.svg"
+              alt="Post precedenti"
+            />
+          </Button>
+        </div>
+      )}
+
+      {posts.length > POSTS_FIRST_PAGE && (
+        <div>
+          <Button
+            disabled={page === pages}
+            className={postsStyles.flip}
+            onClick={() =>
+              router.push(`/posts?page=${(parseInt(page) || 0) + 1}`)
+            }
+          >
+            <Image
+              layout="intrinsic"
+              width={25}
+              height={25}
+              objectFit="contain"
+              src="/assets/arrow.svg"
+              alt="Post successivi"
+            />
+          </Button>
+        </div>
+      )}
+    </section>
+  );
+
   return (
     <>
       <Layout>
@@ -80,47 +124,7 @@ export default function Posts({ posts }) {
                 {page !== 0 && `, pagina ${page + 1}`}
               </h1>
 
-              <section>
-                {page !== 0 && (
-                  <div>
-                    <Button
-                      onClick={() =>
-                        router.push(`/posts?page=${(parseInt(page) || 0) - 1}`)
-                      }
-                    >
-                      <Image
-                        layout="intrinsic"
-                        width={25}
-                        height={25}
-                        objectFit="contain"
-                        src="/assets/arrow.svg"
-                        alt="Post precedenti"
-                      />
-                    </Button>
-                  </div>
-                )}
-
-                {posts.length > POSTS_FIRST_PAGE && (
-                  <div>
-                    <Button
-                      disabled={page === pages}
-                      className={postsStyles.flip}
-                      onClick={() =>
-                        router.push(`/posts?page=${(parseInt(page) || 0) + 1}`)
-                      }
-                    >
-                      <Image
-                        layout="intrinsic"
-                        width={25}
-                        height={25}
-                        objectFit="contain"
-                        src="/assets/arrow.svg"
-                        alt="Post successivi"
-                      />
-                    </Button>
-                  </div>
-                )}
-              </section>
+              <Navigation />
             </section>
 
             {filtered.length === 0 ? (
@@ -148,6 +152,10 @@ export default function Posts({ posts }) {
                 </section>
               </>
             )}
+
+            <section className={postsStyles.bottom}>
+              <Navigation />
+            </section>
           </Container>
         </section>
       </Layout>
