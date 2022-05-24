@@ -4,6 +4,7 @@ import useSWR from "swr";
 import styles from "../styles/pending.module.scss";
 import Button from "./button";
 import DateFormatter from "./date-formatter";
+import Input from "./input";
 
 const fetcher = (url, accessToken) =>
   fetch(url, {
@@ -11,7 +12,9 @@ const fetcher = (url, accessToken) =>
     headers: { Authorization: `Bearer ${accessToken}` },
   }).then((res) => res.json());
 
-function Pending({ accessToken, event }) {
+function Bookings({ accessToken, event }) {
+  const [name, setName] = useState({ value: "" });
+
   const [requests, setRequests] = useState();
   const { data, error } = useSWR(["/api/requests", accessToken], fetcher);
 
@@ -25,7 +28,6 @@ function Pending({ accessToken, event }) {
 
   if (error) return "Si è verificato un errore";
   if (!data) return "Loading...";
-  if (!requests || !requests.length) return "Nessuna prenotazione";
 
   const removeRequest = async (id) => {
     const response = await fetch(`/api/requests`, {
@@ -39,6 +41,27 @@ function Pending({ accessToken, event }) {
 
     if (response.ok) {
       setRequests(requests.filter((item) => item.id !== id));
+    }
+  };
+
+  const addRequest = async () => {
+    const response = await fetch(`/api/requests`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: event.id,
+        event,
+        people: 1,
+        name: name.value,
+        instagram: name.value,
+        skipNotification: true,
+      }),
+    });
+
+    if (response.ok) {
+      setName({ value: "" });
     }
   };
 
@@ -59,7 +82,7 @@ function Pending({ accessToken, event }) {
           </thead>
 
           <tbody>
-            {requests.map((item, index) => (
+            {(requests || []).map((item, index) => (
               <tr key={`${item.name}-${index}`}>
                 <td>{item.name}</td>
                 <td>{item.instagram}</td>
@@ -71,6 +94,24 @@ function Pending({ accessToken, event }) {
                 </td>
               </tr>
             ))}
+            <tr>
+              <td colSpan={3}>
+                <Input
+                  value={name.value}
+                  onChange={({ target }) =>
+                    setName({
+                      value: target.value,
+                    })
+                  }
+                  id="name"
+                  type="text"
+                  placeholder="Nome"
+                />
+              </td>
+              <td>
+                <Button onClick={() => addRequest()}>Aggiungi</Button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -78,4 +119,4 @@ function Pending({ accessToken, event }) {
   );
 }
 
-export default withAuthInfo(Pending);
+export default withAuthInfo(Bookings);
