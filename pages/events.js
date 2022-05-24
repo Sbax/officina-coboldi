@@ -40,6 +40,7 @@ export default function Events({ events }) {
             dm.name.toLowerCase().includes(search)
         )
         .filter((event) => system === "" || event.system === system)
+        .reverse()
     );
   }, [date, search, system, events]);
 
@@ -94,10 +95,7 @@ export default function Events({ events }) {
 
           <Container className={eventStyles.results}>
             {filtered.length ? (
-              <EventPreview
-                events={filtered.reverse()}
-                card={<BookingCard />}
-              />
+              <EventPreview events={filtered} card={<BookingCard />} />
             ) : (
               <section className={eventStyles.empty}>
                 <span>Nessun evento trovato</span>

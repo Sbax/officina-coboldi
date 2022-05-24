@@ -1,5 +1,8 @@
-import React, { cloneElement } from "react";
+import { useRouter } from "next/router";
+import React, { cloneElement, useEffect, useState } from "react";
 import eventPreviewStyles from "../styles/event-preview.module.scss";
+import Modal from "./modal";
+import RequestForm from "./request-form";
 
 export default function EventPreview({
   events,
@@ -7,30 +10,53 @@ export default function EventPreview({
   showEmpty = true,
   style = { gridTemplateColumns: "repeat(auto-fit, minmax(15rem, 1fr))" },
 }) {
-  return (
-    <section
-      className={events.length ? eventPreviewStyles.container : ""}
-      style={style}
-    >
-      {events.map((event) =>
-        cloneElement(card, {
-          key: event.id,
-          event,
-        })
-      )}
+  const [shown, setShown] = useState();
+  const router = useRouter();
 
-      {events.length < 4 && showEmpty ? (
-        <div className={eventPreviewStyles.empty}>
-          {!events.length ? (
-            <span>Nessun evento in programma</span>
-          ) : (
-            <span>Nessun altro evento in programma</span>
+  useEffect(() => {
+    setShown(router.query.eventId);
+  }, [router.query.eventId]);
+
+  return (
+    <>
+      <section
+        className={events.length ? eventPreviewStyles.container : ""}
+        style={style}
+      >
+        {events.map((event) =>
+          cloneElement(card, {
+            key: event.id,
+            event,
+          })
+        )}
+
+        {events.length < 4 && showEmpty ? (
+          <div className={eventPreviewStyles.empty}>
+            {!events.length ? (
+              <span>Nessun evento in programma</span>
+            ) : (
+              <span>Nessun altro evento in programma</span>
+            )}
+            <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
+          </div>
+        ) : (
+          ""
+        )}
+      </section>
+
+      {events.map((event) => (
+        <>
+          {shown === event.id && (
+            <Modal
+              onClose={() => {
+                router.replace(router.pathname, undefined, { shallow: true });
+              }}
+            >
+              <RequestForm event={event} />
+            </Modal>
           )}
-          <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
-        </div>
-      ) : (
-        ""
-      )}
-    </section>
+        </>
+      ))}
+    </>
   );
 }
