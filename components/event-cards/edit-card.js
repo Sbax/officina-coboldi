@@ -19,17 +19,29 @@ export default function EditCard({ event }) {
       <EventCard
         event={event}
         button={
-          <section className={eventCardStyles.booking}>
-            <Button primary={true} onClick={() => showEventForm(true)}>
-              Modifica
-            </Button>
-
-            <Button
-              disabled={event.reservationLink}
-              onClick={() => showBookings(true)}
+          <section>
+            <a
+              href="#"
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `${location.origin}/events?eventId=${event.id}`
+                );
+              }}
             >
-              Prenotazioni
-            </Button>
+              Copia link invito
+            </a>
+            <div className={eventCardStyles.booking}>
+              <Button primary={true} onClick={() => showEventForm(true)}>
+                Modifica
+              </Button>
+
+              <Button
+                disabled={event.reservationLink}
+                onClick={() => showBookings(true)}
+              >
+                Prenotazioni
+              </Button>
+            </div>
           </section>
         }
       />

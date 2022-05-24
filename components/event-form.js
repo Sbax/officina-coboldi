@@ -26,9 +26,11 @@ const EventForm = withAuthInfo(
       ),
     });
     const [time, setTime] = useState({ value: event.time || "20:30" });
-    const [place, setPlace] = useState({ value: event.place.name || "" });
+    const [place, setPlace] = useState({
+      value: event.place.name || "centrocavaina",
+    });
     const [placeLink, setPlaceLink] = useState({
-      value: event.place.link || "",
+      value: event.place.link || "https://instagram.com/centrocavaina",
     });
     const [max, setMax] = useState({ value: event.max || 1 });
 
