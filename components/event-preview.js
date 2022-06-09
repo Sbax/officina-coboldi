@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { cloneElement, useEffect, useState } from "react";
+import React, { cloneElement, Fragment, useEffect, useState } from "react";
 import eventPreviewStyles from "../styles/event-preview.module.scss";
 import Modal from "./modal";
 import RequestForm from "./request-form";
@@ -45,7 +45,7 @@ export default function EventPreview({
       </section>
 
       {events.map((event) => (
-        <>
+        <Fragment key={event.id}>
           {shown === event.id && (
             <Modal
               onClose={() => {
@@ -55,7 +55,7 @@ export default function EventPreview({
               <RequestForm event={event} />
             </Modal>
           )}
-        </>
+        </Fragment>
       ))}
     </>
   );

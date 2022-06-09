@@ -9,7 +9,9 @@ export default function EventCard({ event, button }) {
     <article className={eventCardStyles.card}>
       <section className={eventCardStyles.body}>
         <h2 className={eventCardStyles.date}>
-          <DateFormatter dateString={date} /> alle {time}
+          <DateFormatter dateString={date} />
+          <br />
+          alle {time}
         </h2>
         <h1>{title}</h1>
         <h2>
