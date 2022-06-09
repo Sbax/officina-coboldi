@@ -15,7 +15,9 @@ import indexStyles from "../styles/index.module.scss";
 
 export default function Index({ allPosts, events }) {
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
-  const nextEvents = events.filter(({ date }) => new Date(date) >= startDate);
+  const nextEvents = events
+    .filter(({ date }) => new Date(date) >= startDate)
+    .filter(({ max, booked }) => booked < max);
 
   return (
     <>
