@@ -11,6 +11,7 @@ import Loader from "../components/loader";
 import Meta from "../components/meta";
 import PostPreview from "../components/post-preview";
 import Strip from "../components/strip";
+import Systems from "../components/systems";
 import { getAllPosts } from "../lib/api";
 import { getEvents } from "../lib/supabase";
 import indexStyles from "../styles/index.module.scss";
@@ -24,6 +25,10 @@ export default function Index({ allPosts, events }) {
       .filter(({ date }) => new Date(date) >= startDate)
       .filter(({ max, booked }) => booked < max)
   );
+
+  const systems = Array.from(
+    new Set([...events.map(({ system }) => system)])
+  ).filter(Boolean);
 
   const fetchEvents = async () => {
     setLoading(true);
@@ -87,8 +92,11 @@ export default function Index({ allPosts, events }) {
         </Strip>
         <Container className={indexStyles.about}>
           <a href="#" className={indexStyles.anchor} id="about" />
-          <About />
+          <About systems={systems} />
         </Container>
+        <section className={indexStyles.systems}>
+          <Systems systems={systems} />
+        </section>
         <section className={indexStyles.blog}>
           <Container>
             <h1 className={indexStyles.title}>Gli ultimi articoli</h1>

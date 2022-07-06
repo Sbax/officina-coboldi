@@ -15,21 +15,11 @@
     margin-top: 1em;
   }
 
-  h1 {
-    font-size: 2em;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  p {
-    text-align: center;
-    max-width: 40ch;
-  }
-
   .description {
     font-weight: 100;
 
     p {
+      text-align: center;
       max-width: 55ch;
     }
 
@@ -39,7 +29,7 @@
   }
 
   hr {
-    width: 100%;
+    width: 55ch;
     border: 0;
     height: 1em;
 
@@ -59,61 +49,84 @@
   max-width: 90%;
 }
 
-.avatar {
+.title {
+  font-size: 1.5em;
+  @media (min-width: $md) {
+    font-size: 3em;
+  }
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.row,
+.rowReverse {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column-reverse;
+  flex-direction: column;
 
   @media (min-width: $md) {
-    flex-direction: row;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  > img {
+    max-width: 10em;
+  }
+
+  margin: 1em 0;
+}
+
+.rowReverse {
+  flex-direction: column-reverse;
+  @media (min-width: $md) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
   }
 }
 
-.profile {
-  flex: 1;
+.column {
   display: flex;
   flex-direction: column;
-  max-width: 25ch;
-  padding: 2em 0;
-
-  @media (min-width: $md) {
-    padding: 0;
-  }
-
+  justify-content: center;
   align-items: center;
 
-  > * + * {
-    margin-top: 0.5rem;
-  }
-
-  h1,
-  h2,
-  h3 {
-    text-align: center;
-  }
-
-  h1,
-  h3 {
-    font-size: 1.5em;
-  }
-
-  h2 {
+  p {
     font-weight: normal;
+    text-align: justify;
+    hyphens: auto;
+    font-size: 1.2em;
+    line-height: 1.2;
+    max-width: 50ch;
+  }
+}
 
-    &:before {
-      content: '“';
-    }
+.buttonContainer {
+  font-size: 1.2em;
+  margin: 1rem 0;
+}
+
+.list {
+  max-width: 50ch;
+  padding: 1em 0;
+  font-size: 1.2em;
+  text-align: center;
+
+  li {
+    display: inline-block;
 
     &:after {
-      content: '”';
+      margin-left: 0.25em;
+      margin-right: 0.25em;
+      content: '·';
+    }
+
+    &:last-child:after {
+      content: '';
     }
   }
+}
 
-  h3 {
-    > * + * {
-      margin-left: 0.5em;
-    }
+.systemsContainer {
+  .column {
+    padding-bottom: 2em;
   }
 }

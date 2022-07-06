@@ -104,3 +104,26 @@
     margin-top: -5em;
   }
 }
+
+.systems {
+  background: $primary-color;
+  position: relative;
+
+  &:before,
+  &:after {
+    background: transparent url(./borders/bg-border-primary.svg) 0 repeat-x;
+    content: '';
+    height: 1em;
+    position: absolute;
+    width: 600%;
+  }
+
+  &:before {
+    top: -1em;
+    transform: rotate(180deg);
+  }
+
+  &:after {
+    bottom: -1em;
+  }
+}
