@@ -1,14 +1,15 @@
-import { invalidateEvents } from "../../lib/invalidate-cache";
+import handleResponse from "../../lib/handleResponse";
 import runMiddleware from "../../lib/middleware";
 import propelauth from "../../lib/propelauth";
-import { addEvent, updateEvent } from "../../lib/supabase";
+import { addEvent, getEvents, updateEvent } from "../../lib/supabase";
 
 const requireUser = (req, res) =>
   runMiddleware(req, res, propelauth.requireUser);
 
 export default async function handler(req, res) {
-  if (req.method !== "PUT" && req.method !== "POST") {
-    res.status(400).send({ message: "Method not allowed" });
+  if (req.method === "GET") {
+    handleResponse({ res }, await getEvents());
+    return res;
   }
 
   // Verifies that a valid accessToken is provided
@@ -27,7 +28,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    await invalidateEvents(res);
     res.send({
       message: `Event ${req.method === "POST" ? "updated" : "added"}`,
     });

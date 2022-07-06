@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import About from "../components/about";
 import Button from "../components/button";
 import Container from "../components/container";
@@ -6,6 +7,7 @@ import BookingCard from "../components/event-cards/booking-card";
 import EventPreview from "../components/event-preview";
 import Footer from "../components/footer";
 import Layout from "../components/layout";
+import Loader from "../components/loader";
 import Meta from "../components/meta";
 import PostPreview from "../components/post-preview";
 import Strip from "../components/strip";
@@ -15,9 +17,34 @@ import indexStyles from "../styles/index.module.scss";
 
 export default function Index({ allPosts, events }) {
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
-  const nextEvents = events
-    .filter(({ date }) => new Date(date) >= startDate)
-    .filter(({ max, booked }) => booked < max);
+
+  const [loading, setLoading] = useState(false);
+  const [nextEvents, setNextEvents] = useState(
+    events
+      .filter(({ date }) => new Date(date) >= startDate)
+      .filter(({ max, booked }) => booked < max)
+  );
+
+  const fetchEvents = async () => {
+    setLoading(true);
+    try {
+      const events = await (await fetch("/api/event")).json();
+
+      setNextEvents(
+        events
+          .filter(({ date }) => new Date(date) >= startDate)
+          .filter(({ max, booked }) => booked < max)
+      );
+    } catch (error) {
+      console.error(error);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   return (
     <>
@@ -26,6 +53,15 @@ export default function Index({ allPosts, events }) {
         <Strip>
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
+            {loading ? (
+              <div className={indexStyles.loaderOverlay}>
+                <div>
+                  <Loader />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             <EventPreview
               events={nextEvents.slice(-4).reverse()}
               card={<BookingCard />}

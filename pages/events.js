@@ -115,12 +115,12 @@ export default function Events({ events }) {
     </>
   );
 }
-export async function getStaticProps() {
+
+export async function getServerSideProps() {
   const events = await getEvents();
   return {
     props: {
       events: events.error ? [] : events,
     },
-    revalidate: 60,
   };
 }
