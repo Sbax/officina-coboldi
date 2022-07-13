@@ -49,6 +49,7 @@ function Bookings({ accessToken, event }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
         id: event.id,
@@ -56,7 +57,6 @@ function Bookings({ accessToken, event }) {
         people: 1,
         name: name.value,
         instagram: name.value,
-        skipNotification: true,
       }),
     });
 

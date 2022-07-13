@@ -13,23 +13,30 @@ const requireUser = (req, res) =>
   runMiddleware(req, res, propelauth.requireUser);
 
 export default async function handler(req, res) {
+  await runMiddleware(req, res, propelauth.optionalUser);
+  const loggedIn = !!req.user;
+
   if (req.method === "PUT") {
-    handleResponse({ res }, await addRequest(req.body), async (payload) => {
-      if (req.body.skipNotification) {
-        return;
+    handleResponse(
+      { res },
+      await addRequest(req.body, loggedIn),
+      async (payload) => {
+        if (loggedIn) {
+          return;
+        }
+
+        const { event, name, people, instagram, phone } = req.body;
+
+        const message = [
+          `Nuova prenotazione per ${event.title} (${event.system}) in data ${event.date} con ${event.dm.name}`,
+          `${name}, ${people} persone (instagram: ${instagram}, phone: ${phone})`,
+          "",
+          `<pre>${JSON.stringify(payload.map(({ id }) => id))}</pre>`,
+        ].join("\n");
+
+        await sendNotification(message, payload);
       }
-
-      const { event, name, people, instagram, phone } = req.body;
-
-      const message = [
-        `Nuova prenotazione per ${event.title} (${event.system}) in data ${event.date} con ${event.dm.name}`,
-        `${name}, ${people} persone (instagram: ${instagram}, phone: ${phone})`,
-        "",
-        `<pre>${JSON.stringify(payload.map(({ id }) => id))}</pre>`,
-      ].join("\n");
-
-      await sendNotification(message, payload);
-    });
+    );
 
     return res;
   }
