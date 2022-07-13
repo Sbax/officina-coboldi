@@ -35,11 +35,9 @@ export default function Index({ allPosts, events }) {
     try {
       const events = await (await fetch("/api/event")).json();
 
-      setNextEvents(
-        events
-          .filter(({ date }) => new Date(date) >= startDate)
-          .filter(({ max, booked }) => booked < max)
-      );
+      const next = events.filter(({ date }) => new Date(date) >= startDate);
+      const bookable = next.filter(({ max, booked }) => booked < max);
+      setNextEvents(bookable.length ? bookable : next);
     } catch (error) {
       console.error(error);
     }
