@@ -1,5 +1,7 @@
+import { addHours } from "date-fns";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
+import ICalLink from "react-icalendar-link";
 import requestFormStyles from "../styles/request-form.module.scss";
 import Button from "./button";
 import Checkbox from "./checkbox";
@@ -74,9 +76,16 @@ export default function RequestForm({ event }) {
     setFormState(FormState.Success);
   }, [event, people, name, phone, instagram, remainingPlaces]);
 
+  const startTime = new Date(date);
+  const [hours, minutes] = time.split(":");
+  startTime.setHours(hours);
+  startTime.setMinutes(minutes);
+
+  const endTime = addHours(startTime, 2);
+
   const [errorState, setErrorState] = useState(false);
   useEffect(() => {
-    if (new Date(date) < new Date()) {
+    if (startTime < new Date()) {
       setErrorState({
         date: true,
       });
@@ -297,6 +306,19 @@ export default function RequestForm({ event }) {
               <p>
                 Non si tratta di un processo automatico, perciò sii paziente! I
                 nostri coboldi ti risponderanno al più presto!
+              </p>
+
+              <p className={requestFormStyles.buttonContainer}>
+                <ICalLink
+                  event={{
+                    title,
+                    description: `${system} con ${dm.name} presso ${place.name}`,
+                    startTime,
+                    endTime,
+                  }}
+                >
+                  <Button secondary>Aggiungi al calendario</Button>
+                </ICalLink>
               </p>
             </section>
           )}
