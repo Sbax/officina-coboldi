@@ -66,7 +66,7 @@ const EventForm = withAuthInfo(
       value: event.description || "",
     });
 
-    const [pinned, setPinned] = useState(false);
+    const [pinned, setPinned] = useState(event.pinned);
 
     const [formState, setFormState] = useState(FormState.Idle);
 

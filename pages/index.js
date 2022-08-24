@@ -69,7 +69,15 @@ export default function Index({ allPosts, events }) {
         {nextPinnedEvents ? (
           <Strip className={indexStyles.special}>
             <h1 className={indexStyles.title}>Il Prossimo Evento Speciale</h1>
-
+            {loading ? (
+              <div className={indexStyles.loaderOverlay}>
+                <div>
+                  <Loader />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
             <Container className={indexStyles.strip}>
               <EventPreview
                 showEmpty={false}
