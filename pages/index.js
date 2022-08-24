@@ -68,7 +68,6 @@ export default function Index({ allPosts, events }) {
         <Meta />
         {nextPinnedEvents ? (
           <Strip className={indexStyles.special}>
-            <h1 className={indexStyles.title}>Il Prossimo Evento Speciale</h1>
             {loading ? (
               <div className={indexStyles.loaderOverlay}>
                 <div>
@@ -78,6 +77,7 @@ export default function Index({ allPosts, events }) {
             ) : (
               ""
             )}
+            <h1 className={indexStyles.title}>Il Prossimo Evento Speciale</h1>
             <Container className={indexStyles.strip}>
               <EventPreview
                 showEmpty={false}
@@ -90,19 +90,25 @@ export default function Index({ allPosts, events }) {
           ""
         )}
         <Strip primary={!!nextPinnedEvents.length}>
+          {loading ? (
+            <div
+              className={indexStyles.loaderOverlay}
+              style={{
+                top: nextPinnedEvents.length ? "1em" : 0,
+              }}
+            >
+              <div>
+                <Loader />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>
               Le Prossime Sessioni {!!nextPinnedEvents.length ? "Regolari" : ""}
             </h1>
-            {loading ? (
-              <div className={indexStyles.loaderOverlay}>
-                <div>
-                  <Loader />
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
             <EventPreview
               events={nextEvents.slice(-4).reverse()}
               card={<BookingCard />}
