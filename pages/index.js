@@ -22,8 +22,15 @@ export default function Index({ allPosts, events }) {
   const [loading, setLoading] = useState(false);
   const [nextEvents, setNextEvents] = useState(
     events
+      .filter(({ pinned }) => !pinned)
       .filter(({ date }) => new Date(date) >= startDate)
       .filter(({ max, booked }) => booked < max)
+  );
+
+  const [nextPinnedEvents, setNextPinnedEvents] = useState(
+    events
+      .filter(({ pinned }) => pinned)
+      .filter(({ date }) => new Date(date) >= startDate)
   );
 
   const systems = Array.from(
@@ -37,7 +44,13 @@ export default function Index({ allPosts, events }) {
 
       const next = events.filter(({ date }) => new Date(date) >= startDate);
       const bookable = next.filter(({ max, booked }) => booked < max);
-      setNextEvents(bookable.length ? bookable : next);
+      setNextEvents(
+        bookable.length
+          ? bookable.filter(({ pinned }) => !pinned)
+          : next.filter(({ pinned }) => !pinned)
+      );
+
+      setNextPinnedEvents(next.filter(({ pinned }) => pinned));
     } catch (error) {
       console.error(error);
     }
@@ -53,9 +66,26 @@ export default function Index({ allPosts, events }) {
     <>
       <Layout skipFooter>
         <Meta />
-        <Strip>
+        {nextPinnedEvents ? (
+          <Strip className={indexStyles.special}>
+            <h1 className={indexStyles.title}>Il Prossimo Evento Speciale</h1>
+
+            <Container className={indexStyles.strip}>
+              <EventPreview
+                showEmpty={false}
+                events={nextPinnedEvents.slice(-4).reverse()}
+                card={<BookingCard />}
+              />
+            </Container>
+          </Strip>
+        ) : (
+          ""
+        )}
+        <Strip primary={!!nextPinnedEvents}>
           <Container className={indexStyles.strip}>
-            <h1 className={indexStyles.title}>Le Prossime Sessioni</h1>
+            <h1 className={indexStyles.title}>
+              Le Prossime Sessioni {!!nextPinnedEvents ? "Regolari" : ""}
+            </h1>
             {loading ? (
               <div className={indexStyles.loaderOverlay}>
                 <div>

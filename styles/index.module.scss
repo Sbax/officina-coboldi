@@ -17,6 +17,13 @@
   .link {
     font-size: 1.2em;
   }
+
+  position: relative;
+  z-index: 0;
+}
+
+.special {
+  z-index: 1;
 }
 
 .title {

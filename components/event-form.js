@@ -5,6 +5,7 @@ import eventFormStyle from "../styles/event-form.module.scss";
 import requestFormStyles from "../styles/request-form.module.scss";
 import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
+import Checkbox from "./checkbox";
 import Input, { Textarea } from "./input";
 import Loader from "./loader";
 import Select from "./select";
@@ -64,6 +65,8 @@ const EventForm = withAuthInfo(
     const [description, setDescription] = useState({
       value: event.description || "",
     });
+
+    const [pinned, setPinned] = useState(false);
 
     const [formState, setFormState] = useState(FormState.Idle);
 
@@ -144,6 +147,7 @@ const EventForm = withAuthInfo(
           max: max.value,
           reservationLink: reservationLink.value,
           description: description.value,
+          pinned,
         }),
       });
 
@@ -183,6 +187,8 @@ const EventForm = withAuthInfo(
       reservationLink,
       accessToken,
       onSave,
+      description,
+      pinned,
     ]);
 
     return (
@@ -391,6 +397,15 @@ const EventForm = withAuthInfo(
             />
 
             <div>Facoltativo. La descrizione della sessione</div>
+          </section>
+
+          <section className={eventFormStyle.item}>
+            <Checkbox
+              value={pinned}
+              onChange={({ target }) => setPinned(target.checked)}
+            >
+              Pinnato, da usare per gli eventi speciali
+            </Checkbox>
           </section>
         </form>
         <section className={requestFormStyles.button}>
