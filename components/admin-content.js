@@ -55,8 +55,10 @@ function AdminContent({ accessToken }) {
     <>
       <h1 className={styles.title}>Prossimi Eventi</h1>
 
-      <Button onClick={() => showEventForm(true)}>Crea Evento</Button>
-      <Button onClick={() => showAll()}>Mostra tutti</Button>
+      <section className={styles.buttonWrapper}>
+        <Button onClick={() => showEventForm(true)}>Crea Evento</Button>
+        <Button onClick={() => showAll()}>Mostra tutti</Button>
+      </section>
 
       <EventPreview
         events={eventsToShow}

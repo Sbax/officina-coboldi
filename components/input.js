@@ -12,3 +12,15 @@ export default function Input({ className, error, ...props }) {
     </span>
   );
 }
+
+export function Textarea({ className, error, ...props }) {
+  return (
+    <span>
+      <textarea
+        className={`${inputStyles.input} ${className} 
+      ${error && inputStyles.error}`}
+        {...props}
+      />
+    </span>
+  );
+}

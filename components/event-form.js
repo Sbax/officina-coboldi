@@ -5,7 +5,7 @@ import eventFormStyle from "../styles/event-form.module.scss";
 import requestFormStyles from "../styles/request-form.module.scss";
 import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
-import Input from "./input";
+import Input, { Textarea } from "./input";
 import Loader from "./loader";
 import Select from "./select";
 
@@ -59,6 +59,10 @@ const EventForm = withAuthInfo(
 
     const [reservationLink, setReservationLink] = useState({
       value: event.reservationLink || "",
+    });
+
+    const [description, setDescription] = useState({
+      value: event.description || "",
     });
 
     const [formState, setFormState] = useState(FormState.Idle);
@@ -139,6 +143,7 @@ const EventForm = withAuthInfo(
           placelink: placeLink.value,
           max: max.value,
           reservationLink: reservationLink.value,
+          description: description.value,
         }),
       });
 
@@ -369,6 +374,23 @@ const EventForm = withAuthInfo(
             <div>
               Facoltativo. Per gestire le prenotazioni non attraverso il sito
             </div>
+          </section>
+
+          <section className={eventFormStyle.item}>
+            <label>Descrizione</label>
+            <Textarea
+              value={description.value}
+              error={description.error}
+              onChange={({ target }) =>
+                setDescription({
+                  value: target.value,
+                  error: !target.value || target.value === "",
+                })
+              }
+              placeholder="Descrizione..."
+            />
+
+            <div>Facoltativo. La descrizione della sessione</div>
           </section>
         </form>
         <section className={requestFormStyles.button}>

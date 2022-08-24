@@ -1,18 +1,36 @@
-import React from "react";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
 import eventCardStyles from "../../styles/event-card.module.scss";
+import Button from "../button";
 import DateFormatter from "../date-formatter";
+import Modal from "../modal";
 
 export default function EventCard({ event, button }) {
-  const { title, system, dm, date, time, place } = event;
+  const { title, system, dm, date, time, place, description } = event;
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <article className={eventCardStyles.card}>
       <section className={eventCardStyles.body}>
-        <h2 className={eventCardStyles.date}>
-          <DateFormatter dateString={date} />
-          <br />
-          alle {time}
-        </h2>
+        <div className={eventCardStyles.header}>
+          <h2 className={eventCardStyles.date}>
+            <DateFormatter dateString={date} />
+            <br />
+            alle {time}
+          </h2>
+          {description && (
+            <span className={eventCardStyles.infoContainer}>
+              <Button
+                className={eventCardStyles.info}
+                onClick={() => setShowModal(true)}
+              >
+                <FontAwesomeIcon icon={faInfo} />
+              </Button>
+            </span>
+          )}
+        </div>
         <h1>{title}</h1>
         <h2>
           <section>
@@ -25,6 +43,15 @@ export default function EventCard({ event, button }) {
       </section>
 
       {button || <></>}
+
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <div>
+            <h1>{title}</h1>
+            <p className={eventCardStyles.description}>{description}</p>
+          </div>
+        </Modal>
+      )}
     </article>
   );
 }

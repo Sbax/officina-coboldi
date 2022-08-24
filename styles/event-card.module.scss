@@ -46,3 +46,26 @@
     flex: 1;
   }
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoContainer {
+  width: 2.5em;
+  height: 2.5em;
+  display: flex;
+}
+
+.info {
+  width: 2.25em;
+  height: 2.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+  white-space: pre-wrap;
+}

@@ -7,7 +7,7 @@ export default function DateFormatter({ dateString }) {
   return (
     <time dateTime={dateString}>
       {day.charAt(0).toUpperCase()}
-      {day.slice(1)} {format(date, "d LLLL yyyy", { locale: it })}
+      {day.slice(1)} {format(date, "d LLLL", { locale: it })}
     </time>
   );
 }

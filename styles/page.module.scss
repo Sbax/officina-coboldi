@@ -3,3 +3,10 @@
 .title {
   font-size: 3em;
 }
+
+.buttonWrapper {
+  display: flex;
+  > * + * {
+    margin-left: 0.66em;
+  }
+}
