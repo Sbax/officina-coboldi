@@ -71,6 +71,21 @@ export default function About() {
               </Link>
               ! Organizziamo tavoli anche basandoci sulle richieste ricevute.
             </p>
+            <br />
+            <p>
+              Se non diversamente specificato le nostre sessioni sono rivolte a
+              un pubblico maggiorenne, non per i temi o i toni, ma perché
+              troviamo molto difficile far incontrare i gusti di fasce di età
+              molto differenti, preferendo organizzare appuntamenti distinti
+              rivolti a pubblici più giovani.
+            </p>
+            <p>
+              Se sei minorenne, ma vuoi comunque partecipare a una sessione{" "}
+              <Link href="/#contacts">
+                <a alt="Contatti">contattaci</a>
+              </Link>{" "}
+              e troveremo un modo per accontentarti!
+            </p>
           </section>
           <section className={aboutStyles.column}>
             <Image
