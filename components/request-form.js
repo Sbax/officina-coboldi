@@ -10,16 +10,22 @@ import Input from "./input";
 import Loader from "./loader";
 
 const FormState = { Idle: 0, Sending: 1, Success: 2, Error: 3 };
+const KEY = "officinacoboldi:bookingData";
 
 export default function RequestForm({ event }) {
+  const storageData = JSON.parse(localStorage.getItem(KEY) || "{}");
+
   const { title, system, dm, date, time, place, max, booked, reservationLink } =
     event;
   const [people, setPeople] = useState({ value: 1 });
-  const [name, setName] = useState({ value: "" });
-  const [phone, setPhone] = useState({ value: "" });
-  const [instagram, setInstagram] = useState({ value: "" });
+  const [name, setName] = useState({ value: storageData.name || "" });
+  const [phone, setPhone] = useState({ value: storageData.phone || "" });
+  const [instagram, setInstagram] = useState({
+    value: storageData.instagram || "",
+  });
 
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [saveData, setSaveData] = useState(true);
 
   const [formState, setFormState] = useState(FormState.Idle);
 
@@ -73,8 +79,19 @@ export default function RequestForm({ event }) {
       return setFormState(FormState.Error);
     }
 
+    if (saveData) {
+      localStorage.setItem(
+        KEY,
+        JSON.stringify({
+          name: name.value,
+          phone: phone.value,
+          instagram: instagram.value,
+        })
+      );
+    }
+
     setFormState(FormState.Success);
-  }, [event, people, name, phone, instagram, remainingPlaces]);
+  }, [event, people, name, phone, instagram, remainingPlaces, saveData]);
 
   const startTime = new Date(date);
   const [hours, minutes] = time.split(":");
@@ -271,12 +288,22 @@ export default function RequestForm({ event }) {
             <section>
               <Checkbox
                 value={privacyAccepted}
-                onChange={() => setPrivacyAccepted(!privacyAccepted)}
+                onChange={({ target }) => setPrivacyAccepted(target.checked)}
               >
                 <span className={requestFormStyles.privacy}>
                   Ho letto la <Link href="/privacy-policy">privacy policy</Link>{" "}
                   e acconsento al trattamento dei dati che non verranno ceduti a
                   terzi
+                </span>
+              </Checkbox>
+            </section>
+            <section>
+              <Checkbox
+                value={saveData}
+                onChange={({ target }) => setSaveData(target.checked)}
+              >
+                <span className={requestFormStyles.privacy}>
+                  Salva i dati per la prossima prenotazione
                 </span>
               </Checkbox>
             </section>
