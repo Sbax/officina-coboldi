@@ -16,24 +16,20 @@ export default async function handler(req, res) {
   await requireUser(req, res);
 
   if (req.method === "PUT") {
-    const { error } = await addEvent(req.body);
+    const { error, ...data } = await addEvent(req.body);
 
     if (error) res.status(500).send(error);
+
+    res.send(data);
+    return res;
   }
 
   if (req.method === "POST") {
-    const { error } = await updateEvent(req.body);
+    const { error, ...data } = await updateEvent(req.body);
 
     if (error) res.status(500).send(error);
-  }
 
-  try {
-    res.send({
-      message: `Event ${req.method === "POST" ? "updated" : "added"}`,
-    });
-
+    res.send(data);
     return res;
-  } catch (err) {
-    return res.status(500).send("Error revalidating");
   }
 }

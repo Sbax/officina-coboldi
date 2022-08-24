@@ -1,16 +1,39 @@
 import { withAuthInfo } from "@propelauth/react";
 import { format } from "date-fns";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import eventFormStyle from "../styles/event-form.module.scss";
 import requestFormStyles from "../styles/request-form.module.scss";
+import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
 import Input from "./input";
 import Loader from "./loader";
+import Select from "./select";
 
 const FormState = { Idle: 0, Sending: 1, Success: 2, Error: 3 };
 
 const EventForm = withAuthInfo(
   ({ event = { dm: {}, place: {} }, onSave = () => {}, accessToken }) => {
+    const { events, setEvents } = useContext(AdminContext);
+
+    const [places, setPlaces] = useState([]);
+
+    useEffect(() => {
+      setPlaces(
+        events.reduce((aggregated, { place }) => {
+          if (!aggregated.find((item) => item.name === place.name)) {
+            aggregated.push(place);
+          }
+
+          return aggregated;
+        }, [])
+      );
+    }, [events]);
+
+    useEffect(() => {
+      setPlace({ value: places[0]?.name });
+      setPlaceLink({ value: places[0]?.link });
+    }, [places]);
+
     const { id } = event;
 
     const [title, setTitle] = useState({ value: event.title || "" });
@@ -27,10 +50,10 @@ const EventForm = withAuthInfo(
     });
     const [time, setTime] = useState({ value: event.time || "20:30" });
     const [place, setPlace] = useState({
-      value: event.place.name || "centrocavaina",
+      value: event.place.name || places[0]?.name,
     });
     const [placeLink, setPlaceLink] = useState({
-      value: event.place.link || "https://instagram.com/centrocavaina",
+      value: event.place.link || places[0]?.link,
     });
     const [max, setMax] = useState({ value: event.max || 1 });
 
@@ -41,49 +64,57 @@ const EventForm = withAuthInfo(
     const [formState, setFormState] = useState(FormState.Idle);
 
     const sendForm = useCallback(async () => {
+      const titleError = title.value === "";
+      const systemError = system.value === "";
+      const dmError = dm.value === "";
+      const dateError = date.value === "";
+      const timeError = time.value === "";
+      const placeError = place.value === "";
+      const placeLinkError = placeLink.value === "";
+
       setTitle({
         value: title.value,
-        error: title.value === "",
+        error: titleError,
       });
 
       setSystem({
         value: system.value,
-        error: system.value === "",
+        error: systemError,
       });
 
       setDm({
         value: dm.value,
-        error: dm.value === "",
+        error: dmError,
       });
 
       setDate({
         value: date.value,
-        error: date.value === "",
+        error: dateError,
       });
 
       setTime({
         value: time.value,
-        error: time.value === "",
+        error: timeError,
       });
 
       setPlace({
         value: place.value,
-        error: place.value === "",
+        error: placeError,
       });
 
       setPlaceLink({
         value: placeLink.value,
-        error: placeLink.value === "",
+        error: placeLinkError,
       });
 
       if (
-        title.error ||
-        system.error ||
-        dm.error ||
-        date.error ||
-        time.error ||
-        place.error ||
-        placeLink.error
+        titleError ||
+        systemError ||
+        dmError ||
+        dateError ||
+        timeError ||
+        placeError ||
+        placeLinkError
       ) {
         return;
       }
@@ -116,7 +147,23 @@ const EventForm = withAuthInfo(
       }
 
       setFormState(FormState.Success);
-      onSave();
+      const newEvent = await response.json();
+
+      if (id) {
+        // editing
+        setEvents(
+          events.map((event) => {
+            if (event.id === id) {
+              return newEvent;
+            }
+
+            return event;
+          })
+        );
+      } else {
+        // creating
+        setEvents([...events, newEvent]);
+      }
     }, [
       id,
       title,
@@ -244,6 +291,21 @@ const EventForm = withAuthInfo(
 
           <section className={eventFormStyle.item}>
             <label className={eventFormStyle.required}>Luogo</label>
+            <Select
+              value={place.value}
+              onChange={({ target }) => {
+                const place = places.find(({ name }) => name === target.value);
+                setPlace({ value: place.name });
+                setPlaceLink({ value: place.link });
+              }}
+            >
+              {places.map((place) => (
+                <option key={place.name} value={place.name}>
+                  {place.name}
+                </option>
+              ))}
+            </Select>
+
             <Input
               value={place.value}
               error={place.error}

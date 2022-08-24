@@ -1,33 +1,24 @@
 import { withAuthInfo } from "@propelauth/react";
-import { useEffect, useState } from "react";
-import useSWR from "swr";
+import { useContext, useEffect, useState } from "react";
 import styles from "../styles/pending.module.scss";
+import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
 import DateFormatter from "./date-formatter";
 import Input from "./input";
 
-const fetcher = (url, accessToken) =>
-  fetch(url, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${accessToken}` },
-  }).then((res) => res.json());
-
 function Bookings({ accessToken, event }) {
   const [name, setName] = useState({ value: "" });
 
-  const [requests, setRequests] = useState();
-  const { data, error } = useSWR(["/api/requests", accessToken], fetcher);
+  const { requests, setRequests, events, setEvents } = useContext(AdminContext);
+  const [requestsToShow, setRequestsToShow] = useState([]);
 
   useEffect(() => {
-    setRequests(
-      (data || []).filter(
-        ({ eventId, accepted }) => accepted && eventId === event.id
+    setRequestsToShow(
+      requests.filter(
+        ({ eventId, accepted }) => accepted && event.id === eventId
       )
     );
-  }, [data, event]);
-
-  if (error) return "Si è verificato un errore";
-  if (!data) return "Loading...";
+  }, [requests]);
 
   const removeRequest = async (id) => {
     const response = await fetch(`/api/requests`, {
@@ -41,6 +32,19 @@ function Bookings({ accessToken, event }) {
 
     if (response.ok) {
       setRequests(requests.filter((item) => item.id !== id));
+
+      setEvents(
+        events.map((current) => {
+          if (current.id === event.id) {
+            return {
+              ...current,
+              booked: current.booked - 1,
+            };
+          }
+
+          return current;
+        })
+      );
     }
   };
 
@@ -62,6 +66,22 @@ function Bookings({ accessToken, event }) {
 
     if (response.ok) {
       setName({ value: "" });
+
+      const newRequests = await response.json();
+      setRequests([...requests, ...newRequests]);
+
+      setEvents(
+        events.map((current) => {
+          if (current.id === event.id) {
+            return {
+              ...current,
+              booked: current.booked + 1,
+            };
+          }
+
+          return current;
+        })
+      );
     }
   };
 
@@ -82,7 +102,7 @@ function Bookings({ accessToken, event }) {
           </thead>
 
           <tbody>
-            {(requests || []).map((item, index) => (
+            {requestsToShow.map((item, index) => (
               <tr key={`${item.name}-${index}`}>
                 <td>{item.name}</td>
                 <td>{item.instagram}</td>

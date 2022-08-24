@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import eventCardStyles from "../../styles/event-card.module.scss";
 import Bookings from "../bookings";
@@ -8,9 +7,6 @@ import Modal from "../modal";
 import EventCard from "./event-card";
 
 export default function EditCard({ event }) {
-  const router = useRouter();
-  const refreshData = () => router.replace(router.asPath);
-
   const [editFormShown, showEventForm] = useState(false);
   const [bookingsShown, showBookings] = useState(false);
 
@@ -52,7 +48,7 @@ export default function EditCard({ event }) {
 
       {editFormShown && (
         <Modal onClose={() => showEventForm(false)}>
-          <EventForm event={event} onSave={() => refreshData()} />
+          <EventForm event={event} />
         </Modal>
       )}
 

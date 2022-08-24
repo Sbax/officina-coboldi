@@ -1,22 +1,21 @@
 import { withAuthInfo } from "@propelauth/react";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
-import useSWR from "swr";
+import { useContext, useEffect, useState } from "react";
 import styles from "../styles/pending.module.scss";
+import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
 import Checkbox from "./checkbox";
 
-const fetcher = (url, accessToken) =>
-  fetch(url, {
-    method: "GET",
-    headers: { Authorization: `Bearer ${accessToken}` },
-  }).then((res) => res.json());
-
-function Pending({ accessToken, events }) {
-  const [requests, setRequests] = useState();
-  const { data, error } = useSWR(["/api/requests", accessToken], fetcher);
-
+function Pending({ accessToken }) {
   const [selected, setSelected] = useState([]);
+
+  const { events, setEvents, requests, setRequests } = useContext(AdminContext);
+
+  const [requestsToShow, setRequestsToShow] = useState([]);
+
+  useEffect(() => {
+    setRequestsToShow(requests.filter(({ accepted }) => accepted === null));
+  }, [requests]);
 
   const isSelected = ({ id }) => selected.includes(id);
   const toggleSelection = ({ id }) => {
@@ -27,12 +26,11 @@ function Pending({ accessToken, events }) {
     setSelected([...selected, id]);
   };
 
-  useEffect(() => {
-    setRequests((data || []).filter(({ pending }) => pending));
-  }, [data]);
-
   const findEvent = (id) => {
     const event = events.find((event) => event.id === id);
+    if (!event) {
+      return;
+    }
 
     return `${format(new Date(event.date), "dd MMM yyyy")} - ${
       event.system
@@ -40,7 +38,7 @@ function Pending({ accessToken, events }) {
   };
 
   const handleRequest = async (remove = false) => {
-    const toSend = requests.filter(({ id }) => selected.includes(id));
+    const toSend = requestsToShow.filter(({ id }) => selected.includes(id));
     const response = await fetch(`/api/requests`, {
       method: remove ? "DELETE" : "POST",
       headers: {
@@ -51,14 +49,46 @@ function Pending({ accessToken, events }) {
     });
 
     if (response.ok) {
-      setRequests(requests.filter(({ id }) => !selected.includes(id)));
+      setRequests(
+        requests.map((request) => {
+          if (selected.includes(request.id)) {
+            return {
+              ...request,
+              accepted: !remove,
+            };
+          }
+
+          return request;
+        })
+      );
+
+      if (!remove) {
+        const changes = requests
+          .filter(({ id }) => selected.includes(id))
+          .reduce((aggregated, item) => {
+            if (!aggregated[item.eventId]) {
+              aggregated[item.eventId] = 1;
+            } else {
+              aggregated[item.eventId] += 1;
+            }
+
+            return aggregated;
+          }, {});
+
+        setEvents(
+          events.map((event) => ({
+            ...event,
+            booked: event.booked + (changes[event.id] || 0),
+          }))
+        );
+      }
+
       setSelected([]);
     }
   };
 
-  if (error) return "Si è verificato un errore";
-  if (!data) return "Loading...";
-  if (!requests || !requests.length) return "Nessuna richiesta in attesa";
+  if (!requestsToShow || !requestsToShow.length)
+    return "Nessuna richiesta in attesa";
 
   return (
     <>
@@ -74,13 +104,13 @@ function Pending({ accessToken, events }) {
           <tr>
             <th>
               <Checkbox
-                value={requests.length === selected.length}
+                value={requestsToShow.length === selected.length}
                 indeterminate={
-                  selected.length && requests.length !== selected.length
+                  selected.length && requestsToShow.length !== selected.length
                 }
                 onChange={() => {
                   if (!selected.length) {
-                    return setSelected(requests.map(({ id }) => id));
+                    return setSelected(requestsToShow.map(({ id }) => id));
                   }
 
                   return setSelected([]);
@@ -95,7 +125,7 @@ function Pending({ accessToken, events }) {
         </thead>
 
         <tbody>
-          {requests.map((item, index) => (
+          {requestsToShow.map((item, index) => (
             <tr key={`${item.name}-${index}`}>
               <td>
                 <div className={styles.checkbox}>
