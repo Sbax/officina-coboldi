@@ -81,10 +81,10 @@ export default function Index({ allPosts, events }) {
         ) : (
           ""
         )}
-        <Strip primary={!!nextPinnedEvents}>
+        <Strip primary={!!nextPinnedEvents.length}>
           <Container className={indexStyles.strip}>
             <h1 className={indexStyles.title}>
-              Le Prossime Sessioni {!!nextPinnedEvents ? "Regolari" : ""}
+              Le Prossime Sessioni {!!nextPinnedEvents.length ? "Regolari" : ""}
             </h1>
             {loading ? (
               <div className={indexStyles.loaderOverlay}>
