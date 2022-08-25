@@ -66,7 +66,7 @@ export default function Index({ allPosts, events }) {
     <>
       <Layout skipFooter>
         <Meta />
-        {nextPinnedEvents ? (
+        {nextPinnedEvents?.length ? (
           <Strip className={indexStyles.special}>
             {loading ? (
               <div className={indexStyles.loaderOverlay}>

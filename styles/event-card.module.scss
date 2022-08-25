@@ -69,3 +69,13 @@
 .description {
   white-space: pre-wrap;
 }
+
+.hidden {
+  border-style: dashed;
+  opacity: 0.5;
+  transition: opacity 250ms ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}

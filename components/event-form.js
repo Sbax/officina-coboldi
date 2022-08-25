@@ -67,6 +67,7 @@ const EventForm = withAuthInfo(
     });
 
     const [pinned, setPinned] = useState(event.pinned);
+    const [hidden, setHidden] = useState(event.hide);
 
     const [formState, setFormState] = useState(FormState.Idle);
 
@@ -148,6 +149,7 @@ const EventForm = withAuthInfo(
           reservationLink: reservationLink.value,
           description: description.value,
           pinned,
+          hide: hidden,
         }),
       });
 
@@ -405,6 +407,15 @@ const EventForm = withAuthInfo(
               onChange={({ target }) => setPinned(target.checked)}
             >
               Pinnato, da usare per gli eventi speciali
+            </Checkbox>
+          </section>
+
+          <section className={eventFormStyle.item}>
+            <Checkbox
+              value={hidden}
+              onChange={({ target }) => setHidden(target.checked)}
+            >
+              Nascondi l&apos;evento
             </Checkbox>
           </section>
         </form>

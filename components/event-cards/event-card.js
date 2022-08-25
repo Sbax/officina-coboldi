@@ -7,12 +7,16 @@ import DateFormatter from "../date-formatter";
 import Modal from "../modal";
 
 export default function EventCard({ event, button }) {
-  const { title, system, dm, date, time, place, description } = event;
+  const { title, system, dm, date, time, place, description, hide } = event;
 
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <article className={eventCardStyles.card}>
+    <article
+      className={`${eventCardStyles.card} ${
+        hide ? eventCardStyles.hidden : ""
+      }`}
+    >
       <section className={eventCardStyles.body}>
         <div className={eventCardStyles.header}>
           <h2 className={eventCardStyles.date}>

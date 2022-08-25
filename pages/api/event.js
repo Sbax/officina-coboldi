@@ -7,8 +7,15 @@ const requireUser = (req, res) =>
   runMiddleware(req, res, propelauth.requireUser);
 
 export default async function handler(req, res) {
+  await runMiddleware(req, res, propelauth.optionalUser);
+  const loggedIn = !!req.user;
+
   if (req.method === "GET") {
-    handleResponse({ res }, await getEvents());
+    if (loggedIn) {
+      handleResponse({ res }, await getEvents(true));
+    } else {
+      handleResponse({ res }, await getEvents());
+    }
     return res;
   }
 

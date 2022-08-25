@@ -22,7 +22,12 @@ function AdminContent({ accessToken }) {
 
   useEffect(() => {
     const getEvents = async () => {
-      const events = await (await fetch("/api/event")).json();
+      const events = await (
+        await fetch("/api/event", {
+          method: "GET",
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+      ).json();
 
       setEvents(events);
     };
