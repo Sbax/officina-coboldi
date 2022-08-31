@@ -47,6 +47,7 @@ fields:
   default: []
   label: Tags
 pages:
+- _posts/agon-gli-eroi-della-leggenda.json
 - _posts/bilanciare-i-combattimenti.json
 - _posts/coboldi-al-buio.json
 - _posts/conosci-il-tuo-nemico-i-coboldi.json
