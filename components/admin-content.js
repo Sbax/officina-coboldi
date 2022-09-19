@@ -52,7 +52,13 @@ function AdminContent({ accessToken }) {
 
   useEffect(() => {
     setEventsToShow(
-      events.filter(({ date }) => new Date(date) >= startDate).reverse()
+      events
+        .filter(({ date }) => new Date(date) >= startDate)
+        .sort(
+          (a, b) =>
+            new Date(`${b.date} ${b.time}`) - new Date(`${a.date} ${a.time}`)
+        )
+        .reverse()
     );
   }, [events]);
 

@@ -31,8 +31,12 @@ const EventForm = withAuthInfo(
     }, [events]);
 
     useEffect(() => {
-      setPlace({ value: places[0]?.name });
-      setPlaceLink({ value: places[0]?.link });
+      if (!places?.length) return;
+      if (event.place) return;
+
+      const [place] = places;
+      setPlace({ value: place.name });
+      setPlaceLink({ value: place.link });
     }, [places]);
 
     const { id } = event;
