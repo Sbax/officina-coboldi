@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import Link from "next/link";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Container from "../components/container";
 import BookingCard from "../components/event-cards/booking-card";
@@ -13,6 +14,7 @@ import { getEvents } from "../lib/supabase";
 import eventStyles from "../styles/events.module.scss";
 
 export default function Events({ events }) {
+  const router = useRouter();
   const minDate = new Date(
     Math.min.apply(
       null,
@@ -24,25 +26,55 @@ export default function Events({ events }) {
     new Set([...events.map(({ system }) => system)])
   ).filter(Boolean);
 
-  const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
-  const [search, setSearch] = useState("");
-  const [system, setSystem] = useState("");
+  const { date, search, system, place, endDate } = router.query;
 
-  const [filtered, setFiltered] = useState([]);
+  const updateFilters = ({
+    date = router.query.date,
+    endDate = router.query.endDate,
+    search = router.query.search,
+    system = router.query.system,
+    place = router.query.place,
+  }) => {
+    const query = {};
 
-  useEffect(() => {
-    setFiltered(
-      events
-        .filter((event) => new Date(event.date) >= new Date(date))
-        .filter(
-          ({ title, dm }) =>
-            title.toLowerCase().includes(search) ||
-            dm.name.toLowerCase().includes(search)
-        )
-        .filter((event) => system === "" || event.system === system)
-        .reverse()
-    );
-  }, [date, search, system, events]);
+    if (date) query.date = date;
+    if (endDate) query.endDate = endDate;
+    if (system) query.system = system;
+    if (search) query.search = search;
+    if (place) query.place = place;
+
+    Router.replace({
+      pathname: "/events",
+      query,
+    });
+  };
+
+  const setDate = (date) => updateFilters({ date });
+  const setSearch = (search) => updateFilters({ search });
+  const setSystem = (system) => updateFilters({ system });
+
+  const filtered = events
+    .filter(
+      (event) =>
+        new Date(event.date) >=
+        new Date(date || format(new Date(), "yyyy-MM-dd"))
+    )
+    .filter((event) =>
+      endDate
+        ? new Date(event.date) <=
+          new Date(endDate || format(new Date(), "yyyy-MM-dd"))
+        : true
+    )
+    .filter(
+      ({ title, dm }) =>
+        title.toLowerCase().includes(search || "") ||
+        dm.name.toLowerCase().includes(search || "")
+    )
+    .filter((event) => !system || event.system === system)
+    .filter((event) =>
+      event.place.name.toLowerCase().includes((place || "").toLowerCase())
+    )
+    .reverse();
 
   return (
     <>
@@ -58,7 +90,7 @@ export default function Events({ events }) {
                 <label>Dalla data</label>
                 <Input
                   type="date"
-                  value={date}
+                  value={date || format(new Date(), "yyyy-MM-dd")}
                   onChange={({ target }) => setDate(target.value)}
                   min={format(minDate, "yyyy-MM-dd")}
                 />
@@ -71,7 +103,7 @@ export default function Events({ events }) {
                   onChange={({ target }) => setSystem(target.value)}
                 >
                   <option value={""}>Qualsiasi</option>
-                  {systems.map((system) => (
+                  {systems.sort().map((system) => (
                     <option key={system} value={system}>
                       {system}
                     </option>
