@@ -37,11 +37,11 @@ export default function Events({ events }) {
   }) => {
     const query = {};
 
-    if (date) query.date = date;
-    if (endDate) query.endDate = endDate;
-    if (system) query.system = system;
-    if (search) query.search = search;
-    if (place) query.place = place;
+    if (date || date === "") query.date = date;
+    if (endDate || endDate === "") query.endDate = endDate;
+    if (system || system === "") query.system = system;
+    if (search || search === "") query.search = search;
+    if (place || place === "") query.place = place;
 
     Router.replace({
       pathname: "/events",
@@ -68,7 +68,7 @@ export default function Events({ events }) {
     .filter(
       ({ title, dm }) =>
         title.toLowerCase().includes(search || "") ||
-        dm.name.toLowerCase().includes(search || "")
+        dm.name?.toLowerCase().includes(search || "")
     )
     .filter((event) => !system || event.system === system)
     .filter((event) =>
