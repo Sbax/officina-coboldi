@@ -32,6 +32,10 @@ export default function Contacts() {
             <li>
               <a href="https://t.me/OfficinaCoboldi">telegram</a>
             </li>
+
+            <li>
+              <a href="https://officina-coboldi.itch.io">itch</a>
+            </li>
           </ul>
         </section>
       </section>
