@@ -18,10 +18,6 @@
   background: $primary-color;
   color: black;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
   &:after {
     background: transparent url(./borders/header-border.svg) 0 repeat-x;
     bottom: -0.95em;

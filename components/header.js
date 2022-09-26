@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import headerStyles from "../styles/header.module.scss";
-import AuthenticationButtons from "./authentication-buttons";
 import Button from "./button";
 import Container from "./container";
 
@@ -16,9 +15,17 @@ function Nav({ callback = () => {} }) {
       </Link>
 
       <span>
-        <Link href="/#about">
+        <Link href="/about#team">
           <a alt="Chi Siamo" onClick={callback}>
             Chi Siamo
+          </a>
+        </Link>
+      </span>
+
+      <span>
+        <Link href="/about#how">
+          <a alt="Come si gioca?" onClick={callback}>
+            Come si gioca?
           </a>
         </Link>
       </span>
@@ -104,9 +111,6 @@ export default function Header() {
             </a>
           </Link>
           <Nav />
-          <section>
-            <AuthenticationButtons />
-          </section>
         </Container>
       </header>
     </>

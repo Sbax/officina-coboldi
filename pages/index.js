@@ -6,6 +6,7 @@ import Container from "../components/container";
 import BookingCard from "../components/event-cards/booking-card";
 import EventPreview from "../components/event-preview";
 import Footer from "../components/footer";
+import How from "../components/how";
 import Layout from "../components/layout";
 import Loader from "../components/loader";
 import Meta from "../components/meta";

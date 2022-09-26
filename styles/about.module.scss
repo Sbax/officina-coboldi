@@ -125,8 +125,18 @@
   }
 }
 
-.systemsContainer {
-  .column {
-    padding-bottom: 2em;
+.buttons {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3em;
+
+  article {
+    margin-top: 1em;
+    display: flex;
+    > * + * {
+      margin-left: 1em;
+    }
   }
 }
