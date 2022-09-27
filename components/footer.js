@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import footerStyles from "../styles/footer.module.scss";
+import AuthenticationButtons from "./authentication-buttons";
 import Contacts from "./contacts";
 import Container from "./container";
 
@@ -22,6 +23,10 @@ export default function Footer() {
             <Link href="/statuto">
               <a alt="Statuto">statuto</a>
             </Link>
+          </span>
+
+          <span>
+            <AuthenticationButtons />
           </span>
         </nav>
 

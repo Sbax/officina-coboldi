@@ -1,4 +1,4 @@
-import { withAuthInfo } from "@propelauth/react";
+import { RedirectToLogin, withAuthInfo } from "@propelauth/react";
 import { createContext, useState } from "react";
 import Container from "../components/container";
 import Meta from "../components/meta";
@@ -21,6 +21,10 @@ function AdminWrapper({ children, isLoggedIn }) {
 
   const initialValue = { events, setEvents, requests, setRequests };
 
+  if (!isLoggedIn) {
+    return <RedirectToLogin />;
+  }
+
   return (
     <AdminContext.Provider value={initialValue}>
       <main>
@@ -35,7 +39,7 @@ function AdminWrapper({ children, isLoggedIn }) {
           </Container>
         </Strip>
 
-        <Container>{isLoggedIn ? children : <></>}</Container>
+        <Container>{children}</Container>
       </main>
     </AdminContext.Provider>
   );

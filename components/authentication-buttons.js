@@ -15,27 +15,25 @@ function AuthenticationButtons({ isLoggedIn, user }) {
 
   if (isLoggedIn) {
     return (
-      <section className={styles.buttons}>
-        <span>{user.email}</span>
-
-        <div>
+      <>
+        <span>{user.email}</span>{" "}
+        <span>
           <Link href="/admin" passHref>
-            <a>
-              <Button>Admin</Button>
-            </a>
+            <a>admin</a>
           </Link>
-
-          <Button onClick={() => logoutFn(true)}>Logout</Button>
-        </div>
-      </section>
+        </span>{" "}
+        <span>
+          <a href="#" onClick={() => logoutFn(true)}>
+            logout
+          </a>
+        </span>
+      </>
     );
   } else {
     return (
-      <section className={styles.buttons}>
-        <Button onClick={redirectToLoginPage}>
-          <FontAwesomeIcon icon={faLock} /> Admin
-        </Button>
-      </section>
+      <a href="#" onClick={redirectToLoginPage}>
+        <FontAwesomeIcon icon={faLock} /> admin
+      </a>
     );
   }
 }
