@@ -50,7 +50,7 @@ export default function EventCard({ event, button }) {
 
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <div>
+          <div className={eventCardStyles.description}>
             <h1>{title}</h1>
             <p className={eventCardStyles.description}>{description}</p>
           </div>

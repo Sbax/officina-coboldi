@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@import "./variables.module.scss";
 
 .card {
   background: white;
@@ -66,10 +66,6 @@
   align-items: center;
 }
 
-.description {
-  white-space: pre-wrap;
-}
-
 .hidden {
   border-style: dashed;
   opacity: 0.5;
@@ -77,5 +73,20 @@
 
   &:hover {
     opacity: 1;
+  }
+}
+
+.description {
+  > * + * {
+    margin-top: 0.5em;
+  }
+
+  h1 {
+    font-size: 1.2em;
+  }
+
+  p {
+    max-width: 60ch;
+    white-space: pre-wrap;
   }
 }
