@@ -1,6 +1,8 @@
+import AboutComponent from "../components/about";
 import Container from "../components/container";
 import How from "../components/how";
 import Layout from "../components/layout";
+import Manifesto from "../components/manifesto";
 import Meta from "../components/meta";
 import Team from "../components/team";
 import { getEvents } from "../lib/supabase";
@@ -16,11 +18,16 @@ export default function Events() {
         />
 
         <Container>
-          <a href="#" className={indexStyles.anchor} id="team" />
-          <Team />
+          <AboutComponent hideButtons />
 
           <a href="#" className={indexStyles.anchor} id="how" />
           <How />
+
+          <a href="#" className={indexStyles.anchor} id="manifesto" />
+          <Manifesto />
+
+          <a href="#" className={indexStyles.anchor} id="team" />
+          <Team />
         </Container>
       </Layout>
     </>

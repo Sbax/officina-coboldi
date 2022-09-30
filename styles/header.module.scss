@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@import "./variables.module.scss";
 
 .header {
   height: $header-height-small;
@@ -21,7 +21,7 @@
   &:after {
     background: transparent url(./borders/header-border.svg) 0 repeat-x;
     bottom: -0.95em;
-    content: '';
+    content: "";
     height: 1em;
     position: absolute;
     left: -1em;
@@ -77,7 +77,7 @@
 
     > * + * {
       &:before {
-        content: '•';
+        content: "•";
         margin-right: 1em;
       }
 
@@ -168,4 +168,10 @@
   flex: 1;
   display: flex;
   align-items: center;
+}
+
+.hideOnDesktop {
+  @media (min-width: $md) {
+    display: none;
+  }
 }

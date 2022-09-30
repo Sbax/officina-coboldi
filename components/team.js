@@ -9,12 +9,13 @@ const team = [
   },
   {
     picture: "will.png",
-    instagram: "_.am.i.will._",
+    instagram: "__.am.i.will.__",
     name: "Will",
   },
   {
     picture: "gaia.png",
     name: "Gaia",
+    instagram: "shanasakaii",
   },
   {
     picture: "tara.png",

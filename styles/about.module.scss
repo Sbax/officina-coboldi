@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@import "./variables.module.scss";
 
 .container {
   padding: 0;
@@ -37,7 +37,7 @@
 
     &:after {
       position: absolute;
-      content: '';
+      content: "";
       height: 1em;
       width: 600%;
       background: transparent url(./borders/border-black.svg) 0 repeat-x;
@@ -116,16 +116,17 @@
     &:after {
       margin-left: 0.25em;
       margin-right: 0.25em;
-      content: '·';
+      content: "·";
     }
 
     &:last-child:after {
-      content: '';
+      content: "";
     }
   }
 }
 
 .buttons {
+  text-align: center;
   margin-top: 1em;
   display: flex;
   flex-direction: column;

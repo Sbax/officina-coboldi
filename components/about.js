@@ -4,7 +4,7 @@ import aboutStyles from "../styles/about.module.scss";
 import Button from "./button";
 import Container from "./container";
 
-export default function About() {
+export default function About({ hideButtons }) {
   return (
     <>
       <Container className={aboutStyles.container}>
@@ -40,21 +40,23 @@ export default function About() {
           </p>
         </section>
       </Container>
-      <Container className={aboutStyles.buttons}>
-        <p>Vuoi saperne di più? Clicca uno dei due pulsanti!</p>
-        <article>
-          <Link href="/about#team">
-            <a>
-              <Button primary>Chi siamo?</Button>
-            </a>
-          </Link>
-          <Link href="/about#how">
-            <a>
-              <Button secondary>Come si gioca con noi?</Button>
-            </a>
-          </Link>
-        </article>
-      </Container>
+      {!hideButtons && (
+        <Container className={aboutStyles.buttons}>
+          <p>Vuoi saperne di più? Clicca uno dei due pulsanti!</p>
+          <article>
+            <Link href="/about#team">
+              <a>
+                <Button primary>Chi siamo?</Button>
+              </a>
+            </Link>
+            <Link href="/about#how">
+              <a>
+                <Button secondary>Come si gioca con noi?</Button>
+              </a>
+            </Link>
+          </article>
+        </Container>
+      )}
     </>
   );
 }

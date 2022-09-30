@@ -15,7 +15,7 @@ function Nav({ callback = () => {} }) {
       </Link>
 
       <span>
-        <Link href="/about#team">
+        <Link href="/about">
           <a alt="Chi Siamo" onClick={callback}>
             Chi Siamo
           </a>
@@ -111,6 +111,11 @@ export default function Header() {
             </a>
           </Link>
           <Nav />
+          <Link href="/events">
+            <a alt="Eventi" className={headerStyles.hideOnDesktop}>
+              <Button>Gioca con noi</Button>
+            </a>
+          </Link>
         </Container>
       </header>
     </>

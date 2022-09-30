@@ -1,0 +1,118 @@
+@import "./variables.module.scss";
+
+.container {
+  padding: 0;
+  max-width: $md;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+
+  font-size: 1.2em;
+
+  > * + * {
+    margin-top: 1em;
+  }
+
+  .description {
+    font-weight: 100;
+
+    p {
+      text-align: center;
+      max-width: 55ch;
+    }
+
+    > * + * {
+      margin-top: 1em;
+    }
+  }
+
+  hr {
+    width: 55ch;
+    border: 0;
+    height: 1em;
+
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      height: 1em;
+      width: 600%;
+      background: transparent url(./borders/border-black.svg) 0 repeat-x;
+    }
+  }
+}
+
+.image {
+  max-width: 90%;
+}
+
+.title {
+  font-size: 1.4em;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+
+  @media (min-width: $md) {
+    font-size: 2em;
+  }
+
+  span {
+    display: inline-block;
+    background-color: $main-bg;
+    padding: 1em 0;
+    padding-right: 0.5em;
+
+    position: relative;
+    z-index: 1;
+
+    max-width: 80%;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    background: transparent url(./borders/border-secondary.svg) 0 repeat-x;
+    background-size: 45em;
+    width: 100%;
+    height: 3.33em;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+}
+
+.column {
+  margin: auto;
+  max-width: 80ch;
+
+  @media (min-width: $md) {
+    article:nth-child(even) {
+      .title {
+        flex-direction: row-reverse;
+
+        span {
+          text-align: right;
+          padding-left: 0.5em;
+        }
+      }
+    }
+  }
+
+  p {
+    font-weight: normal;
+    text-align: justify;
+    hyphens: auto;
+    font-size: 1.2em;
+    line-height: 1.4;
+
+    & + p {
+      margin-top: 0.5em;
+    }
+  }
+}
