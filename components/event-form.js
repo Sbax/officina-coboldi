@@ -32,7 +32,7 @@ const EventForm = withAuthInfo(
 
     useEffect(() => {
       if (!places?.length) return;
-      if (event.place) return;
+      if (event.place?.value) return;
 
       const [place] = places;
       setPlace({ value: place.name });

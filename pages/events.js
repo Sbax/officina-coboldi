@@ -69,7 +69,7 @@ export default function Events({ events }) {
       ({ title, dm, description }) =>
         title.toLowerCase().includes(search || "") ||
         dm.name?.toLowerCase().includes(search || "") ||
-        description.toLowerCase().includes(search || "")
+        description?.toLowerCase().includes(search || "")
     )
     .filter((event) => !system || event.system === system)
     .filter((event) =>

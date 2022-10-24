@@ -5,12 +5,15 @@ import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
 import DateFormatter from "./date-formatter";
 import Input from "./input";
+import Loader from "./loader";
 
 function Bookings({ accessToken, event }) {
   const [name, setName] = useState({ value: "" });
 
   const { requests, setRequests, events, setEvents } = useContext(AdminContext);
   const [requestsToShow, setRequestsToShow] = useState([]);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setRequestsToShow(
@@ -49,6 +52,7 @@ function Bookings({ accessToken, event }) {
   };
 
   const addRequest = async () => {
+    setLoading(true);
     const response = await fetch(`/api/requests`, {
       method: "PUT",
       headers: {
@@ -64,6 +68,7 @@ function Bookings({ accessToken, event }) {
       }),
     });
 
+    setLoading(false);
     if (response.ok) {
       setName({ value: "" });
 
@@ -129,7 +134,9 @@ function Bookings({ accessToken, event }) {
                 />
               </td>
               <td>
-                <Button onClick={() => addRequest()}>Aggiungi</Button>
+                {!loading && (
+                  <Button onClick={() => addRequest()}>Aggiungi</Button>
+                )}
               </td>
             </tr>
           </tbody>
