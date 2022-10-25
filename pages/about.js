@@ -8,7 +8,7 @@ import Team from "../components/team";
 import { getEvents } from "../lib/supabase";
 import indexStyles from "../styles/index.module.scss";
 
-export default function Events() {
+export default function About({ events }) {
   return (
     <>
       <Layout>
@@ -20,14 +20,14 @@ export default function Events() {
         <Container>
           <AboutComponent hideButtons />
 
-          <a href="#" className={indexStyles.anchor} id="how" />
-          <How />
-
           <a href="#" className={indexStyles.anchor} id="manifesto" />
           <Manifesto />
 
+          <a href="#" className={indexStyles.anchor} id="how" />
+          <How />
+
           <a href="#" className={indexStyles.anchor} id="team" />
-          <Team />
+          <Team events={events} />
         </Container>
       </Layout>
     </>
