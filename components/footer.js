@@ -32,7 +32,10 @@ export default function Footer() {
 
         <section className={footerStyles.disclaimer}>
           Il sito raccoglie dati anonimi di navigazione{" / "}
-          <a href="https://beampipe.io" alt="Beampipe">
+          <a
+            href="https://app.beampipe.io/domain/officinacoboldi.it"
+            alt="Beampipe"
+          >
             beampipe
           </a>
         </section>
