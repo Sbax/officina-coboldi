@@ -39,7 +39,7 @@ function How() {
             <span>Non ho tempo per una campagna!</span>
           </h1>
           <p>
-            La maggioranza dei nostri appuntamenti sono <i>oneshot</i>, delle
+            La maggioranza dei nostri appuntamenti sono <b>oneshot</b>, delle
             partite che iniziano e finiscono nell&apos;arco della stessa serata.
           </p>
 
@@ -95,9 +95,9 @@ function How() {
             <span>Quanto si paga?</span>
           </h1>
           <p>
-            La maggior parte dei nostri eventi sono completamente gratuiti e ci
-            finanziamo tramite donazioni volontarie. Vogliamo far conoscere e
-            giocare il gioco di ruolo a chiunque sia interessato, porta soltanto
+            I nostri eventi sono, per la maggior parte, completamente gratuiti.
+            Ci finanziamo tramite donazioni volontarie per far conoscere e
+            giocare il gioco di ruolo a chiunque sia interessato. Porta soltanto
             una matita e una buona dose di immaginazione, al resto pensiamo noi!
           </p>
         </article>
