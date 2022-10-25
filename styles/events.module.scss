@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@import "./variables.module.scss";
 
 .wrapper {
   padding: 0;
@@ -13,7 +13,7 @@
 
   @media (min-width: $md) {
     position: sticky;
-    top: $header-height;
+    top: $header-height-small;
     z-index: 1;
   }
 }
@@ -71,7 +71,7 @@
 .empty {
   font-family: monospace;
   font-weight: normal;
-  
+
   padding: 1em 0;
 
   display: flex;

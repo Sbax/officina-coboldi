@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import headerStyles from "../styles/header.module.scss";
 import Button from "./button";
 import Container from "./container";
@@ -51,6 +51,19 @@ function Nav({ callback = () => {} }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [top, setTop] = useState(true);
+
+  useEffect(() => {
+    const main = document.querySelector("main");
+
+    const handleScroll = () => setTop(main.scrollTop === 0);
+
+    main.addEventListener("scroll", handleScroll);
+
+    return () => {
+      main.removeEventListener("scroll", handleScroll);
+    };
+  }, [setTop]);
 
   return (
     <>
@@ -84,7 +97,7 @@ export default function Header() {
         <Nav callback={() => setMenuOpen(false)} />
       </section>
 
-      <header className={headerStyles.header}>
+      <header className={`${headerStyles.header} ${top && headerStyles.top}`}>
         <Container className={headerStyles.content}>
           <section
             className={headerStyles.mobile}
