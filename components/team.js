@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 import teamStyles from "../styles/team.module.scss";
 
 const team = [
@@ -58,7 +59,19 @@ const team = [
   },
 ];
 
-function Team() {
+function Team({ events }) {
+  const members = team.map((member) => ({
+    ...member,
+    systems: Array.from(
+      new Set([
+        ...events
+          .filter((event) => event.dm?.name === member.name)
+          .map(({ system }) => system)
+          .filter(Boolean),
+      ])
+    ).slice(0, 3),
+  }));
+
   return (
     <section>
       <h1 className={teamStyles.title}>I membri della nostra associazione</h1>
@@ -66,7 +79,7 @@ function Team() {
         Disegnati da <a href="https://instagram.com/saratatua">@saratatua</a>
       </p>
       <section className={teamStyles.grid}>
-        {team.map(({ name, picture, instagram }) => (
+        {members.map(({ name, picture, instagram, systems }) => (
           <article key={name}>
             <Image
               src={`/assets/avatar/coboldi/${picture}`}
@@ -78,6 +91,14 @@ function Team() {
             <span>{name}</span>
             {instagram && (
               <a href={`https://instagram.com/${instagram}`}>@{instagram}</a>
+            )}
+
+            {!!systems.length && (
+              <section className={teamStyles.systems}>
+                {systems.map((system) => (
+                  <span key={system}>{system}</span>
+                ))}
+              </section>
             )}
           </article>
         ))}
