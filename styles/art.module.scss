@@ -1,0 +1,46 @@
+@import "./variables.module.scss";
+
+.article {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $md) {
+    flex-direction: row;
+  }
+
+  h1,
+  h2 {
+    font-size: 1.5em;
+    margin: 0;
+    @media (min-width: $md) {
+      padding: 0 1em;
+    }
+  }
+
+  h2 {
+    font-weight: normal;
+    @media (min-width: $md) {
+      padding-bottom: 1em;
+    }
+  }
+
+  > * {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  @media (min-width: $md) {
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+
+      > * {
+        text-align: right;
+        align-items: flex-end;
+      }
+    }
+  }
+
+  margin-bottom: 4rem;
+}

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import AboutComponent from "../components/about";
+import Button from "../components/button";
 import Container from "../components/container";
 import How from "../components/how";
 import Layout from "../components/layout";
@@ -21,6 +23,25 @@ export default function About({ events }) {
 
         <a href="#" className={indexStyles.anchor} id="manifesto" />
         <Manifesto />
+
+        <Container>
+          <section className={indexStyles.row}>
+            <section className={indexStyles.column}>
+              <p>
+                Molti artisti hanno contribuito a creare materiale per aiutarci
+                a diffondere le nostre attività e i nostri eventi. Tutte le
+                illustrazioni che abbiamo utilizzato sono state create da
+                diversi artisti, abbiamo raccolto tutto il materiale in una
+                pagina dedicata per ringraziarli a dovere!
+              </p>
+              <Link href="/art">
+                <a>
+                  <Button primary>Vedi tutti gli artwork!</Button>
+                </a>
+              </Link>
+            </section>
+          </section>
+        </Container>
 
         <a href="#" className={indexStyles.anchor} id="how" />
         <How />

@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@import "./variables.module.scss";
 
 .strip {
   display: flex;
@@ -61,7 +61,7 @@
   &:before,
   &:after {
     background: transparent url(./borders/bg-border-secondary.svg) 0 repeat-x;
-    content: '';
+    content: "";
     height: 1em;
     position: absolute;
     width: 600%;
@@ -120,7 +120,7 @@
   &:before,
   &:after {
     background: transparent url(./borders/bg-border-primary.svg) 0 repeat-x;
-    content: '';
+    content: "";
     height: 1em;
     position: absolute;
     width: 600%;
@@ -133,5 +133,35 @@
 
   &:after {
     bottom: -1em;
+  }
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+
+  margin: 1em 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-weight: normal;
+    text-align: center;
+    hyphens: auto;
+    font-size: 1.2em;
+    line-height: 1.2;
+    max-width: 50ch;
+
+    margin-bottom: 1em;
   }
 }
