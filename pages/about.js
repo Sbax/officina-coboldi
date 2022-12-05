@@ -10,27 +10,25 @@ import indexStyles from "../styles/index.module.scss";
 
 export default function About({ events }) {
   return (
-    <>
-      <Layout>
-        <Meta
-          title="Chi siamo"
-          description="I membri dell'associazione e alcune informazioni utili sulle nostre attività"
-        />
+    <Layout>
+      <Meta
+        title="Chi siamo"
+        description="I membri dell'associazione e alcune informazioni utili sulle nostre attività"
+      />
 
-        <Container>
-          <AboutComponent hideButtons />
+      <Container>
+        <AboutComponent hideButtons />
 
-          <a href="#" className={indexStyles.anchor} id="manifesto" />
-          <Manifesto />
+        <a href="#" className={indexStyles.anchor} id="manifesto" />
+        <Manifesto />
 
-          <a href="#" className={indexStyles.anchor} id="how" />
-          <How />
+        <a href="#" className={indexStyles.anchor} id="how" />
+        <How />
 
-          <a href="#" className={indexStyles.anchor} id="team" />
-          <Team events={events} />
-        </Container>
-      </Layout>
-    </>
+        <a href="#" className={indexStyles.anchor} id="team" />
+        <Team events={events} />
+      </Container>
+    </Layout>
   );
 }
 

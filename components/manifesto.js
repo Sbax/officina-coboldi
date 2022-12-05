@@ -18,7 +18,9 @@ function Manifesto() {
           </p>
           <br />
           <p>
-            Per garantire che questo avvenga abbiamo stilato un Manifesto che
+            Per garantire che questo avvenga abbiamo stilato un Manifesto
+            illustrato da{" "}
+            <a href="https://instagram.com/michh.png/">@micch.png</a> che
             raccoglie tutti i principi che condividiamo e reso scaricabile{" "}
             <a href="https://officina-coboldi.itch.io/manifesto-dei-principi-coboldi">
               sul nostro itch
