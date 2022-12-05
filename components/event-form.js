@@ -32,7 +32,7 @@ const EventForm = withAuthInfo(
 
     useEffect(() => {
       if (!places?.length) return;
-      if (event.place?.value) return;
+      if (event.place?.name) return;
 
       const [place] = places;
       setPlace({ value: place.name });
@@ -55,10 +55,10 @@ const EventForm = withAuthInfo(
     });
     const [time, setTime] = useState({ value: event.time || "20:30" });
     const [place, setPlace] = useState({
-      value: event.place.name || places[0]?.name,
+      value: event.place.name,
     });
     const [placeLink, setPlaceLink] = useState({
-      value: event.place.link || places[0]?.link,
+      value: event.place.link,
     });
     const [max, setMax] = useState({ value: event.max || 1 });
 
@@ -308,6 +308,7 @@ const EventForm = withAuthInfo(
 
           <section className={eventFormStyle.item}>
             <label className={eventFormStyle.required}>Luogo</label>
+            {place.value}
             <Select
               value={place.value}
               onChange={({ target }) => {
