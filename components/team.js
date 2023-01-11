@@ -9,11 +9,6 @@ const team = [
     name: "Matteo",
   },
   {
-    picture: "will.png",
-    instagram: "__.am.i.will.__",
-    name: "Will",
-  },
-  {
     picture: "gaia.png",
     name: "Gaia",
     instagram: "shanasakaii",
@@ -37,11 +32,6 @@ const team = [
     picture: "barbara.png",
     instagram: "__loverofthelight",
     name: "Barbs",
-  },
-  {
-    picture: "dawid.png",
-    instagram: "a3kold",
-    name: "Dawid",
   },
   {
     picture: "mich.png",
