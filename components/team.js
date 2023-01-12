@@ -34,11 +34,6 @@ const team = [
     name: "Barbs",
   },
   {
-    picture: "mich.png",
-    instagram: "michh.png",
-    name: "Mitch",
-  },
-  {
     picture: "elisa.png",
     instagram: "_elisa_snow",
     name: "Cesira",
