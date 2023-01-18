@@ -61,7 +61,9 @@ export default function Post(props) {
         </Strip>
         <Container>
           <section className={postStyles.content}>
-            <TinaMarkdown content={post.content} />
+            <section lang="it">
+              <TinaMarkdown content={post.content} />
+            </section>
           </section>
         </Container>
       </>
