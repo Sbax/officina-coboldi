@@ -6,7 +6,6 @@ import Container from "../components/container";
 import BookingCard from "../components/event-cards/booking-card";
 import EventPreview from "../components/event-preview";
 import Footer from "../components/footer";
-import How from "../components/how";
 import Layout from "../components/layout";
 import Loader from "../components/loader";
 import Meta from "../components/meta";
@@ -17,21 +16,31 @@ import { getAllPosts } from "../lib/api";
 import { getEvents } from "../lib/supabase";
 import indexStyles from "../styles/index.module.scss";
 
-export default function Index({ allPosts, events }) {
+const filterNextEvents = (events) => {
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
+  const nextEvents = events.filter(({ date }) => new Date(date) >= startDate);
+  const available = nextEvents.filter(({ max, booked }) => booked < max);
 
+  // if all available events are present in the first 4 total events use that instead
+  if (available.every((item) => nextEvents.slice(0, 4).includes(item))) {
+    return nextEvents;
+  }
+
+  return available;
+};
+
+const getNextPinnedEvents = (events) =>
+  filterNextEvents(events.filter(({ pinned }) => pinned));
+
+const getNextRegularEvents = (events) =>
+  filterNextEvents(events.filter(({ pinned }) => !pinned));
+
+export default function Index({ allPosts, events }) {
   const [loading, setLoading] = useState(false);
-  const [nextEvents, setNextEvents] = useState(
-    events
-      .filter(({ pinned }) => !pinned)
-      .filter(({ date }) => new Date(date) >= startDate)
-      .filter(({ max, booked }) => booked < max)
-  );
+  const [nextEvents, setNextEvents] = useState(getNextRegularEvents(events));
 
   const [nextPinnedEvents, setNextPinnedEvents] = useState(
-    events
-      .filter(({ pinned }) => pinned)
-      .filter(({ date }) => new Date(date) >= startDate)
+    getNextPinnedEvents(events)
   );
 
   const systems = Array.from(
@@ -43,15 +52,8 @@ export default function Index({ allPosts, events }) {
     try {
       const events = await (await fetch("/api/event")).json();
 
-      const next = events.filter(({ date }) => new Date(date) >= startDate);
-      const bookable = next.filter(({ max, booked }) => booked < max);
-      setNextEvents(
-        bookable.length
-          ? bookable.filter(({ pinned }) => !pinned)
-          : next.filter(({ pinned }) => !pinned)
-      );
-
-      setNextPinnedEvents(next.filter(({ pinned }) => pinned));
+      setNextEvents(getNextRegularEvents(events));
+      setNextPinnedEvents(getNextPinnedEvents(events));
     } catch (error) {
       console.error(error);
     }
