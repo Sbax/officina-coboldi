@@ -26,6 +26,31 @@ export default defineConfig({
         format: "json",
         fields: [
           {
+            label: "Date",
+            name: "date",
+            type: "datetime",
+            ui: {
+              dateFormat: "DD-MM-YYYY",
+            },
+            required: true,
+          },
+          {
+            type: "image",
+            label: "Image",
+            name: "coverImage",
+          },
+          {
+            type: "rich-text",
+            name: "artist",
+            label: "Artist",
+          },
+          {
+            type: "string",
+            name: "author",
+            label: "Author",
+            required: true,
+          },
+          {
             type: "string",
             name: "title",
             label: "Title",
@@ -37,6 +62,17 @@ export default defineConfig({
             name: "content",
             label: "Content",
             isBody: true,
+          },
+          {
+            type: "string",
+            name: "excerpt",
+            label: "Excerpt",
+          },
+          {
+            label: "Tags",
+            name: "tags",
+            type: "string",
+            list: true,
           },
         ],
         ui: {
