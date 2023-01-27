@@ -38,7 +38,11 @@ export default function EventCard({ event, button }) {
         <h1>{title}</h1>
         <h2>
           <section>
-            {dm.link ? <a href={dm.link}>{dm.name}</a> : dm.name} – {system}
+            {dm && dm?.name && (
+              <>{dm.link ? <a href={dm.link}>{dm.name}</a> : dm.name}</>
+            )}
+            {system && dm?.name && <> – </>}
+            {system && <>{system}</>}
           </section>
           <section>
             Presso <a href={place.link}>{place.name}</a>

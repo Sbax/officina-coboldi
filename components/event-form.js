@@ -77,8 +77,8 @@ const EventForm = withAuthInfo(
 
     const sendForm = useCallback(async () => {
       const titleError = title.value === "";
-      const systemError = system.value === "";
-      const dmError = dm.value === "";
+      const systemError = system.value === "" && reservationLink === "";
+      const dmError = dm.value === "" && reservationLink === "";
       const dateError = date.value === "";
       const timeError = time.value === "";
       const placeError = place.value === "";
