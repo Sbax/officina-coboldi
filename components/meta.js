@@ -10,8 +10,8 @@ const defaultValues = {
   title,
   description,
   color,
-  facebookImage: "https://officinacoboldi.it/thumbnail-facebook.jpg",
-  twitterImage: "https://officinacoboldi.it/thumbnail-twitter.jpg",
+  facebookImage: "https://officinacoboldi.it/thumbnail-facebook.png",
+  twitterImage: "https://officinacoboldi.it/thumbnail-twitter.png",
 };
 
 export default function Meta({ ...props }) {

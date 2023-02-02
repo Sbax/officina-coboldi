@@ -78,7 +78,7 @@ export default function Header() {
                 layout="fill"
                 objectFit="contain"
                 src="/assets/logo.svg"
-                alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
+                alt="Logo di Officina Coboldi, un coboldo rosso in un ingranaggio"
               />
             </a>
           </Link>
@@ -118,8 +118,8 @@ export default function Header() {
               <Image
                 layout="fill"
                 objectFit="contain"
-                src="/assets/logo_head.svg"
-                alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
+                src="/assets/logo.svg"
+                alt="Logo di Officina Coboldi, un coboldo rosso in un ingranaggio"
               />
             </a>
           </Link>

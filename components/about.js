@@ -11,10 +11,10 @@ export default function About({ hideButtons }) {
         <div className={aboutStyles.image}>
           <Image
             src="/assets/logo.svg"
-            alt="Logo di Officina Coboldi, un coboldo rosso con occhiali da saldatore"
+            alt="Logo di Officina Coboldi, un coboldo rosso in un ingranaggio"
             layout="intrinsic"
-            width={600}
-            height={300}
+            width={450}
+            height={450}
           />
         </div>
 

@@ -13,7 +13,7 @@ export default function Art() {
               <img src="/assets/artworks/Logo.png" />
             </section>
             <section>
-              <h1>Il logo ufficiale di Officina Coboldi</h1>
+              <h1>Il primo logo ufficiale di Officina Coboldi</h1>
               <h2>
                 Realizzato da{" "}
                 <a href="https://instagram.com/michh.png/">@micch.png</a>
@@ -112,6 +112,19 @@ export default function Art() {
               <h2>
                 Realizzata da{" "}
                 <a href="https://instagram.com/michh.png/">@micch.png</a>
+              </h2>
+            </section>
+          </article>
+
+          <article className={artStyles.article}>
+            <section>
+              <img src="/assets/artworks/logo_feduzzi.png" />
+            </section>
+            <section>
+              <h1>Il logo ufficiale di Officina Coboldi</h1>
+              <h2>
+                Realizzato da{" "}
+                <a href="https://instagram.com/_feduzzi/">@_feduzzi</a>
               </h2>
             </section>
           </article>
