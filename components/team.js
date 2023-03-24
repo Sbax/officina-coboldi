@@ -42,6 +42,10 @@ const team = [
     picture: "teo.png",
     name: "Teo",
   },
+  {
+    picture: "rossella.png",
+    name: "Rossella",
+  },
 ];
 
 function Team({ events }) {
