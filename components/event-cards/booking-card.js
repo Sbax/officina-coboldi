@@ -7,7 +7,16 @@ import EventCard from "./event-card";
 export default function BookingCard({ event }) {
   const { date, max, booked, reservationLink } = event;
 
-  const futureEvent = new Date(date) >= new Date().setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const futureEvent = new Date(date) >= today;
+
+  const threeMonthsAgo = new Date(today);
+  threeMonthsAgo.setMonth(today.getMonth() - 3);
+
+  const pastEvent = new Date(date) < threeMonthsAgo;
+
   const fullyBooked = booked >= max;
 
   const Book = () => {
@@ -38,7 +47,7 @@ export default function BookingCard({ event }) {
         button={
           <section className={eventCardStyles.booking}>
             <section>
-              {!reservationLink && (
+              {!reservationLink && !pastEvent && (
                 <>
                   <span>{booked}</span> / <span>{max}</span>
                 </>
