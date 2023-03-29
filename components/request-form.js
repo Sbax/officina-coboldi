@@ -140,8 +140,9 @@ export default function RequestForm({ event }) {
       <h2>Ti stai prenotando per</h2>
       <h1>{title}</h1>
       <h2>
-        {system} con {dm.name}, il <DateFormatter dateString={date} /> alle{" "}
-        {time} presso <a href={place.link}>{place.name}</a>
+        {system ? `${system} ` : ""}con {dm.name || "Officina Coboldi"}, il{" "}
+        <DateFormatter dateString={date} /> alle {time} presso{" "}
+        <a href={place.link}>{place.name}</a>
       </h2>
       {!errorState?.remainingPlaces ? (
         ""
