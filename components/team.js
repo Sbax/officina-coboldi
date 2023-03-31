@@ -6,7 +6,7 @@ const team = [
   {
     picture: "matteo.png",
     instagram: "heysbax",
-    name: "Matteo",
+    name: "Sbax",
   },
   {
     picture: "gaia.png",
