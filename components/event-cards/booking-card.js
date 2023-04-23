@@ -5,7 +5,7 @@ import Button from "../button";
 import EventCard from "./event-card";
 
 export default function BookingCard({ event }) {
-  const { date, max, booked, reservationLink } = event;
+  const { date, max, booked, reservationLink, info } = event;
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -24,7 +24,7 @@ export default function BookingCard({ event }) {
       if (reservationLink)
         return (
           <a href={reservationLink}>
-            <Button primary={true}>Prenota!</Button>
+            <Button primary={true}>{info ? "Leggi di più" : "Prenota!"}</Button>
           </a>
         );
 

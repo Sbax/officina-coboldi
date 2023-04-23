@@ -72,6 +72,7 @@ const EventForm = withAuthInfo(
 
     const [pinned, setPinned] = useState(event.pinned);
     const [hidden, setHidden] = useState(event.hide);
+    const [info, setInfo] = useState(event.info);
 
     const [formState, setFormState] = useState(FormState.Idle);
 
@@ -154,6 +155,7 @@ const EventForm = withAuthInfo(
           description: description.value,
           pinned,
           hide: hidden,
+          info,
         }),
       });
 
@@ -421,6 +423,15 @@ const EventForm = withAuthInfo(
               onChange={({ target }) => setHidden(target.checked)}
             >
               Nascondi l&apos;evento
+            </Checkbox>
+          </section>
+
+          <section className={eventFormStyle.item}>
+            <Checkbox
+              value={info}
+              onChange={({ target }) => setInfo(target.checked)}
+            >
+              Sostituisci il testo Prenota! con Mostra di più
             </Checkbox>
           </section>
         </form>
