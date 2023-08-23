@@ -30,7 +30,11 @@ export default function Contacts() {
             </li>
 
             <li>
-              <a href="https://t.me/OfficinaCoboldi">telegram</a>
+              <a href="https://t.me/OfficinaCoboldi">canale telegram</a>
+            </li>
+
+            <li>
+              <a href="https://t.me/OfficinaCoboldiGruppo">gruppo telegram</a>
             </li>
 
             <li>

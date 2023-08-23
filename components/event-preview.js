@@ -3,6 +3,7 @@ import React, { cloneElement, Fragment, useEffect, useState } from "react";
 import eventPreviewStyles from "../styles/event-preview.module.scss";
 import Modal from "./modal";
 import RequestForm from "./request-form";
+import Link from "next/link";
 
 export default function EventPreview({
   events,
@@ -32,12 +33,16 @@ export default function EventPreview({
 
         {events.length < 4 && showEmpty ? (
           <div className={eventPreviewStyles.empty}>
-            {!events.length ? (
-              <span>Nessun evento in programma</span>
-            ) : (
-              <span>Nessun altro evento in programma</span>
-            )}
+            <div>
+              Non ci sono altri eventi in programma, oppure i posti sono finiti
+            </div>
             <div>{"o͡╮༼  ಠДಠ ༽╭o͡━☆ﾟ.*･｡ﾟ"}</div>
+            <span>
+              <Link href="/#contacts">
+                <a alt="Contatti">Contattaci</a>
+              </Link>{" "}
+              se vuoi giocare a tutti i costi!
+            </span>
           </div>
         ) : (
           ""

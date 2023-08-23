@@ -21,11 +21,6 @@ const filterNextEvents = (events) => {
   const nextEvents = events.filter(({ date }) => new Date(date) >= startDate);
   const available = nextEvents.filter(({ max, booked }) => booked < max);
 
-  // if all available events are present in the first 4 total events use that instead
-  if (available.every((item) => nextEvents.slice(0, 4).includes(item))) {
-    return nextEvents;
-  }
-
   return available;
 };
 
