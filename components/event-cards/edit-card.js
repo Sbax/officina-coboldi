@@ -75,16 +75,11 @@ function EditCard({ event, accessToken }) {
                 Modifica
               </Button>
 
-              {!event.reservationLink ? (
-                <Button
-                  disabled={event.reservationLink}
-                  onClick={() => showBookings(true)}
-                >
-                  Prenotazioni ({event.booked}/{event.max})
-                </Button>
-              ) : (
-                ""
-              )}
+              <Button
+                onClick={() => showBookings(true)}
+              >
+                Prenotazioni ({event.booked}/{event.max})
+              </Button>
             </div>
           </section>
         }
