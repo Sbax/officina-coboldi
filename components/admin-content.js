@@ -10,12 +10,14 @@ import Modal from "./modal";
 import Pending from "./pending";
 
 function AdminContent({ accessToken }) {
-  const { events, setEvents, setRequests } = useContext(AdminContext);
+  const { events, requests, setEvents, setRequests } = useContext(AdminContext);
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
 
   const [eventFormShown, showEventForm] = useState(false);
   const [eventsToShow, setEventsToShow] = useState(
-    events.filter(({ date }) => new Date(date) >= startDate).reverse()
+    !events || events.error
+      ? []
+      : events.filter(({ date }) => new Date(date) >= startDate).reverse()
   );
 
   const showAll = () => setEventsToShow(events);
@@ -51,6 +53,8 @@ function AdminContent({ accessToken }) {
   }, [setRequests]);
 
   useEffect(() => {
+    if (!events || events.error) return;
+
     setEventsToShow(
       events
         .filter(({ date }) => new Date(date) >= startDate)
@@ -61,6 +65,10 @@ function AdminContent({ accessToken }) {
         .reverse()
     );
   }, [events]);
+
+  if (!events || !requests || events.error || requests.error) {
+    return <>Errore Database</>;
+  }
 
   return (
     <>

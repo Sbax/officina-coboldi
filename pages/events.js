@@ -15,12 +15,14 @@ import eventStyles from "../styles/events.module.scss";
 
 export default function Events({ events }) {
   const router = useRouter();
-  const minDate = new Date(
-    Math.min.apply(
-      null,
-      events.map(({ date }) => new Date(date))
-    )
-  );
+  const minDate = events.length
+    ? new Date(
+        Math.min.apply(
+          null,
+          events.map(({ date }) => new Date(date))
+        )
+      )
+    : new Date();
 
   const systems = Array.from(
     new Set([...events.map(({ system }) => system)])

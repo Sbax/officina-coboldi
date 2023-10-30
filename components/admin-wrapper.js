@@ -7,17 +7,17 @@ import pageStyles from "../styles/page.module.scss";
 import Header from "./header";
 
 export const AdminContext = createContext({
-  events: [],
-  setEvents: () => {},
-  requests: [],
-  setRequests: () => {},
+  events: null,
+  setEvents: null,
+  requests: null,
+  setRequests: null,
 });
 
 function AdminWrapper({ children, isLoggedIn }) {
   const title = "Admin";
 
-  const [events, setEvents] = useState([]);
-  const [requests, setRequests] = useState([]);
+  const [events, setEvents] = useState();
+  const [requests, setRequests] = useState();
 
   const initialValue = { events, setEvents, requests, setRequests };
 

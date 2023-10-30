@@ -47,10 +47,15 @@ export default function Index({ allPosts, events }) {
     try {
       const events = await (await fetch("/api/event")).json();
 
+      if (!events || events.error) {
+        setLoading(false);
+        return;
+      }
+
       setNextEvents(getNextRegularEvents(events));
       setNextPinnedEvents(getNextPinnedEvents(events));
     } catch (error) {
-      console.error(error);
+      console.error("[fetchEvents] caught", error);
     }
 
     setLoading(false);
