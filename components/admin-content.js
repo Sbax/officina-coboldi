@@ -6,6 +6,7 @@ import Button from "./button";
 import EditCard from "./event-cards/edit-card";
 import EventForm from "./event-form";
 import EventPreview from "./event-preview";
+import Loader from "./loader";
 import Modal from "./modal";
 import Pending from "./pending";
 
@@ -13,6 +14,7 @@ function AdminContent({ accessToken }) {
   const { events, requests, setEvents, setRequests } = useContext(AdminContext);
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
 
+  const [loading, setLoading] = useState(true);
   const [eventFormShown, showEventForm] = useState(false);
   const [eventsToShow, setEventsToShow] = useState(
     !events || events.error
@@ -66,7 +68,15 @@ function AdminContent({ accessToken }) {
     );
   }, [events]);
 
-  if (!events || !requests || events.error || requests.error) {
+  useEffect(() => {
+    setLoading(!(events && requests));
+  }, [events, requests]);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (!events || !requests || events?.error || requests?.error) {
     return <>Errore Database</>;
   }
 
