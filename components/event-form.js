@@ -259,7 +259,10 @@ const EventForm = withAuthInfo(
           </section>
 
           <section className={eventFormStyle.item}>
-            <label>DM Link</label>
+            <label>
+              <div>DM Link</div>
+              <div>Facoltativo</div>
+            </label>
             <Input
               value={dmLink.value}
               error={dmLink.error}
@@ -272,8 +275,6 @@ const EventForm = withAuthInfo(
               type="text"
               placeholder="DM Link"
             />
-
-            <div>Facoltativo</div>
           </section>
 
           <section className={eventFormStyle.item}>
@@ -310,34 +311,38 @@ const EventForm = withAuthInfo(
 
           <section className={eventFormStyle.item}>
             <label className={eventFormStyle.required}>Luogo</label>
-            {place.value}
-            <Select
-              value={place.value}
-              onChange={({ target }) => {
-                const place = places.find(({ name }) => name === target.value);
-                setPlace({ value: place.name });
-                setPlaceLink({ value: place.link });
-              }}
-            >
-              {places.map((place) => (
-                <option key={place.name} value={place.name}>
-                  {place.name}
-                </option>
-              ))}
-            </Select>
+            <div className={eventFormStyle.column}>
+              <div>{place.value}</div>
+              <Select
+                value={place.value}
+                onChange={({ target }) => {
+                  const place = places.find(
+                    ({ name }) => name === target.value
+                  );
+                  setPlace({ value: place.name });
+                  setPlaceLink({ value: place.link });
+                }}
+              >
+                {places.map((place) => (
+                  <option key={place.name} value={place.name}>
+                    {place.name}
+                  </option>
+                ))}
+              </Select>
 
-            <Input
-              value={place.value}
-              error={place.error}
-              onChange={({ target }) =>
-                setPlace({
-                  value: target.value,
-                  error: !target.value || target.value === "",
-                })
-              }
-              type="text"
-              placeholder="Luogo"
-            />
+              <Input
+                value={place.value}
+                error={place.error}
+                onChange={({ target }) =>
+                  setPlace({
+                    value: target.value,
+                    error: !target.value || target.value === "",
+                  })
+                }
+                type="text"
+                placeholder="Luogo"
+              />
+            </div>
           </section>
 
           <section className={eventFormStyle.item}>
@@ -372,7 +377,12 @@ const EventForm = withAuthInfo(
           </section>
 
           <section className={eventFormStyle.item}>
-            <label>Link Prenotazione</label>
+            <label>
+              <div>Link Prenotazione</div>
+              <div>
+                Facoltativo. Per gestire le prenotazioni non attraverso il sito
+              </div>
+            </label>
             <Input
               value={reservationLink.value}
               error={reservationLink.error}
@@ -385,15 +395,19 @@ const EventForm = withAuthInfo(
               type="text"
               placeholder="Link Prenotazione"
             />
-
-            <div>
-              Facoltativo. Per gestire le prenotazioni non attraverso il sito
-            </div>
           </section>
 
           <section className={eventFormStyle.item}>
-            <label>Descrizione</label>
+            <label>
+              <div>Descrizione</div>
+              <div className={eventFormStyle.caption}>
+                Facoltativo. La descrizione della sessione
+              </div>
+            </label>
+
             <Textarea
+              rows={10}
+              cols={50}
               value={description.value}
               error={description.error}
               onChange={({ target }) =>
@@ -404,35 +418,48 @@ const EventForm = withAuthInfo(
               }
               placeholder="Descrizione..."
             />
-
-            <div>Facoltativo. La descrizione della sessione</div>
           </section>
 
-          <section className={eventFormStyle.item}>
-            <Checkbox
-              value={pinned}
-              onChange={({ target }) => setPinned(target.checked)}
-            >
-              Pinnato, da usare per gli eventi speciali
-            </Checkbox>
+          <section
+            className={[eventFormStyle.item, eventFormStyle.checkboxes].join(
+              " "
+            )}
+          >
+            <div>
+              <Checkbox
+                value={pinned}
+                onChange={({ target }) => setPinned(target.checked)}
+              />
+            </div>
+            Pinnato, da usare per gli eventi speciali
           </section>
 
-          <section className={eventFormStyle.item}>
-            <Checkbox
-              value={hidden}
-              onChange={({ target }) => setHidden(target.checked)}
-            >
-              Nascondi l&apos;evento
-            </Checkbox>
+          <section
+            className={[eventFormStyle.item, eventFormStyle.checkboxes].join(
+              " "
+            )}
+          >
+            <div>
+              <Checkbox
+                value={hidden}
+                onChange={({ target }) => setHidden(target.checked)}
+              />
+            </div>
+            Nascondi l&apos;evento
           </section>
 
-          <section className={eventFormStyle.item}>
-            <Checkbox
-              value={info}
-              onChange={({ target }) => setInfo(target.checked)}
-            >
-              Sostituisci il testo Prenota! con Mostra di più
-            </Checkbox>
+          <section
+            className={[eventFormStyle.item, eventFormStyle.checkboxes].join(
+              " "
+            )}
+          >
+            <div>
+              <Checkbox
+                value={info}
+                onChange={({ target }) => setInfo(target.checked)}
+              />
+            </div>
+            Sostituisci il testo Prenota! con Mostra di più
           </section>
         </form>
         <section className={requestFormStyles.button}>

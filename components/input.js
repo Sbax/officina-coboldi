@@ -19,6 +19,9 @@ export function Textarea({ className, error, ...props }) {
   return (
     <span>
       <DebounceInput
+        style={{
+          maxWidth: "100%",
+        }}
         element="textarea"
         forceNotifyByEnter={false}
         debounceTimeout={500}

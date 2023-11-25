@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@import "./variables.module.scss";
 
 .form {
   > * + * {
@@ -13,7 +13,16 @@
 
   label {
     display: inline-block;
-    min-width: 15ch;
+    width: 15ch;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+
+    > * + * {
+      margin-top: 0.5em;
+    }
   }
 
   > * + * {
@@ -31,8 +40,15 @@
   }
 }
 
+.checkboxes {
+  display: block;
+  > * {
+    display: inline-block;
+  }
+}
+
 .required {
   &:after {
-    content: ' *';
+    content: " *";
   }
 }
