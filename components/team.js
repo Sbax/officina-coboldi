@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { getSystemFromEvents } from "../lib/utils";
 import teamStyles from "../styles/team.module.scss";
 
 const team = [
@@ -51,13 +52,8 @@ const team = [
 function Team({ events }) {
   const members = team.map((member) => ({
     ...member,
-    systems: Array.from(
-      new Set([
-        ...events
-          .filter((event) => event.dm?.name === member.name)
-          .map(({ system }) => system)
-          .filter(Boolean),
-      ])
+    systems: getSystemFromEvents(
+      events.filter((event) => event.dm?.name === member.name)
     ).slice(0, 3),
   }));
 

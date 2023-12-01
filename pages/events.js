@@ -12,6 +12,7 @@ import Select from "../components/select";
 import Strip from "../components/strip";
 import { getEvents } from "../lib/supabase";
 import eventStyles from "../styles/events.module.scss";
+import { getSystemFromEvents } from "../lib/utils";
 
 export default function Events({ events }) {
   const router = useRouter();
@@ -24,9 +25,7 @@ export default function Events({ events }) {
       )
     : new Date();
 
-  const systems = Array.from(
-    new Set([...events.map(({ system }) => system)])
-  ).filter(Boolean);
+  const systems = getSystemFromEvents(events);
 
   const { date, search, system, place, endDate } = router.query;
 

@@ -15,6 +15,7 @@ import Systems from "../components/systems";
 import { getAllPosts } from "../lib/api";
 import { getEvents } from "../lib/supabase";
 import indexStyles from "../styles/index.module.scss";
+import { getSystemFromEvents } from "../lib/utils";
 
 const filterNextEvents = (events) => {
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
@@ -38,9 +39,7 @@ export default function Index({ allPosts, events }) {
     getNextPinnedEvents(events)
   );
 
-  const systems = Array.from(
-    new Set([...events.map(({ system }) => system)])
-  ).filter(Boolean);
+  const systems = getSystemFromEvents(events);
 
   const fetchEvents = async () => {
     setLoading(true);
