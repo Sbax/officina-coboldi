@@ -136,7 +136,7 @@ export default function Index({ allPosts, events }) {
         </Strip>
         <Container className={indexStyles.about}>
           <a href="#" className={indexStyles.anchor} id="about" />
-          <About systems={systems} />
+          <About />
         </Container>
         <section className={indexStyles.systems}>
           <Systems systems={systems} />

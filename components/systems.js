@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "./container";
 import aboutStyles from "../styles/about.module.scss";
+import Button from "./button";
 
 function Systems({ systems }) {
+  const [systemsToShow, setSystemsToShow] = useState(systems.slice(0, 20));
+
   return (
     <Container className={aboutStyles.systemsContainer}>
       <h1 className={aboutStyles.title}>A cosa giochiamo?</h1>
@@ -15,14 +18,24 @@ function Systems({ systems }) {
           inoltre siamo tanti master con gusti e passioni differenti, che ci
           permette di avere una scelta davvero ampia!
         </p>
-
-        <ul className={aboutStyles.list}>
-          {systems
-            .sort((a, b) => a.localeCompare(b))
-            .map((system) => (
+        <section className={aboutStyles.column}>
+          <ul className={aboutStyles.list}>
+            {systemsToShow.map((system) => (
               <li key={system}>{system}</li>
             ))}
-        </ul>
+            {systemsToShow.length !== systems.length && <li>...</li>}
+          </ul>
+
+          {systemsToShow.length !== systems.length && (
+            <a
+              href="#"
+              onClick={() => setSystemsToShow(systems)}
+              className={aboutStyles.showMore}
+            >
+              Mostra tutti
+            </a>
+          )}
+        </section>
 
         <p>
           Qualcuno di questi giochi ti incuriosisce? Vuoi fare qualche domanda
