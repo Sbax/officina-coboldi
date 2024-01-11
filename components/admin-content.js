@@ -72,6 +72,8 @@ function AdminContent({ accessToken }) {
     setLoading(!(events && requests));
   }, [events, requests]);
 
+  const closeModal = () => showEventForm(false);
+
   if (loading) {
     return <Loader />;
   }
@@ -100,8 +102,8 @@ function AdminContent({ accessToken }) {
       <Pending />
 
       {eventFormShown && (
-        <Modal onClose={() => showEventForm(false)}>
-          <EventForm />
+        <Modal onClose={closeModal}>
+          <EventForm onSave={closeModal} />
         </Modal>
       )}
     </>

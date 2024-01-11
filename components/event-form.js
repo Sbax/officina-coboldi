@@ -463,7 +463,13 @@ const EventForm = withAuthInfo(
           </section>
         </form>
         <section className={requestFormStyles.button}>
-          <Button secondary onClick={() => sendForm()}>
+          <Button
+            secondary
+            onClick={() => {
+              sendForm();
+              onSave();
+            }}
+          >
             {event.id ? "Modifica l'evento" : "Crea l'evento"}
           </Button>
         </section>
