@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import headerStyles from "../styles/header.module.scss";
 import Button from "./button";
 import Container from "./container";
+import AuthenticationButtons from "./authentication-buttons";
 
 function Nav({ callback = () => {}, children }) {
   return (
@@ -103,6 +104,10 @@ export default function Header() {
             <a href="https://feedback.officinacoboldi.it" alt="Feedback">
               Feedback
             </a>
+          </span>
+
+          <span>
+            <AuthenticationButtons />
           </span>
         </Nav>
       </section>
