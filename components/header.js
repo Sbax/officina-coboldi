@@ -5,7 +5,7 @@ import headerStyles from "../styles/header.module.scss";
 import Button from "./button";
 import Container from "./container";
 
-function Nav({ callback = () => {} }) {
+function Nav({ callback = () => {}, children }) {
   return (
     <nav className={headerStyles.navigation}>
       <Link href="/events">
@@ -30,21 +30,7 @@ function Nav({ callback = () => {} }) {
         </Link>
       </span>
 
-      <span>
-        <Link href="/posts">
-          <a alt="Blog" onClick={callback}>
-            Blog
-          </a>
-        </Link>
-      </span>
-
-      <span>
-        <Link href="/#contacts">
-          <a alt="Contatti" onClick={callback}>
-            Contatti
-          </a>
-        </Link>
-      </span>
+      {children}
     </nav>
   );
 }
@@ -64,6 +50,8 @@ export default function Header() {
       main.removeEventListener("scroll", handleScroll);
     };
   }, [setTop]);
+
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
@@ -88,27 +76,48 @@ export default function Header() {
             width={25}
             height={25}
             objectFit="contain"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
             className={headerStyles.close}
             src="/assets/close.svg"
             alt="Chiudi"
           />
         </header>
-        <Nav callback={() => setMenuOpen(false)} />
+        <Nav callback={closeMenu}>
+          <span>
+            <Link href="/posts">
+              <a alt="Blog" onClick={closeMenu}>
+                Blog
+              </a>
+            </Link>
+          </span>
+
+          <span>
+            <Link href="/#contacts">
+              <a alt="Contatti" onClick={closeMenu}>
+                Contatti
+              </a>
+            </Link>
+          </span>
+
+          <span>
+            <a href="https://feedback.officinacoboldi.it" alt="Feedback">
+              Feedback
+            </a>
+          </span>
+        </Nav>
       </section>
 
       <header className={`${headerStyles.header} ${top && headerStyles.top}`}>
         <Container className={headerStyles.content}>
           <section
-            className={headerStyles.mobile}
             onClick={() => setMenuOpen(!menuOpen)}
+            className={headerStyles.hamburger}
           >
             <Image
               layout="intrinsic"
               width={25}
               height={25}
               objectFit="contain"
-              className={headerStyles.hamburger}
               src="/assets/hamburger.svg"
               alt="Menu"
             />
@@ -124,11 +133,13 @@ export default function Header() {
             </a>
           </Link>
           <Nav />
-          <Link href="/events">
-            <a alt="Eventi" className={headerStyles.hideOnDesktop}>
-              <Button>Gioca con noi</Button>
-            </a>
-          </Link>
+          <div className={headerStyles.hideOnDesktop}>
+            <Link href="/events">
+              <a alt="Eventi">
+                <Button>Gioca con noi</Button>
+              </a>
+            </Link>
+          </div>
         </Container>
       </header>
     </>
