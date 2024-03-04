@@ -197,6 +197,8 @@ const EventForm = withAuthInfo(
       onSave,
       description,
       pinned,
+      hidden,
+      info,
     ]);
 
     return (
