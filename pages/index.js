@@ -20,16 +20,19 @@ import { getSystemFromEvents } from "../lib/utils";
 const filterNextEvents = (events) => {
   const startDate = new Date().setUTCHours(0, 0, 0, 0);
   const nextEvents = events.filter(({ date }) => new Date(date) >= startDate);
-  const available = nextEvents.filter(({ max, booked }) => booked < max);
 
-  return available;
+  return nextEvents;
 };
 
 const getNextPinnedEvents = (events) =>
   filterNextEvents(events.filter(({ pinned }) => pinned));
 
 const getNextRegularEvents = (events) =>
-  filterNextEvents(events.filter(({ pinned }) => !pinned));
+  filterNextEvents(
+    events
+      .filter(({ max, booked }) => booked < max)
+      .filter(({ pinned }) => !pinned)
+  );
 
 export default function Index({ allPosts, events }) {
   const [loading, setLoading] = useState(false);

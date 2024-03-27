@@ -1,11 +1,11 @@
 import { withAuthInfo } from "@propelauth/react";
+import { format } from "date-fns";
 import { useContext, useEffect, useState } from "react";
 import styles from "../styles/pending.module.scss";
 import { AdminContext } from "./admin-wrapper";
 import Button from "./button";
 import DateFormatter from "./date-formatter";
 import Input from "./input";
-import Loader from "./loader";
 
 function Bookings({ accessToken, event }) {
   const [name, setName] = useState({ value: "" });
@@ -91,36 +91,43 @@ function Bookings({ accessToken, event }) {
   };
 
   return (
-    <>
+    <section>
       <h1 className={styles.title}>
-        Prenotazioni per {event.title} (
-        <DateFormatter dateString={event.date} />)
+        Prenotazioni per {event.title}
+        <br />
+        (<DateFormatter dateString={event.date} />)
       </h1>
       <div className={styles.scrollable}>
         <table className={styles.table}>
           <thead>
             <tr>
+              <th>Data</th>
               <th>Nome</th>
-              <th>Instagram</th>
-              <th>Telefono</th>
             </tr>
           </thead>
 
           <tbody>
-            {requestsToShow.map((item, index) => (
-              <tr key={`${item.name}-${index}`}>
-                <td>{item.name}</td>
-                <td>{item.instagram}</td>
-                <td>{item.phone}</td>
-                <td>
-                  <Button onClick={() => removeRequest(item.id)}>
-                    Rimuovi
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {requestsToShow
+              .sort((a, b) => new Date(a.created) - new Date(b.created))
+              .map((item, index) => (
+                <tr key={`${item.name}-${index}`}>
+                  <td>{format(new Date(item.created), "dd/MM/yyyy HH:mm")}</td>
+                  <td>
+                    <div>{item.name}</div>
+                    <div>
+                      {item.instagram && <div>ig: {item.instagram}</div>}
+                      {item.phone && <div>ph: {item.phone}</div>}
+                    </div>
+                  </td>
+                  <td>
+                    <Button onClick={() => removeRequest(item.id)}>
+                      Rimuovi
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             <tr>
-              <td colSpan={3}>
+              <td colSpan={2}>
                 <Input
                   value={name.value}
                   onChange={({ target }) =>
@@ -142,7 +149,7 @@ function Bookings({ accessToken, event }) {
           </tbody>
         </table>
       </div>
-    </>
+    </section>
   );
 }
 
