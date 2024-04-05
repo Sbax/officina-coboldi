@@ -57,15 +57,7 @@ function AdminContent({ accessToken }) {
   useEffect(() => {
     if (!events || events.error) return;
 
-    setEventsToShow(
-      events
-        .filter(({ date }) => new Date(date) >= startDate)
-        .sort(
-          (a, b) =>
-            new Date(`${b.date} ${b.time}`) - new Date(`${a.date} ${a.time}`)
-        )
-        .reverse()
-    );
+    setEventsToShow(events.filter(({ date }) => new Date(date) >= startDate));
   }, [events]);
 
   useEffect(() => {

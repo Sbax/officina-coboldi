@@ -1,5 +1,5 @@
 import { RedirectToLogin, withAuthInfo } from "@propelauth/react";
-import { createContext, useState } from "react";
+import { createContext, useCallback, useMemo, useState } from "react";
 import Container from "../components/container";
 import Meta from "../components/meta";
 import Strip from "../components/strip";
@@ -16,8 +16,19 @@ export const AdminContext = createContext({
 function AdminWrapper({ children, isLoggedIn }) {
   const title = "Admin";
 
-  const [events, setEvents] = useState();
+  const [events, actualSetEvents] = useState();
   const [requests, setRequests] = useState();
+
+  const setEvents = useCallback(
+    (events) =>
+      actualSetEvents(
+        events.sort(
+          (a, b) =>
+            new Date(`${b.date} ${b.time}`) - new Date(`${a.date} ${a.time}`)
+        )
+      ),
+    [actualSetEvents]
+  );
 
   const initialValue = { events, setEvents, requests, setRequests };
 

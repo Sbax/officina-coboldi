@@ -111,7 +111,12 @@ function Bookings({ accessToken, event }) {
               .sort((a, b) => new Date(a.created) - new Date(b.created))
               .map((item, index) => (
                 <tr key={`${item.name}-${index}`}>
-                  <td>{format(new Date(item.created), "dd/MM/yyyy HH:mm")}</td>
+                  <td>
+                    {format(
+                      new Date(item.created || new Date()),
+                      "dd/MM/yyyy HH:mm"
+                    )}
+                  </td>
                   <td>
                     <div>{item.name}</div>
                     <div>
