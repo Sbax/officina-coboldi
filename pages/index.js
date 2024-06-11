@@ -12,7 +12,7 @@ import Meta from "../components/meta";
 import PostPreview from "../components/post-preview";
 import Strip from "../components/strip";
 import Systems from "../components/systems";
-import { getAllPosts } from "../lib/api";
+import { getAllPosts, getHomeSettings } from "../lib/api";
 import { getEvents } from "../lib/supabase";
 import indexStyles from "../styles/index.module.scss";
 import { getSystemFromEvents } from "../lib/utils";
@@ -34,7 +34,7 @@ const getNextRegularEvents = (events) =>
       .filter(({ pinned }) => !pinned)
   );
 
-export default function Index({ allPosts, events }) {
+export default function Index({ allPosts, events, homeSettings }) {
   const [loading, setLoading] = useState(false);
   const [nextEvents, setNextEvents] = useState(getNextRegularEvents(events));
 
@@ -67,6 +67,8 @@ export default function Index({ allPosts, events }) {
     fetchEvents();
   }, []);
 
+  const { nextEventText, nextEventLink } = homeSettings;
+
   return (
     <>
       <Layout skipFooter>
@@ -89,6 +91,18 @@ export default function Index({ allPosts, events }) {
                 events={nextPinnedEvents.slice(-4).reverse()}
                 card={<BookingCard />}
               />
+
+              {nextEventText && nextEventLink && (
+                <h2>
+                  <Link href={nextEventLink}>
+                    <a alt={nextEventText}>
+                      <Button className={indexStyles.link}>
+                        {nextEventText}
+                      </Button>
+                    </a>
+                  </Link>
+                </h2>
+              )}
             </Container>
           </Strip>
         ) : (
@@ -176,8 +190,11 @@ export async function getStaticProps() {
     "tags",
   ]);
 
+  const homeSettings = getHomeSettings();
+
   return {
     props: {
+      homeSettings,
       allPosts,
       events: events.error ? [] : events,
     },

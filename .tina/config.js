@@ -20,6 +20,32 @@ export default defineConfig({
   schema: {
     collections: [
       {
+        name: "Home",
+        label: "Home",
+        path: "_home",
+        format: "json",
+        fields: [
+          {
+            label: "Next Event Text",
+            name: "nextEventText",
+            type: "string",
+            required: false,
+          },
+          {
+            label: "Next Event Link",
+            name: "nextEventLink",
+            type: "string",
+            required: false,
+          },
+        ],
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+      },
+      {
         name: "post",
         label: "Posts",
         path: "_posts",
@@ -79,6 +105,28 @@ export default defineConfig({
           // This is an DEMO router. You can remove this to fit your site
           router: ({ document }) => `/posts/${document._sys.filename}`,
         },
+      },
+      {
+        name: "pages",
+        label: "Pages",
+        path: "_pages",
+        format: "json",
+        fields: [
+          {
+            label: "Title",
+            name: "title",
+            type: "string",
+            required: true,
+            isTitle: true,
+          },
+          {
+            label: "Content",
+            name: "content",
+            type: "rich-text",
+            required: true,
+            isBody: true,
+          },
+        ],
       },
     ],
   },
